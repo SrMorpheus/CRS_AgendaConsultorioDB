@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AgendaConsultorio.Dados;
+using AgendaConsultorio.Models;
+using AgendaConsultorio.View;
+using System;
 
 namespace AgendaConsultorio
 {
@@ -6,7 +9,14 @@ namespace AgendaConsultorio
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+
+
+            ViewPaciente viewPaciente = new ViewPaciente();
+
+            viewPaciente.CadastroView();
+
+
+
         }
     }
 }

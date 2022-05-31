@@ -5,10 +5,4 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Dados\" />
-    <Folder Include="View\" />
-    <Folder Include="Services\" />
-  </ItemGroup>
-
 </Project>

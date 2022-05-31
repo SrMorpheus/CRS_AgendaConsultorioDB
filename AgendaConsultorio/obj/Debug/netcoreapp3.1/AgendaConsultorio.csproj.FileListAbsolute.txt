@@ -1,0 +1,14 @@
+C:\Users\apoio\Desktop\Desafio\CRS_AgendaConsultorio\AgendaConsultorio\bin\Debug\netcoreapp3.1\AgendaConsultorio.exe
+C:\Users\apoio\Desktop\Desafio\CRS_AgendaConsultorio\AgendaConsultorio\bin\Debug\netcoreapp3.1\AgendaConsultorio.deps.json
+C:\Users\apoio\Desktop\Desafio\CRS_AgendaConsultorio\AgendaConsultorio\bin\Debug\netcoreapp3.1\AgendaConsultorio.runtimeconfig.json
+C:\Users\apoio\Desktop\Desafio\CRS_AgendaConsultorio\AgendaConsultorio\bin\Debug\netcoreapp3.1\AgendaConsultorio.runtimeconfig.dev.json
+C:\Users\apoio\Desktop\Desafio\CRS_AgendaConsultorio\AgendaConsultorio\bin\Debug\netcoreapp3.1\AgendaConsultorio.dll
+C:\Users\apoio\Desktop\Desafio\CRS_AgendaConsultorio\AgendaConsultorio\bin\Debug\netcoreapp3.1\AgendaConsultorio.pdb
+C:\Users\apoio\Desktop\Desafio\CRS_AgendaConsultorio\AgendaConsultorio\obj\Debug\netcoreapp3.1\AgendaConsultorio.csproj.AssemblyReference.cache
+C:\Users\apoio\Desktop\Desafio\CRS_AgendaConsultorio\AgendaConsultorio\obj\Debug\netcoreapp3.1\AgendaConsultorio.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\apoio\Desktop\Desafio\CRS_AgendaConsultorio\AgendaConsultorio\obj\Debug\netcoreapp3.1\AgendaConsultorio.AssemblyInfoInputs.cache
+C:\Users\apoio\Desktop\Desafio\CRS_AgendaConsultorio\AgendaConsultorio\obj\Debug\netcoreapp3.1\AgendaConsultorio.AssemblyInfo.cs
+C:\Users\apoio\Desktop\Desafio\CRS_AgendaConsultorio\AgendaConsultorio\obj\Debug\netcoreapp3.1\AgendaConsultorio.csproj.CoreCompileInputs.cache
+C:\Users\apoio\Desktop\Desafio\CRS_AgendaConsultorio\AgendaConsultorio\obj\Debug\netcoreapp3.1\AgendaConsultorio.dll
+C:\Users\apoio\Desktop\Desafio\CRS_AgendaConsultorio\AgendaConsultorio\obj\Debug\netcoreapp3.1\AgendaConsultorio.pdb
+C:\Users\apoio\Desktop\Desafio\CRS_AgendaConsultorio\AgendaConsultorio\obj\Debug\netcoreapp3.1\AgendaConsultorio.genruntimeconfig.cache
