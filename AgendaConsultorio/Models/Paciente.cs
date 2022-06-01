@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AgendaConsultorio.Services;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -79,6 +80,16 @@ namespace AgendaConsultorio.Models
 
 
             
+        }
+
+
+        public override string ToString()
+        {
+            Validador validador = new Validador();
+
+            var idade = validador.CalculoIdade(this.DataNascimento);
+
+            return this.CPF.ToString("D11") + " " + this.Nome + " " + DataNascimento.ToString("dd/MM/yyyy") + " " + idade ;
         }
 
 

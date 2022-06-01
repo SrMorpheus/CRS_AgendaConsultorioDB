@@ -182,7 +182,7 @@ namespace AgendaConsultorio.Services
         }
 
 
-        private int CalculoIdade(DateTime dataNascimento)
+        public int CalculoIdade(DateTime dataNascimento)
         {
 
             int idade = DateTime.Now.Year - dataNascimento.Year;
