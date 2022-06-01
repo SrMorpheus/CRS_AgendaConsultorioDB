@@ -5,11 +5,15 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+using AgendaConsultorio.Controller;
+
 namespace AgendaConsultorio.View
 {
     public class ViewPaciente
     {
         private Validador _validador = new Validador();
+
+        private ControllerPaciente _controllerPaciente = new ControllerPaciente();
 
         public bool NomeView(out string nomeRetorno)
         {
@@ -83,62 +87,86 @@ namespace AgendaConsultorio.View
             var boolData = DataView(out data);
 
 
-
-            while (!(boolNome == true && boolCpf == true && boolData == true))
+            if(boolNome == true && boolCpf == true && boolData == true)
             {
 
-                if (boolNome == false)
-                {
 
-                    Console.WriteLine();
-
-                    _validador.ListaDeErrosDadosEspecifica(ErrosCliente.Nome);
-
-                    Console.WriteLine();
-
-                    boolNome = NomeView(out nome);
-
-                    Console.WriteLine();
-
-                }
-
-                if (boolCpf == false)
-                {
-
-
-                    Console.WriteLine();
-
-                    _validador.ListaDeErrosDadosEspecifica(ErrosCliente.CPF);
-
-                    Console.WriteLine();
-
-                    boolCpf = CPFView(out cpf);
-
-                    Console.WriteLine();
-
-
-
-                }
-                if (boolData == false)
-                {
-
-                    Console.WriteLine();
-
-                    _validador.ListaDeErrosDadosEspecifica(ErrosCliente.DataNascimento);
-
-                    Console.WriteLine();
-
-                    boolData = DataView(out data);
-
-                    Console.WriteLine();
-
-
-
-                }
+                _controllerPaciente.CriarPaciente(nome, cpf, data);
 
 
 
             }
+
+
+
+            else
+            {
+
+
+                while (!(boolNome == true && boolCpf == true && boolData == true))
+                {
+
+                    if (boolNome == false)
+                    {
+
+                        Console.WriteLine();
+
+                        _validador.ListaDeErrosDadosEspecifica(ErrosCliente.Nome);
+
+                        Console.WriteLine();
+
+                        boolNome = NomeView(out nome);
+
+                        Console.WriteLine();
+
+                    }
+
+                    if (boolCpf == false)
+                    {
+
+
+                        Console.WriteLine();
+
+                        _validador.ListaDeErrosDadosEspecifica(ErrosCliente.CPF);
+
+                        Console.WriteLine();
+
+                        boolCpf = CPFView(out cpf);
+
+                        Console.WriteLine();
+
+
+
+                    }
+                    if (boolData == false)
+                    {
+
+                        Console.WriteLine();
+
+                        _validador.ListaDeErrosDadosEspecifica(ErrosCliente.DataNascimento);
+
+                        Console.WriteLine();
+
+                        boolData = DataView(out data);
+
+                        Console.WriteLine();
+
+
+
+                    }
+
+
+
+                }
+
+
+                _controllerPaciente.CriarPaciente(nome, cpf, data);
+
+
+            }
+
+
+
 
 
 
