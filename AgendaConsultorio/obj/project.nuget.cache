@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "DfR1t1TmXq30nL1NbwFhHx9+N+zCs1om6DfpJB+hQJAtMTrkhQuizvGDFhEienKDR4NrKacE2l7kEtQ46p8SiQ==",
+  "dgSpecHash": "dQyh0INYSGR3pYTUQAfmAae5Eb1ckiyIKz/Nmq5HRR0MP8VWs5APSfehWZKcUWTgebg2YGiqzJqz4Sd6XPWIeg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\apoio\\Desktop\\Desafio\\CRS_AgendaConsultorio\\AgendaConsultorio\\AgendaConsultorio.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\bbarros\\source\\repos\\AgendaConsultorio\\AgendaConsultorio\\AgendaConsultorio.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\bbarros\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.21\\microsoft.netcore.app.host.win-x64.3.1.21.nupkg.sha512"
+  ],
   "logs": []
 }

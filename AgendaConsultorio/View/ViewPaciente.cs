@@ -173,9 +173,24 @@ namespace AgendaConsultorio.View
 
 
 
-        public void ListagemView()
+        public void ListagemView(int opcao)
         {
-            _controllerPaciente.ListaPacientesCPF();
+
+            if(opcao == 1)
+            {
+
+               _controllerPaciente.ListaPacientesCPF();
+
+
+            }
+            else if (opcao == 2)
+            {
+
+                _controllerPaciente.ListaPacientesNome();
+
+            }
+
+            
 
         }
 

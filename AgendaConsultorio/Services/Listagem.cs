@@ -14,31 +14,58 @@ namespace AgendaConsultorio.Services
 
        var listaPacientes = DadosPaciente.listaPacientes();
 
+       Validador validador = new Validador();
+
+       Console.WriteLine("-----------------------------------------------------------------------");
+       Console.WriteLine("{0,-11} {1,-40} {2,10}   {3,-3}", "CPF", "Nome", "Dt.Nasc.", "Idade");
+       Console.WriteLine("-----------------------------------------------------------------------");
+
+
+       foreach (var lista in listaPacientes.OrderBy(x => x.CPF))
+       {
+
+
+         var idade = validador.CalculoIdade(lista.DataNascimento);
+
+
+         Console.WriteLine("{0,-11} {1,-40} {2, 11}   {3,4}", lista.CPF.ToString("D11"), lista.Nome, lista.DataNascimento.ToString("dd/MM/yyyy"), idade);
+         //Console.WriteLine(lista);
+
+
+        }
+
+
+
+      }
+
+        public void ListagemPacientesNome()
+        {
+
+            var listaPacientes = DadosPaciente.listaPacientes();
+
             Validador validador = new Validador();
 
-            
-
-     
-        Console.WriteLine("{0,-11} {1,-12} {2,40} {3,42}", "CPF", "Nome", "Dt.Nasc.", "Idade");
-
+            Console.WriteLine("-----------------------------------------------------------------------");
+            Console.WriteLine("{0,-11} {1,-40} {2,10}   {3,-3}", "CPF", "Nome", "Dt.Nasc.", "Idade");
+            Console.WriteLine("-----------------------------------------------------------------------");
 
 
-            foreach (var lista in listaPacientes.OrderBy(x => x.CPF))
+            foreach (var lista in listaPacientes.OrderBy(x => x.Nome))
             {
+
+
                 var idade = validador.CalculoIdade(lista.DataNascimento);
 
-                string lengt = ( 40 - (lista.Nome.Length)).ToString();
 
-
-                Console.WriteLine("{0,-11} {1,40} {2, 10:N1} {3,3}", lista.CPF.ToString("D11"), lista.Nome, lista.DataNascimento.ToString("dd/MM/yyyy"), idade);
-            
+                Console.WriteLine("{0,-11} {1,-40} {2, 11}   {3,4}", lista.CPF.ToString("D11"), lista.Nome, lista.DataNascimento.ToString("dd/MM/yyyy"), idade);
+                //Console.WriteLine(lista);
 
 
             }
 
 
 
-      }
+        }
 
 
 

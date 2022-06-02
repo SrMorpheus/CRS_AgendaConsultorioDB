@@ -39,12 +39,17 @@ namespace AgendaConsultorio.Controller
 
             _listagem.ListagemPacientesCPF();
 
+        }
+
+        public void ListaPacientesNome()
+        {
+
+            _listagem.ListagemPacientesNome();
 
 
         }
 
 
-        
 
 
 
