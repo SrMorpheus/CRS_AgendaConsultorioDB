@@ -9,12 +9,14 @@ namespace AgendaConsultorio
     {
         static void Main(string[] args)
         {
-
-
             ViewPaciente viewPaciente = new ViewPaciente();
+        
 
-            viewPaciente.CadastroView();
+                viewPaciente.CadastroView();
 
+
+
+            viewPaciente.ListagemView();
 
 
         }

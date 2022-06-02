@@ -106,21 +106,6 @@ namespace AgendaConsultorio.View
                 while (!(boolNome == true && boolCpf == true && boolData == true))
                 {
 
-                    if (boolNome == false)
-                    {
-
-                        Console.WriteLine();
-
-                        _validador.ListaDeErrosDadosEspecifica(ErrosCliente.Nome);
-
-                        Console.WriteLine();
-
-                        boolNome = NomeView(out nome);
-
-                        Console.WriteLine();
-
-                    }
-
                     if (boolCpf == false)
                     {
 
@@ -138,6 +123,23 @@ namespace AgendaConsultorio.View
 
 
                     }
+
+                    if (boolNome == false)
+                    {
+
+                        Console.WriteLine();
+
+                        _validador.ListaDeErrosDadosEspecifica(ErrosCliente.Nome);
+
+                        Console.WriteLine();
+
+                        boolNome = NomeView(out nome);
+
+                        Console.WriteLine();
+
+                    }
+
+                 
                     if (boolData == false)
                     {
 
@@ -167,11 +169,16 @@ namespace AgendaConsultorio.View
 
 
 
+        }
 
 
 
-
+        public void ListagemView()
+        {
+            _controllerPaciente.ListaPacientesCPF();
 
         }
+
+
     }
 }

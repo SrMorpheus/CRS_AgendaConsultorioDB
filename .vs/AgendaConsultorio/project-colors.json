@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "25a5935a-7411-4c62-938b-eae3df8adf0a": {
+      "ProjectGuid": "25a5935a-7411-4c62-938b-eae3df8adf0a",
+      "DisplayName": "AgendaConsultorio",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

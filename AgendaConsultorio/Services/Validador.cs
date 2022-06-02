@@ -18,7 +18,7 @@ namespace AgendaConsultorio.Services
 
         public bool ValidarNome(string nome)
         {
-
+            
             if (string.IsNullOrWhiteSpace(nome))
             {
                 _errorCliente.ErrosNome(2);
@@ -80,7 +80,9 @@ namespace AgendaConsultorio.Services
             }
             else
             {
+               
 
+              
 
                 if (!Regex.IsMatch(cpf, @"^[0-9]+$"))
                 {
@@ -92,12 +94,10 @@ namespace AgendaConsultorio.Services
 
                 }
 
-             
 
 
-
-                else if (Regex.IsMatch(cpf, @"^[0-9](\w)\1"))
-                {
+                else if (!ValidacaoCpfRepetido(cpf)) 
+                { 
                     _errorCliente.ErrosCpf(4);
 
                     return false;
@@ -196,6 +196,29 @@ namespace AgendaConsultorio.Services
 
 
 
+
+
+        }
+
+        private bool ValidacaoCpfRepetido(string cpf)
+        {
+            var isRepeated = true;
+
+            for (int i = 1; i < cpf.Length; i++)
+            {
+                if (cpf[0] != cpf[i])
+                {
+                    isRepeated = false;
+                    break;
+                }
+            }
+
+            if (isRepeated)
+            {
+                return false;
+            }
+
+            return true;
 
 
         }

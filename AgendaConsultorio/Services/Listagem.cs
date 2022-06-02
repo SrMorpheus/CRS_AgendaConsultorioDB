@@ -8,26 +8,33 @@ namespace AgendaConsultorio.Services
 {
     public class Listagem
     {
-
-
-
-
         
      public void ListagemPacientesCPF()
      {
 
        var listaPacientes = DadosPaciente.listaPacientes();
 
-        
+            Validador validador = new Validador();
 
-        foreach (var lista in listaPacientes.OrderBy(x => x.CPF))
-         {
+            
+
+     
+        Console.WriteLine("{0,-11} {1,-12} {2,40} {3,42}", "CPF", "Nome", "Dt.Nasc.", "Idade");
 
 
-            Console.WriteLine(lista) ;
+
+            foreach (var lista in listaPacientes.OrderBy(x => x.CPF))
+            {
+                var idade = validador.CalculoIdade(lista.DataNascimento);
+
+                string lengt = ( 40 - (lista.Nome.Length)).ToString();
 
 
-         }
+                Console.WriteLine("{0,-11} {1,40} {2, 10:N1} {3,3}", lista.CPF.ToString("D11"), lista.Nome, lista.DataNascimento.ToString("dd/MM/yyyy"), idade);
+            
+
+
+            }
 
 
 
