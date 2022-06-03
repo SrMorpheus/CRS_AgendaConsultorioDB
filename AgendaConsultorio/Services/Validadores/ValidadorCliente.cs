@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 
 namespace AgendaConsultorio.Services
 {
-    public class Validador
+    public class ValidadorCliente
     {
 
         private Error _errorCliente = new Error();
@@ -129,9 +129,6 @@ namespace AgendaConsultorio.Services
 
 
                 }
-
-
-
 
 
             }

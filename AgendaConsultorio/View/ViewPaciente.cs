@@ -11,7 +11,7 @@ namespace AgendaConsultorio.View
 {
     public class ViewPaciente
     {
-        private Validador _validador = new Validador();
+        private ValidadorCliente _validador = new ValidadorCliente();
 
         private ControllerPaciente _controllerPaciente = new ControllerPaciente();
 

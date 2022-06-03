@@ -1,12 +1,13 @@
 ﻿using AgendaConsultorio.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 
 namespace AgendaConsultorio.Services
 {
-    public class Error
+    public class Error :IEquatable<Error>
     {
         public ErrosCliente TipoErrosCliente { get; set; }
 
@@ -14,6 +15,14 @@ namespace AgendaConsultorio.Services
 
         List<Error> ListaError = new List<Error>();
 
+   
+
+        public Error()
+        {
+
+            
+
+        }
 
 
         public void ErrosNome(int opçao)
@@ -115,9 +124,21 @@ namespace AgendaConsultorio.Services
 
 
             }
+            else if (opcao == 7)
+            {
+
+                ErrorCpf.DescricaoError = "paciente não cadastrado";
+
+                ErrorCpf.TipoErrosCliente = ErrosCliente.CPF;
+
+                ListaError.Add(ErrorCpf);
 
 
             }
+
+
+
+        }
 
 
         public void ErrosData(int opçao, int idade)
@@ -171,10 +192,18 @@ namespace AgendaConsultorio.Services
 
         public void ListaDeErros(ErrosCliente errosCliente)
         {
+        
 
-            var listaNova = ListaError.Where(x => x.TipoErrosCliente == errosCliente);
 
-            foreach (var lista in listaNova)
+            var listaNova = ListaError.Where(x => x.TipoErrosCliente == errosCliente).Distinct();
+
+
+            var hashSet = new HashSet<Error>(listaNova);
+
+
+            
+
+            foreach (var lista in hashSet)
             {
 
                 Console.WriteLine(lista);
@@ -192,7 +221,28 @@ namespace AgendaConsultorio.Services
 
         }
 
+        public override bool Equals(object obj)
+        {
 
+            return this.Equals(obj as Error);
 
+        }
+
+        public bool Equals(Error other)
+        {
+
+            if (other == null)
+                return false;
+
+            return this.TipoErrosCliente.Equals(other.TipoErrosCliente) &&
+         (
+             object.ReferenceEquals(this.TipoErrosCliente, other.TipoErrosCliente) &&
+             this.TipoErrosCliente.Equals(other.TipoErrosCliente)
+         ) &&
+         (
+             object.ReferenceEquals(this.DescricaoError, other.DescricaoError) ||
+             this.DescricaoError != null &&
+             this.DescricaoError.Equals(other.DescricaoError));
+        }
     }
 }
