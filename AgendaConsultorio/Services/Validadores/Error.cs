@@ -1,4 +1,5 @@
 ﻿using AgendaConsultorio.Models;
+using MoreLinq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -179,7 +180,7 @@ namespace AgendaConsultorio.Services
         public void ListaDeErros()
         {
 
-
+            var listaFinal = ListaError.DistinctBy(x => x.DescricaoError);
 
             foreach (var lista in ListaError)
             {
@@ -197,13 +198,22 @@ namespace AgendaConsultorio.Services
 
             var listaNova = ListaError.Where(x => x.TipoErrosCliente == errosCliente).Distinct();
 
+<<<<<<< HEAD
 
             var hashSet = new HashSet<Error>(listaNova);
+=======
+            var listaFinal = listaNova.DistinctBy(x => x.DescricaoError);
+
+>>>>>>> temp-branch
 
 
             
 
+<<<<<<< HEAD
             foreach (var lista in hashSet)
+=======
+            foreach (var lista in listaFinal)
+>>>>>>> temp-branch
             {
 
                 Console.WriteLine(lista);
@@ -234,6 +244,7 @@ namespace AgendaConsultorio.Services
             if (other == null)
                 return false;
 
+<<<<<<< HEAD
             return this.TipoErrosCliente.Equals(other.TipoErrosCliente) &&
          (
              object.ReferenceEquals(this.TipoErrosCliente, other.TipoErrosCliente) &&
@@ -243,6 +254,9 @@ namespace AgendaConsultorio.Services
              object.ReferenceEquals(this.DescricaoError, other.DescricaoError) ||
              this.DescricaoError != null &&
              this.DescricaoError.Equals(other.DescricaoError));
+=======
+            return this.DescricaoError == other.DescricaoError;
+>>>>>>> temp-branch
         }
     }
 }

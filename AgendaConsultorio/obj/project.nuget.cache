@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "DfR1t1TmXq30nL1NbwFhHx9+N+zCs1om6DfpJB+hQJAtMTrkhQuizvGDFhEienKDR4NrKacE2l7kEtQ46p8SiQ==",
+  "dgSpecHash": "WVHF/WMvlj5xg0P8pJHt5UitM1qc4ZwzgL8JZyoGp28aTHd6eJvV7JfkHKc45qoIW8LWRqF2j2FY5eq17fPK0w==",
   "success": true,
   "projectFilePath": "C:\\Users\\apoio\\Desktop\\Desafio\\CRS_AgendaConsultorio\\AgendaConsultorio\\AgendaConsultorio.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\apoio\\.nuget\\packages\\morelinq\\3.3.2\\morelinq.3.3.2.nupkg.sha512"
+  ],
   "logs": []
 }

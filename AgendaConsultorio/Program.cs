@@ -12,11 +12,20 @@ namespace AgendaConsultorio
             ViewPaciente viewPaciente = new ViewPaciente();
         
 
+                
+
+
+                for (int i = 0; i <3; i++)
+            {
+
                 viewPaciente.CadastroView();
 
 
+            }
 
-            viewPaciente.ListagemView();
+
+
+            viewPaciente.ListagemView(2);
 
 
         }

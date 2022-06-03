@@ -186,7 +186,9 @@ namespace AgendaConsultorio.Services
 
             if (DateTime.Now.DayOfYear < dataNascimento.DayOfYear)
             {
+
                 idade = idade - 1;
+
             }
 
             return idade;
@@ -203,16 +205,21 @@ namespace AgendaConsultorio.Services
 
             for (int i = 1; i < cpf.Length; i++)
             {
+
                 if (cpf[0] != cpf[i])
                 {
+
                     isRepeated = false;
                     break;
+
                 }
             }
 
             if (isRepeated)
             {
+
                 return false;
+
             }
 
             return true;
