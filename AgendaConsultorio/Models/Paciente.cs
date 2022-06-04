@@ -93,7 +93,7 @@ namespace AgendaConsultorio.Models
 
         public override string ToString()
         {
-            ValidadorCliente validador = new ValidadorCliente();
+            ValidadorPaciente validador = new ValidadorPaciente();
 
             var idade = validador.CalculoIdade(this.DataNascimento);
 

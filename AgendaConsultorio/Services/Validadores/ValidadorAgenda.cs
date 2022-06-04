@@ -1,6 +1,8 @@
 ﻿using AgendaConsultorio.Dados;
+using AgendaConsultorio.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -88,6 +90,242 @@ namespace AgendaConsultorio.Services
          }
 
 
+        public bool ValidarDataAgenda(string data)
+        {
 
-     }
+            DateTime dataAtual;
+
+        
+
+            bool datavalida = DateTime.TryParseExact(data, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dataAtual);
+
+          
+
+            if (!datavalida)
+            {
+                _errorAgenda.ErrosAgenda(1);
+
+                return false;
+
+            }
+
+            return true;
+
+
+        }
+
+
+        public bool ValidarHoraAgenda(string data)
+        {
+
+            DateTime hora;
+
+            if(data.Length < 4 )
+            {
+
+                _errorAgenda.ErrosHora(7);
+
+                return false;
+
+
+            }
+
+
+            var horaFormat = data.Substring(0, 2);
+
+            var minuntosFormat = data.Substring(2, 2);
+
+            data = horaFormat + ":" + minuntosFormat;
+
+            
+
+            bool horaValida = DateTime.TryParseExact(data, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out hora);
+
+            
+
+
+            if (!horaValida || data.Length  > 5)
+            {
+                _errorAgenda.ErrosHora(7);
+
+                return false;
+
+            }
+
+            return true;
+
+
+        }
+
+
+        public bool ValidarAgendamento(string data, string hora, string cpf )
+        {
+
+            DateTime dataHora;
+
+
+            DateTime dataAtual;
+
+            var horaFormat = hora.Substring(0, 2);
+
+            var minuntosFormat = hora.Substring(2, 2);
+            
+            hora = horaFormat + ":" + minuntosFormat;
+
+
+            var dataHoraFormat = data + " " + hora;
+
+
+            bool datavalida = DateTime.TryParseExact(dataHoraFormat, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out dataHora);
+
+
+            var baseAgendamento = DadosAgenda.listaAgendas();
+
+            var paciente = baseAgendamento.FirstOrDefault(x => x.CPF == long.Parse(cpf));
+
+            
+
+
+
+            if (datavalida)
+            {
+
+                
+
+                if(dataHora < DateTime.Now)
+                {
+                    _errorAgenda.ErrosHora(1);
+
+
+                    return false;
+
+                } 
+                
+               
+
+                else if(paciente!= null)
+                {
+                    var baseHoraPaciente = paciente.DataConsulta + " " + paciente.HoraInicial;
+
+                    DateTime checagem;
+
+                    bool horavalida = DateTime.TryParseExact(baseHoraPaciente, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out checagem);
+
+
+
+                    if(checagem > dataHora)
+                    {
+                        _errorAgenda.ErrosHora(3);
+
+                        return false;
+
+
+                    }
+
+
+
+
+                }
+
+
+            }
+
+            return true;
+        }
+
+        public bool ValidarHorarioFuncionamento(string horaInicial, string horaFinal )
+        {
+            var horaInicialTime = ConverterHoraMinutos(horaInicial);
+
+            var horaFinalTime = ConverterHoraMinutos(horaFinal);
+
+            TimeSpan InicioExpediente = new TimeSpan(8, 00,0);
+
+            TimeSpan duracao = horaFinalTime - horaInicialTime;
+
+            
+
+            TimeSpan FinalExpediente = new TimeSpan(19, 00, 0);
+
+
+            if(horaInicialTime.TimeOfDay < InicioExpediente || horaFinalTime.TimeOfDay > FinalExpediente)
+            {
+
+                _errorAgenda.ErrosHora(4);
+
+                return false;
+
+            }
+            else if(horaFinalTime <= horaInicialTime)
+            {
+
+                _errorAgenda.ErrosHora(2);
+
+
+                return false;
+
+
+            }
+            else if (duracao.Minutes < 15 )
+            {
+
+                _errorAgenda.ErrosHora(5);
+
+                return false;
+
+
+            }else if(horaInicialTime.Minute % 15 != 0 || horaFinalTime.Minute % 15 != 0 )
+            {
+                _errorAgenda.ErrosHora(6);
+
+
+                return false;
+
+            }
+
+
+            return true;
+
+        }
+
+
+        private DateTime ConverterHoraMinutos(string horaConvert)
+        {
+
+            DateTime hora;
+
+
+            var horaFormat = horaConvert.Substring(0, 2);
+
+            var minuntosFormat = horaConvert.Substring(2, 2);
+
+            horaConvert = horaFormat + ":" + minuntosFormat;
+
+
+            bool horaValida = DateTime.TryParseExact(horaConvert, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out hora);
+
+
+
+
+            return hora;
+
+        }
+
+        public void ListaDeErrosDadosGeral()
+        {
+
+            _errorAgenda.ListaDeErros();
+
+
+        }
+
+        public void ListaDeErrosDadosEspecifica(ErrosCliente errosCliente)
+        {
+
+            _errorAgenda.ListaDeErros(errosCliente);
+
+        }
+
+
+    }
 }

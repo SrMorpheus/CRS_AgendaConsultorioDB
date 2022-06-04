@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Text;
 
 namespace AgendaConsultorio.Models
@@ -20,7 +21,7 @@ namespace AgendaConsultorio.Models
 
 
 
-        public Agenda(long cpf, DateTime dataConsulta, DateTime horaInicial, DateTime horaFinal)
+        public Agenda(long cpf, DateTime dataConsulta, DateTime horaInicial, DateTime horaFinal, Paciente paciente)
         {
             this.CPF = cpf;
 
@@ -30,10 +31,34 @@ namespace AgendaConsultorio.Models
 
             this.HoraFinal = horaFinal;
 
-            Paciente.adicionarAgendaPaciente(this);
+            this.Paciente = paciente;
+
+            this.Paciente.adicionarAgendaPaciente(this);
             
 
         }
+
+
+        public static DateTime ConverterHora(string hora)
+        {
+            DateTime horaConverter;
+
+            var horaFormat = hora.Substring(0, 2);
+
+            var minuntosFormat = hora.Substring(2, 2);
+
+            hora = horaFormat + ":" + minuntosFormat;
+
+
+
+            bool horaValida = DateTime.TryParseExact(hora, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out horaConverter);
+
+            return horaConverter;
+
+
+        }
+
+
 
         public override bool Equals(object obj)
         {
@@ -65,7 +90,14 @@ namespace AgendaConsultorio.Models
              this.HoraFinal.Equals(other.HoraFinal));
 
         }
-    }
+
+        public override string ToString()
+        {
+            return DataConsulta + " " + HoraInicial + " " +  HoraFinal + " " + CPF;
+        }
+
 
     }
+
+  }
 

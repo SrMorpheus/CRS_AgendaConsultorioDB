@@ -10,7 +10,17 @@ namespace AgendaConsultorio.Models
 
         CPF = 1,
 
-        DataNascimento = 2
+        DataNascimento = 2,
 
-    }
+        DataConsulta = 3,
+
+        Hora = 4,
+
+        Agenda = 5,
+   
+
+
+
+
+     }
 }
