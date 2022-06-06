@@ -77,15 +77,23 @@ namespace AgendaConsultorio.Models
             this.CPF = cpf;
 
             this.DataNascimento = dataNascimento;
-
-
-            
+   
         }
+
+        public void adicionarAgendaPaciente( Agenda agenda)
+        {
+
+            Agendas.Add(agenda);
+
+
+        }
+
+
 
 
         public override string ToString()
         {
-            Validador validador = new Validador();
+            ValidadorPaciente validador = new ValidadorPaciente();
 
             var idade = validador.CalculoIdade(this.DataNascimento);
 

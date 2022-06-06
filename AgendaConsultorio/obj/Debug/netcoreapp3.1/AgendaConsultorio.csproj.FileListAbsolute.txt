@@ -26,3 +26,7 @@ C:\Users\bbarros\source\repos\AgendaConsultorio\AgendaConsultorio\obj\Debug\netc
 C:\Users\bbarros\source\repos\AgendaConsultorio\AgendaConsultorio\obj\Debug\netcoreapp3.1\AgendaConsultorio.dll
 C:\Users\bbarros\source\repos\AgendaConsultorio\AgendaConsultorio\obj\Debug\netcoreapp3.1\AgendaConsultorio.pdb
 C:\Users\bbarros\source\repos\AgendaConsultorio\AgendaConsultorio\obj\Debug\netcoreapp3.1\AgendaConsultorio.genruntimeconfig.cache
+C:\Users\apoio\Desktop\Desafio\CRS_AgendaConsultorio\AgendaConsultorio\bin\Debug\netcoreapp3.1\MoreLinq.dll
+C:\Users\apoio\Desktop\Desafio\CRS_AgendaConsultorio\AgendaConsultorio\obj\Debug\netcoreapp3.1\AgendaConsultorio.csproj.CopyComplete
+C:\Users\bbarros\source\repos\AgendaConsultorio\AgendaConsultorio\bin\Debug\netcoreapp3.1\MoreLinq.dll
+C:\Users\bbarros\source\repos\AgendaConsultorio\AgendaConsultorio\obj\Debug\netcoreapp3.1\AgendaConsultorio.csproj.CopyComplete

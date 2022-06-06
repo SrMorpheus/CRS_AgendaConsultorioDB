@@ -1,10 +1,18 @@
 {
   "version": 2,
-  "dgSpecHash": "dQyh0INYSGR3pYTUQAfmAae5Eb1ckiyIKz/Nmq5HRR0MP8VWs5APSfehWZKcUWTgebg2YGiqzJqz4Sd6XPWIeg==",
+  "dgSpecHash": "NLabXb/QSriEWHuCq3DdHPmHuN49uK3T5MFAn4V+1HyRbbI2lTW85Qs9c1MXFDqHXhbUA9B0O7tyIU66YnaUQQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\bbarros\\source\\repos\\AgendaConsultorio\\AgendaConsultorio\\AgendaConsultorio.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\bbarros\\.nuget\\packages\\morelinq\\3.3.2\\morelinq.3.3.2.nupkg.sha512",
     "C:\\Users\\bbarros\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.21\\microsoft.netcore.app.host.win-x64.3.1.21.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problema ao ler o arquivo de cache C:\\Users\\bbarros\\source\\repos\\AgendaConsultorio\\AgendaConsultorio\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

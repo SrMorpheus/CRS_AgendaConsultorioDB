@@ -11,7 +11,7 @@ namespace AgendaConsultorio.View
 {
     public class ViewPaciente
     {
-        private Validador _validador = new Validador();
+        private ValidadorPaciente _validador = new ValidadorPaciente();
 
         private ControllerPaciente _controllerPaciente = new ControllerPaciente();
 
@@ -70,102 +70,97 @@ namespace AgendaConsultorio.View
 
             string cpf;
 
+            string nome = " ";
+
+            string data = " ";
+
+            bool boolNome = false;
+
+            bool boolData = false;
+
+
             var boolCpf = CPFView(out cpf);
-
-
-
-            string nome;
-
-            var boolNome = NomeView(out nome);
-
-
-
-
-
-            string data;
-
-            var boolData = DataView(out data);
-
-
-            if(boolNome == true && boolCpf == true && boolData == true)
+            
+            if(boolCpf == false)
             {
 
-
-                _controllerPaciente.CriarPaciente(nome, cpf, data);
-
-
-
-            }
-
-
-
-            else
-            {
-
-
-                while (!(boolNome == true && boolCpf == true && boolData == true))
+                while (!boolCpf)
                 {
 
-                    if (boolCpf == false)
-                    {
 
+                    Console.WriteLine();
 
-                        Console.WriteLine();
+                    _validador.ListaDeErrosDadosEspecifica(ErrosCliente.CPF);
 
-                        _validador.ListaDeErrosDadosEspecifica(ErrosCliente.CPF);
+                    Console.WriteLine();
 
-                        Console.WriteLine();
-
-                        boolCpf = CPFView(out cpf);
-
-                        Console.WriteLine();
-
-
-
-                    }
-
-                    if (boolNome == false)
-                    {
-
-                        Console.WriteLine();
-
-                        _validador.ListaDeErrosDadosEspecifica(ErrosCliente.Nome);
-
-                        Console.WriteLine();
-
-                        boolNome = NomeView(out nome);
-
-                        Console.WriteLine();
-
-                    }
-
-                 
-                    if (boolData == false)
-                    {
-
-                        Console.WriteLine();
-
-                        _validador.ListaDeErrosDadosEspecifica(ErrosCliente.DataNascimento);
-
-                        Console.WriteLine();
-
-                        boolData = DataView(out data);
-
-                        Console.WriteLine();
-
-
-
-                    }
-
-
-
+                    boolCpf = CPFView(out cpf);
                 }
 
+            } 
+         
+            if(boolCpf)
+            {
+
+                boolNome = NomeView(out nome);
+
+            }
+
+            while (!boolNome)
+             {
+
+                Console.WriteLine();
+
+                _validador.ListaDeErrosDadosEspecifica(ErrosCliente.Nome);
+
+                Console.WriteLine();
+
+                boolNome = NomeView(out nome);
+
+          
+
+             }
+
+
+
+            if (boolNome)
+            {
+
+                boolData = DataView(out data);
+
+
+            }
+
+
+            while (!boolData)
+             {
+
+               Console.WriteLine();
+
+               _validador.ListaDeErrosDadosEspecifica(ErrosCliente.DataNascimento);
+
+               Console.WriteLine();
+
+               boolData = DataView(out data);
+
+             
+
+
+             }
+
+            Console.WriteLine();
+
+            if (boolNome == true && boolCpf == true && boolData == true)
+            {
 
                 _controllerPaciente.CriarPaciente(nome, cpf, data);
 
 
             }
+
+
+
+       
 
 
 
@@ -190,7 +185,8 @@ namespace AgendaConsultorio.View
 
             }
 
-            
+
+
 
         }
 
