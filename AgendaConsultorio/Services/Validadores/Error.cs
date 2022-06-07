@@ -134,6 +134,16 @@ namespace AgendaConsultorio.Services
 
                 ListaError.Add(ErrorCpf);
 
+                
+
+            }else if(opcao == 8)
+            {
+                ErrorCpf.DescricaoError = "paciente está agendado";
+
+                ErrorCpf.TipoErrosCliente = ErrosCliente.CPF;
+
+                ListaError.Add(ErrorCpf);
+
 
             }
 
@@ -278,9 +288,14 @@ namespace AgendaConsultorio.Services
                 ListaError.Add(ErrosHora);
 
 
+            }else if (opacao == 8)
+            {
 
+                ErrosHora.DescricaoError = "Existe um conflito de Horário com outra consulta agendada.";
 
+                ErrosHora.TipoErrosCliente = ErrosCliente.Hora;
 
+                ListaError.Add(ErrosHora);
 
 
             }

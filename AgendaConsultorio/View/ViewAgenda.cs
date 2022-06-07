@@ -241,7 +241,7 @@ namespace AgendaConsultorio.View
 
             }
 
-            bool boolAgendamentoHorario = _validador.ValidarHorarioFuncionamento(horaInicial, horaFinal);
+            bool boolAgendamentoHorario = _validador.ValidarHorarioFuncionamento(horaInicial, horaFinal,data);
 
 
 
@@ -261,7 +261,7 @@ namespace AgendaConsultorio.View
 
                     var boolHoraFinal = HoraFinalView(out horaFinal);
 
-                    boolAgendamentoHorario = _validador.ValidarHorarioFuncionamento(horaInicial, horaFinal);
+                    boolAgendamentoHorario = _validador.ValidarHorarioFuncionamento(horaInicial, horaFinal,data);
 
 
 

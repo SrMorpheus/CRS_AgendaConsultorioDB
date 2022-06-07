@@ -34,10 +34,26 @@ namespace AgendaConsultorio.Services
 
 
          Console.WriteLine("{0,-11} {1,-40} {2, 11}   {3,4}", lista.CPF.ToString("D11"), lista.Nome, lista.DataNascimento.ToString("dd/MM/yyyy"), idade);
-         //Console.WriteLine(lista);
+                //Console.WriteLine(lista);
+
+                if (lista.Agendas.Count != 0)
+                {
 
 
-        }
+
+                    Agenda agenda = lista.Agendas.FirstOrDefault(x => x.DataHoraConsulta >= DateTime.Now);
+
+                    var dataConsulta = agenda.AgendaPacienteData();
+                    var horaConsulta = agenda.AgendaPacienteHora();
+
+                    Console.WriteLine("{0,37}", dataConsulta);
+                    Console.WriteLine("{0,26}", horaConsulta);
+
+
+
+                }
+
+            }
 
 
 

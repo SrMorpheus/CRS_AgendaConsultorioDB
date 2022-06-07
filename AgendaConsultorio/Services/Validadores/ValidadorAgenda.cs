@@ -78,6 +78,24 @@ namespace AgendaConsultorio.Services
                         return false;
 
 
+                    }else if(searchCpf.Agendas.Count >= 1)
+                    {
+
+
+                        Agenda agenda = searchCpf.Agendas.FirstOrDefault(x => x.DataHoraConsulta >= DateTime.Now);
+
+                       if(agenda!= null)
+                        {
+
+                            _errorAgenda.ErrosCpf(8);
+                            return false;
+                            
+
+
+                        }
+
+
+
                     }
 
 
@@ -181,7 +199,7 @@ namespace AgendaConsultorio.Services
 
             var baseAgendamento = DadosAgenda.listaAgendas();
 
-            var paciente = baseAgendamento.FirstOrDefault(x => x.CPF == long.Parse(cpf));
+            Agenda agenda = baseAgendamento.FirstOrDefault(x => x.DataHoraConsulta == dataHora);
 
             
 
@@ -203,24 +221,16 @@ namespace AgendaConsultorio.Services
                 
                
 
-                else if(paciente!= null)
+                else if(agenda!= null)
                 {
-                    var baseHoraPaciente = paciente.DataConsulta + " " + paciente.HoraInicial;
-
-                    DateTime checagem;
-
-                    bool horavalida = DateTime.TryParseExact(baseHoraPaciente, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out checagem);
-
-
-
-                    if(checagem > dataHora)
-                    {
+                  
+                    
                         _errorAgenda.ErrosHora(3);
 
                         return false;
 
 
-                    }
+                    
 
 
 
@@ -233,7 +243,7 @@ namespace AgendaConsultorio.Services
             return true;
         }
 
-        public bool ValidarHorarioFuncionamento(string horaInicial, string horaFinal )
+        public bool ValidarHorarioFuncionamento(string horaInicial, string horaFinal, string data )
         {
             var horaInicialTime = ConverterHoraMinutos(horaInicial);
 
@@ -243,12 +253,20 @@ namespace AgendaConsultorio.Services
 
             TimeSpan duracao = horaFinalTime - horaInicialTime;
 
-            
 
             TimeSpan FinalExpediente = new TimeSpan(19, 00, 0);
+           
+            DateTime dataAtual;
 
 
-            if(horaInicialTime.TimeOfDay < InicioExpediente || horaFinalTime.TimeOfDay > FinalExpediente)
+
+            bool datavalida = DateTime.TryParseExact(data, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dataAtual);
+
+            var baseAgendamento = DadosAgenda.listaAgendas().FindAll(x => x.DataConsulta == dataAtual);
+
+
+
+            if (horaInicialTime.TimeOfDay < InicioExpediente || horaFinalTime.TimeOfDay > FinalExpediente)
             {
 
                 _errorAgenda.ErrosHora(4);
@@ -266,7 +284,7 @@ namespace AgendaConsultorio.Services
 
 
             }
-            else if (duracao.Minutes < 15 )
+            else if (duracao.Minutes < 15 && duracao.Hours < 1 )
             {
 
                 _errorAgenda.ErrosHora(5);
@@ -281,13 +299,54 @@ namespace AgendaConsultorio.Services
 
                 return false;
 
+            } 
+            else if(baseAgendamento.Count > 0)
+            {
+                var temIntersecao = TemIntersecao(horaInicialTime, horaFinalTime, baseAgendamento);
+               
+                if (temIntersecao)
+                {
+
+
+                    _errorAgenda.ErrosHora(8);
+
+                    return false;
+
+                }
+
+
             }
+
 
 
             return true;
 
         }
 
+
+        private bool TemIntersecao(DateTime horaInincial , DateTime horaFinal, List<Agenda> agendas )
+        {
+
+             foreach( var lista in agendas)
+            {
+
+                if ( (horaInincial > lista.HoraInicial && horaInincial <  lista.HoraFinal) ||
+                    (horaFinal > lista.HoraInicial && horaFinal < lista.HoraFinal))
+                 {
+
+                    return true;
+
+
+                }
+                  
+
+                }
+
+
+
+                return false;
+
+        }
 
         private DateTime ConverterHoraMinutos(string horaConvert)
         {
