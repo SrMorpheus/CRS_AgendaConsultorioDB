@@ -47,6 +47,21 @@ namespace AgendaConsultorio.View
 
         }
 
+        public bool CPFExclusãoView(out string cpfRetorno)
+        {
+            Console.Write("CPF: ");
+
+            var cpf = Console.ReadLine();
+
+            var resposta = _validador.ValidarExclusãoPaciente(cpf);
+
+            cpfRetorno = cpf;
+
+            return resposta;
+
+
+        }
+
 
         public bool DataView(out string dataNascimento)
         {
@@ -62,6 +77,71 @@ namespace AgendaConsultorio.View
 
 
         }
+
+
+
+        public void ExclusaoView()
+        {
+
+
+            var dadosPacientes = DadosPaciente.listaPacientes();
+
+
+            if(dadosPacientes.Count > 0)
+            {
+
+                string cpf;
+
+                var boolCpf = CPFExclusãoView(out cpf);
+
+
+                while (!boolCpf)
+                {
+
+                    Console.WriteLine();
+
+                    _validador.ListaDeErrosDadosEspecifica(ErrosCliente.CPF);
+
+                    Console.WriteLine();
+
+                    boolCpf = CPFExclusãoView(out cpf);
+
+
+
+                }
+
+                if(boolCpf)
+                {
+
+
+                    _controllerPaciente.ExcluirPaciente(cpf);
+
+
+                }
+
+
+
+
+
+            }
+
+
+            else
+            {
+
+                Console.WriteLine("Sem nenhum Paciente cadastrado na base de dados!");
+
+
+            }
+
+
+
+
+
+
+
+        }
+
 
         public void CadastroView()
         {
@@ -171,19 +251,39 @@ namespace AgendaConsultorio.View
         public void ListagemView(int opcao)
         {
 
-            if(opcao == 1)
+            var dadosPaciente = DadosPaciente.listaPacientes();
+
+
+            if(dadosPaciente.Count > 0)
             {
 
-               _controllerPaciente.ListaPacientesCPF();
+                if (opcao == 1)
+                {
+
+                    _controllerPaciente.ListaPacientesCPF();
+
+
+                }
+                else if (opcao == 2)
+                {
+
+                    _controllerPaciente.ListaPacientesNome();
+
+                }
+
 
 
             }
-            else if (opcao == 2)
+            else
             {
 
-                _controllerPaciente.ListaPacientesNome();
-
+            
+                Console.WriteLine("Sem Pacientes cadastrados!");
+          
             }
+
+
+        
 
 
 

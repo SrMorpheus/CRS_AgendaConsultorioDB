@@ -137,6 +137,103 @@ namespace AgendaConsultorio.Services
 
         }
 
+        public bool ValidarExclusãoPaciente (string cpf)
+        {
+
+
+            if (cpf.Length < 11)
+            {
+                _errorCliente.ErrosCpf(1);
+
+
+                if (!Regex.IsMatch(cpf, @"^[0-9]+$"))
+                {
+
+                    _errorCliente.ErrosCpf(3);
+
+                }
+
+                return false;
+
+
+            }
+            else if (cpf.Length > 11)
+            {
+
+                _errorCliente.ErrosCpf(2);
+
+
+                if (!Regex.IsMatch(cpf, @"^[0-9]+$"))
+                {
+
+                    _errorCliente.ErrosCpf(3);
+
+
+                }
+                return false;
+
+
+            }
+            else
+            {
+
+                if (!Regex.IsMatch(cpf, @"^[0-9]+$"))
+                {
+
+                    _errorCliente.ErrosCpf(3);
+
+                    return false;
+
+
+                }
+                else
+                {
+                    var cpfExist = DadosPaciente.listaPacientes();
+
+                    var searchCpf = cpfExist.Where(x => x.CPF == long.Parse(cpf)).FirstOrDefault();
+
+
+                    if (!(searchCpf != null && searchCpf.CPF.ToString("D11") == cpf))
+                    {
+
+                        _errorCliente.ErrosCpf(7);
+
+                        return false;
+
+
+                    }
+                    else if (searchCpf.Agendas.Count >= 1)
+                    {
+
+
+                        Agenda agenda = searchCpf.Agendas.FirstOrDefault(x => x.DataHoraConsulta >= DateTime.Now);
+
+                        if (agenda != null)
+                        {
+
+                            _errorCliente.ErrosCpf(8,agenda);
+                            return false;
+
+
+
+                        }
+
+
+
+                    }
+
+
+                }
+
+                return true;
+            }
+
+
+
+
+        }
+
+
         public bool ValidarData(string data)
         {
 

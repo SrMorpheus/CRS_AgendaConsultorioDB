@@ -136,9 +136,18 @@ namespace AgendaConsultorio.Services
 
                 
 
-            }else if(opcao == 8)
+            }
+
+
+        }
+
+        public void ErrosCpf(int opcao, Agenda agenda)
+        {
+            Error ErrorCpf = new Error();
+
+            if (opcao == 8)
             {
-                ErrorCpf.DescricaoError = "paciente está agendado";
+                ErrorCpf.DescricaoError = "paciente está agendado para " + agenda.DataConsulta.ToString("dd/MM/yyyy") + " as " + agenda.HoraInicial.ToString("HH:mm") +"h.";
 
                 ErrorCpf.TipoErrosCliente = ErrosCliente.CPF;
 

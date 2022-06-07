@@ -87,7 +87,7 @@ namespace AgendaConsultorio.Services
                        if(agenda!= null)
                         {
 
-                            _errorAgenda.ErrosCpf(8);
+                            _errorAgenda.ErrosCpf(8,agenda);
                             return false;
                             
 

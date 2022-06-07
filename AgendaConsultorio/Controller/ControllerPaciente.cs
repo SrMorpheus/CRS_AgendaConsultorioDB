@@ -34,6 +34,44 @@ namespace AgendaConsultorio.Controller
 
         }
 
+        public void ExcluirPaciente(string cpf)
+        {
+
+            var cpfLong = long.Parse (cpf);
+
+            var basePaciente = DadosPaciente.listaPacientes();
+
+            Paciente paciente = basePaciente.Find(x=> x.CPF == cpfLong);
+
+            if(paciente.Agendas.Count > 0)
+            {
+
+                foreach (var listaAgendas in paciente.Agendas)
+                {
+
+                    DadosAgenda.CancelarAgenda(listaAgendas);
+
+
+                }
+
+
+
+            }
+
+            DadosPaciente.ExcluirPaciente(paciente);
+            Console.WriteLine();
+            Console.WriteLine("Paciente excluído com sucesso!");
+            Console.WriteLine();
+
+
+
+
+
+
+        }
+
+
+
         public void ListaPacientesCPF()
         {
 
