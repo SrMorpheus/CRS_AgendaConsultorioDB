@@ -147,16 +147,38 @@ namespace AgendaConsultorio.Models
 
             return dataHora;
 
-            if(!datavalida)
-            {
-                Console.WriteLine("teste");
-            }
-
-
+          
         
 
 
         }
+
+
+        public static DateTime AgendaDataHora(string dataConsulta , string horaInical)
+        {
+
+
+            DateTime dataHora;
+
+
+            var horaFormat = Agenda.ConverterHora(horaInical);
+
+
+            var dataHoraFormat = dataConsulta + " " + horaFormat.ToString("HH:mm");
+
+
+            bool datavalida = DateTime.TryParseExact(dataHoraFormat, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out dataHora);
+
+            return dataHora;
+
+          
+
+
+
+
+        }
+
+
 
 
         public string AgendaPacienteHora()

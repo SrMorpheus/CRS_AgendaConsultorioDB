@@ -88,6 +88,13 @@ namespace AgendaConsultorio.Models
 
         }
 
+        public void ExcluirAgendaPaciente(Agenda agenda)
+        {
+
+            Agendas.Remove(agenda);
+
+        }
+
 
 
 

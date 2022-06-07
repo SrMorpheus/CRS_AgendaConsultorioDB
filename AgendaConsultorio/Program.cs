@@ -1,6 +1,7 @@
 ﻿using AgendaConsultorio.Dados;
 using AgendaConsultorio.Models;
 using AgendaConsultorio.View;
+using AgendaConsultorio.Services;
 using System;
 
 namespace AgendaConsultorio
@@ -9,9 +10,16 @@ namespace AgendaConsultorio
     {
         static void Main(string[] args)
         {
-           ViewMain viewMain = new ViewMain();
 
-            viewMain.ViewMainCadastroPaciente();
+            
+
+          ViewMain main = new ViewMain();
+
+            Listagem listagem = new Listagem();
+
+            listagem.ListagemAgendaGeral();
+
+           // main.ViewMenuPrincipal();
 
 
 

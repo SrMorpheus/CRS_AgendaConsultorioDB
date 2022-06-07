@@ -37,12 +37,39 @@ namespace AgendaConsultorio.Controller
             Console.WriteLine();
 
 
-            
-            
+              
 
 
         }
 
+        public void CancelarAgenda(string cpf, string dataConsulta, string horaInicial)
+        {
+
+
+            var baseAgenda = DadosAgenda.listaAgendas();
+            
+
+
+            var CpfLong = long.Parse(cpf);
+
+            var dataHoraConsulta = Agenda.AgendaDataHora(dataConsulta, horaInicial);
+            
+      
+
+            Agenda agenda = baseAgenda.Find(x => x.CPF == CpfLong && x.DataHoraConsulta == dataHoraConsulta);
+
+
+            DadosPaciente.listaPacientes().Find(x => x.CPF == CpfLong).ExcluirAgendaPaciente(agenda);
+
+            DadosAgenda.CancelarAgenda(agenda);
+
+            Console.WriteLine();
+            Console.WriteLine("Agendamento cancelado com sucesso!");
+            Console.WriteLine();
+
+
+
+        }
 
 
     }

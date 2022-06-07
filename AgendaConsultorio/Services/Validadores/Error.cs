@@ -211,6 +211,18 @@ namespace AgendaConsultorio.Services
 
 
             }
+            else if (opcao == 2)
+            {
+                ErrorData.DescricaoError = "agendamento não encontrado";
+
+                ErrorData.TipoErrosCliente = ErrosCliente.Agenda;
+
+                ListaError.Add(ErrorData);
+
+
+
+                
+            }
 
 
 

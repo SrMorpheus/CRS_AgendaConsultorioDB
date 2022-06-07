@@ -1,4 +1,5 @@
 ﻿using AgendaConsultorio.Controller;
+using AgendaConsultorio.Dados;
 using AgendaConsultorio.Models;
 using AgendaConsultorio.Services;
 using System;
@@ -23,6 +24,22 @@ namespace AgendaConsultorio.View
             var cpf = Console.ReadLine();
 
             var resposta = _validador.ValidarCpfAgenda(cpf);
+
+            cpfRetorno = cpf;
+
+            return resposta;
+
+
+        }
+
+
+        public bool CPFCancelarView(out string cpfRetorno)
+        {
+            Console.Write("CPF: ");
+
+            var cpf = Console.ReadLine();
+
+            var resposta = _validador.ValidarCpfCancelarAgenda(cpf);
 
             cpfRetorno = cpf;
 
@@ -286,6 +303,135 @@ namespace AgendaConsultorio.View
         }
 
 
+
+        public void ViewCancelarAgenda()
+        {
+
+
+            var baseAgendamento = DadosAgenda.listaAgendas();
+
+            string cpf = " ";
+
+            string dataConsulta = " ";
+
+            string horaInicial = " ";
+
+            bool boolDataConsulta = false;
+
+            bool boolHoraInicial = false;
+
+            bool boolAgendaExclusao = false;
+
+
+            if (baseAgendamento.Count > 0)
+            {
+
+
+                while (boolAgendaExclusao != true)
+                {
+
+                    var boolCpf = CPFCancelarView(out cpf);
+
+
+
+                    while (!boolCpf)
+                    {
+                        Console.WriteLine();
+
+                        _validador.ListaDeErrosDadosEspecifica(ErrosCliente.CPF);
+
+                        Console.WriteLine();
+
+                        boolCpf = CPFCancelarView(out cpf);
+
+                    }
+
+                    if (boolCpf)
+                    {
+
+                        boolDataConsulta = DataView(out dataConsulta);
+
+                    }
+
+                    while (!boolDataConsulta)
+                    {
+
+                        Console.WriteLine();
+
+                        _validador.ListaDeErrosDadosEspecifica(ErrosCliente.DataConsulta);
+
+                        Console.WriteLine();
+
+                        boolDataConsulta = DataView(out dataConsulta);
+
+
+                    }
+                    if (boolDataConsulta)
+                    {
+
+                        boolHoraInicial = HoraInicialView(out horaInicial);
+
+
+                    }
+
+                    while (!boolHoraInicial)
+                    {
+
+                        Console.WriteLine();
+
+                        _validador.ListaDeErrosDadosEspecifica(ErrosCliente.Hora);
+
+                        Console.WriteLine();
+
+
+                        boolHoraInicial = HoraInicialView(out horaInicial);
+
+
+                    }
+
+
+                    if (boolCpf == true && boolDataConsulta == true && boolHoraInicial == true)
+                    {
+
+                        boolAgendaExclusao = _validador.ValidarCancelarAgenda(cpf, dataConsulta, horaInicial);
+
+                        if (!boolAgendaExclusao)
+                        {
+
+                            Console.WriteLine();
+
+                            _validador.ListaDeErrosDadosEspecifica(ErrosCliente.Agenda);
+
+                            Console.WriteLine();
+
+
+                        }
+
+
+
+                    }
+
+                }
+
+                if (boolAgendaExclusao)
+                {
+
+                    _controllerAgenda.CancelarAgenda(cpf, dataConsulta, horaInicial);
+
+                }
+            }
+            else
+            {
+
+                Console.WriteLine("Sem agendamentos na base de dados!");
+
+
+            }
+
+
+
+
+        }
 
 
     }

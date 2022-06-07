@@ -115,7 +115,23 @@ namespace AgendaConsultorio.Services
 
         }
 
+        public void ListagemAgendaGeral()
+        {
 
+            var listaAgenda = DadosAgenda.listaAgendas();
+
+
+            Console.WriteLine("-----------------------------------------------------------------------");
+            Console.WriteLine("{0,-11} {1,-40} {2,10}   {3,-3}", "CPF", "Nome", "Dt.Nasc.", "Idade");
+            Console.WriteLine("-----------------------------------------------------------------------");
+
+
+            Console.WriteLine("-----------------------------------------------------------------------");
+            Console.WriteLine("{0,8} {1,8} {2,6} {3,10} {4,-40} {5,10}", "Data", "H.Ini", "H.Fim", "Tempo","Nome", "Dt.Nasc.");
+            Console.WriteLine("-----------------------------------------------------------------------");
+          
+
+        }
 
 
 

@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace AgendaConsultorio.Services
@@ -106,6 +105,132 @@ namespace AgendaConsultorio.Services
 
 
          }
+
+
+
+        public bool ValidarCpfCancelarAgenda(string cpf)
+        {
+            if (cpf.Length < 11)
+            {
+                _errorAgenda.ErrosCpf(1);
+
+
+                if (!Regex.IsMatch(cpf, @"^[0-9]+$"))
+                {
+
+                    _errorAgenda.ErrosCpf(3);
+
+                }
+
+                return false;
+
+
+            }
+            else if (cpf.Length > 11)
+            {
+
+                _errorAgenda.ErrosCpf(2);
+
+
+                if (!Regex.IsMatch(cpf, @"^[0-9]+$"))
+                {
+
+                    _errorAgenda.ErrosCpf(3);
+
+
+                }
+                return false;
+
+
+            }
+            else
+            {
+
+                if (!Regex.IsMatch(cpf, @"^[0-9]+$"))
+                {
+
+                    _errorAgenda.ErrosCpf(3);
+
+                    return false;
+
+
+                }
+                else
+                {
+                    var cpfExist = DadosPaciente.listaPacientes();
+
+                    var searchCpf = cpfExist.Where(x => x.CPF == long.Parse(cpf)).FirstOrDefault();
+
+
+                    if (!(searchCpf != null && searchCpf.CPF.ToString("D11") == cpf))
+                    {
+
+                        _errorAgenda.ErrosCpf(7);
+
+                        return false;
+
+
+                    }
+                   
+
+
+
+                    }
+
+
+                }
+
+                return true;
+            }
+
+
+
+
+        public bool ValidarCancelarAgenda(string cpf, string dataConsulta, string horaInicial)
+        {
+
+
+            DateTime dataHora;
+
+
+            var horaFormat = horaInicial.Substring(0, 2);
+
+            var minuntosFormat = horaInicial.Substring(2, 2);
+
+           var  hora = horaFormat + ":" + minuntosFormat;
+
+
+            var dataHoraFormat = dataConsulta + " " + hora;
+
+
+            bool datavalida = DateTime.TryParseExact(dataHoraFormat, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out dataHora);
+
+
+
+            if(datavalida)
+            {
+
+                Agenda agenda = DadosAgenda.listaAgendas().Find( x => x.DataHoraConsulta == dataHora &&  x.CPF == long.Parse(cpf));
+                
+                if(agenda == null)
+                {
+
+                    _errorAgenda.ErrosAgenda(2);
+
+                    return false;
+
+
+
+
+                }
+
+
+
+            }
+
+
+            return true;
+        }
 
 
         public bool ValidarDataAgenda(string data)
