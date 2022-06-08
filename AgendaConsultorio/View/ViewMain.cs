@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AgendaConsultorio.Services;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -171,6 +172,12 @@ namespace AgendaConsultorio.View
                     case "3":
 
                         Console.WriteLine();
+
+
+
+                        Listagem listagem = new Listagem();
+
+                        listagem.ListagemAgendaGeral();
 
                         Console.WriteLine();
 

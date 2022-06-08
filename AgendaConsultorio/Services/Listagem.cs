@@ -121,15 +121,30 @@ namespace AgendaConsultorio.Services
             var listaAgenda = DadosAgenda.listaAgendas();
 
 
-            Console.WriteLine("-----------------------------------------------------------------------");
-            Console.WriteLine("{0,-11} {1,-40} {2,10}   {3,-3}", "CPF", "Nome", "Dt.Nasc.", "Idade");
-            Console.WriteLine("-----------------------------------------------------------------------");
+            Console.WriteLine("---------------------------------------------------------------------------------");
+            Console.WriteLine("{0,7} {1,8} {2,5} {3,5} {4,-40} {5,10}", "Data", "H.Ini", "H.Fim", "Tempo", "Nome", "Dt.Nasc.");
+            Console.WriteLine("---------------------------------------------------------------------------------");
+
+            foreach (var lista in listaAgenda.OrderBy(x => x.DataHoraConsulta))
+            {
+                
+
+                var intervalo = lista.HoraFinal - lista.HoraInicial;
+
+                
+
+                Console.WriteLine("{0,8} {1,4} {2,5} {3,5} {4,-40} {5,11}", lista.DataConsulta.ToString("dd/MM/yyyy"), lista.HoraInicial.ToString("HH:mm"), lista.HoraFinal.ToString("HH:mm"), intervalo.ToString(@"hh\:mm") , lista.Paciente.Nome, lista.Paciente.DataNascimento.ToString("dd/MM/yyyy"));
 
 
-            Console.WriteLine("-----------------------------------------------------------------------");
-            Console.WriteLine("{0,8} {1,8} {2,6} {3,10} {4,-40} {5,10}", "Data", "H.Ini", "H.Fim", "Tempo","Nome", "Dt.Nasc.");
-            Console.WriteLine("-----------------------------------------------------------------------");
-          
+
+            }
+
+
+
+
+            // Console.WriteLine("{0,8} {1,4} {2,5} {3,5} {4,-40} {5,11}", "01/01/2022", "07:30", "08:00", "00:30", "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", "99/99/9999");
+
+
 
         }
 

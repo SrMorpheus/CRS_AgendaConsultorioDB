@@ -15,11 +15,9 @@ namespace AgendaConsultorio
 
           ViewMain main = new ViewMain();
 
-            Listagem listagem = new Listagem();
+        
 
-            listagem.ListagemAgendaGeral();
-
-           // main.ViewMenuPrincipal();
+           main.ViewMenuPrincipal();
 
 
 
