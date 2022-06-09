@@ -297,15 +297,11 @@ namespace AgendaConsultorio.Services
   
             var listaNova = ListaError.Where(x => x.TipoErrosCliente == errosCliente).Distinct();
 
-            var listaFinal = listaNova.DistinctBy(x => x.DescricaoError);
+            var listaFinal = listaNova.Last();
 
-            foreach (var lista in listaFinal)
 
-            {
+           Console.WriteLine(listaFinal);
 
-                Console.WriteLine(lista);
-
-            }
 
 
         }
