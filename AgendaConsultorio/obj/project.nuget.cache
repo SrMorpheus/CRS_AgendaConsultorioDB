@@ -1,11 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "NLabXb/QSriEWHuCq3DdHPmHuN49uK3T5MFAn4V+1HyRbbI2lTW85Qs9c1MXFDqHXhbUA9B0O7tyIU66YnaUQQ==",
+  "dgSpecHash": "WVHF/WMvlj5xg0P8pJHt5UitM1qc4ZwzgL8JZyoGp28aTHd6eJvV7JfkHKc45qoIW8LWRqF2j2FY5eq17fPK0w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\bbarros\\source\\repos\\AgendaConsultorio\\AgendaConsultorio\\AgendaConsultorio.csproj",
+  "projectFilePath": "C:\\Users\\apoio\\Desktop\\Desafio\\CRS_AgendaConsultorio\\AgendaConsultorio\\AgendaConsultorio.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\bbarros\\.nuget\\packages\\morelinq\\3.3.2\\morelinq.3.3.2.nupkg.sha512",
-    "C:\\Users\\bbarros\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.21\\microsoft.netcore.app.host.win-x64.3.1.21.nupkg.sha512"
+    "C:\\Users\\apoio\\.nuget\\packages\\morelinq\\3.3.2\\morelinq.3.3.2.nupkg.sha512"
   ],
   "logs": []
 }
