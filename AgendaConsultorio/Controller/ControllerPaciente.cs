@@ -17,13 +17,11 @@ namespace AgendaConsultorio.Controller
         public void CriarPaciente( string nome , string cpf , string dataNascimento)
         {
 
-
             var cpfLong = long.Parse(cpf);
 
             var Data = DateTime.Parse(dataNascimento);
 
             Paciente paciente = new Paciente(nome , cpfLong, Data);
-
 
             DadosPaciente.CadastrarPaciente(paciente);
 
@@ -51,10 +49,7 @@ namespace AgendaConsultorio.Controller
 
                     DadosAgenda.CancelarAgenda(listaAgendas);
 
-
                 }
-
-
 
             }
 
@@ -62,11 +57,6 @@ namespace AgendaConsultorio.Controller
             Console.WriteLine();
             Console.WriteLine("Paciente excluído com sucesso!");
             Console.WriteLine();
-
-
-
-
-
 
         }
 

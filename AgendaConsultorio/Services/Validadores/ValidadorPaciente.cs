@@ -79,10 +79,7 @@ namespace AgendaConsultorio.Services
 
             }
             else
-            {
-               
-
-              
+            { 
 
                 if (!Regex.IsMatch(cpf, @"^[0-9]+$"))
                 {
@@ -93,8 +90,6 @@ namespace AgendaConsultorio.Services
 
 
                 }
-
-
 
                 else if (!ValidacaoCpfRepetido(cpf)) 
                 { 
@@ -228,9 +223,6 @@ namespace AgendaConsultorio.Services
                 return true;
             }
 
-
-
-
         }
 
 
@@ -249,9 +241,6 @@ namespace AgendaConsultorio.Services
                 return false;
 
             }
-
-
-
             else if (datavalida)
             {
 
@@ -275,7 +264,6 @@ namespace AgendaConsultorio.Services
 
         }
 
-
         public int CalculoIdade(DateTime dataNascimento)
         {
 
@@ -289,10 +277,6 @@ namespace AgendaConsultorio.Services
             }
 
             return idade;
-
-
-
-
 
         }
 
@@ -327,8 +311,6 @@ namespace AgendaConsultorio.Services
         private bool ValidacaoCPF(string cpf)
         {
 
-
-
             var Parte01Cpf = cpf.Substring(0, 9);
 
             var Parte02Cpf = cpf.Substring(9, 2);
@@ -341,12 +323,8 @@ namespace AgendaConsultorio.Services
 
             int count = 10;
 
-
-
-
             foreach (var x in Parte01Cpf)
             {
-
 
                 soma = (count * (int)char.GetNumericValue(x)) + soma;
 
@@ -355,7 +333,6 @@ namespace AgendaConsultorio.Services
             }
 
             var resto = soma % 11;
-
 
             if (resto < 2)
             {
@@ -370,12 +347,9 @@ namespace AgendaConsultorio.Services
 
             }
 
-
             Parte01Cpf = Parte01Cpf + digitoJ.ToString();
 
-
             count = 11;
-
 
             soma = 0;
 
@@ -388,10 +362,7 @@ namespace AgendaConsultorio.Services
 
             }
 
-
             resto = soma % 11;
-
-
 
             if (resto < 2)
             {
@@ -405,7 +376,6 @@ namespace AgendaConsultorio.Services
                 digitoK = 11 - resto;
 
             }
-
 
             var digitosFinais = digitoJ.ToString() + digitoK.ToString();
 
@@ -421,10 +391,6 @@ namespace AgendaConsultorio.Services
                 return false;
 
             }
-
-
-
-
 
         }
 

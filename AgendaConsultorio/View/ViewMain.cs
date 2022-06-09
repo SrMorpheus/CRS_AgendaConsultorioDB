@@ -17,8 +17,6 @@ namespace AgendaConsultorio.View
         public void ViewMainCadastroPaciente()
         {
 
-
-
             PrintTelaPaciente();
             var opcao = Console.ReadLine();
 
@@ -93,18 +91,10 @@ namespace AgendaConsultorio.View
 
                         break;
 
-
-
-
                 }
 
                 PrintTelaPaciente();
                 opcao = Console.ReadLine();
-
-
-
-
-
 
             }
 
@@ -177,7 +167,7 @@ namespace AgendaConsultorio.View
 
                         Listagem listagem = new Listagem();
 
-                        listagem.ListagemAgendaGeral();
+                        _viewAgenda.ViewListaAgenda();
 
                         Console.WriteLine();
 
@@ -208,7 +198,6 @@ namespace AgendaConsultorio.View
                 PrintTelaAgenda();
 
                 opcao = Console.ReadLine();
-
 
             }
 
@@ -267,29 +256,17 @@ namespace AgendaConsultorio.View
 
                         Console.WriteLine();
 
-
                         break;
 
-
-
-
                 }
-
-
 
                 PrintTelaMenu();
                 opcao = Console.ReadLine();
 
-
             }
 
 
-
         }
-
-
-
-
 
         private void PrintTelaMenu()
         {
@@ -299,13 +276,7 @@ namespace AgendaConsultorio.View
             Console.WriteLine("2-Agenda");
             Console.WriteLine("3-Fim");
 
-
-
-
         }
-
-
-
 
 
 

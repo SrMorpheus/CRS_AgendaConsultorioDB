@@ -9,17 +9,12 @@ namespace AgendaConsultorio.Dados
     public class DadosAgenda
     {
 
-
         private static List<Agenda> _baseAgenda = new List<Agenda>();
-
-
-
 
         public static void Agendar(Agenda agenda)
         {
 
             _baseAgenda.Add(agenda);
-
 
         }
 
@@ -29,7 +24,6 @@ namespace AgendaConsultorio.Dados
         {
 
             _baseAgenda.Remove(agenda);
-
 
         }
 

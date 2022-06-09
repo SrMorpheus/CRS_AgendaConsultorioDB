@@ -9,31 +9,71 @@ namespace AgendaConsultorio.Services
 {
     public class Listagem
     {
-        
-     public void ListagemPacientesCPF()
-     {
 
-       var listaPacientes = DadosPaciente.listaPacientes();
+        public void ListagemPacientesCPF()
+        {
 
-
+            var listaPacientes = DadosPaciente.listaPacientes();
 
 
-       ValidadorPaciente validador = new ValidadorPaciente();
+            ValidadorPaciente validador = new ValidadorPaciente();
 
 
-       Console.WriteLine("-----------------------------------------------------------------------");
-       Console.WriteLine("{0,-11} {1,-40} {2,10}   {3,-3}", "CPF", "Nome", "Dt.Nasc.", "Idade");
-       Console.WriteLine("-----------------------------------------------------------------------");
+            Console.WriteLine("-----------------------------------------------------------------------");
+            Console.WriteLine("{0,-11} {1,-40} {2,10}   {3,-3}", "CPF", "Nome", "Dt.Nasc.", "Idade");
+            Console.WriteLine("-----------------------------------------------------------------------");
 
 
-       foreach (var lista in listaPacientes.OrderBy(x => x.CPF))
-       {
+            foreach (var lista in listaPacientes.OrderBy(x => x.CPF))
+            {
+
+                var idade = validador.CalculoIdade(lista.DataNascimento);
 
 
-         var idade = validador.CalculoIdade(lista.DataNascimento);
+                Console.WriteLine("{0,-11} {1,-40} {2, 11}   {3,4}", lista.CPF.ToString("D11"), lista.Nome, lista.DataNascimento.ToString("dd/MM/yyyy"), idade);
+                //Console.WriteLine(lista);
+
+                if (lista.Agendas.Count != 0)
+                {
+
+                    Agenda agenda = lista.Agendas.FirstOrDefault(x => x.DataHoraConsulta >= DateTime.Now);
+
+                    var dataConsulta = agenda.AgendaPacienteData();
+                    var horaConsulta = agenda.AgendaPacienteHora();
+
+                    Console.WriteLine("{0,37}", dataConsulta);
+                    Console.WriteLine("{0,26}", horaConsulta);
+
+                }
+
+            }
 
 
-         Console.WriteLine("{0,-11} {1,-40} {2, 11}   {3,4}", lista.CPF.ToString("D11"), lista.Nome, lista.DataNascimento.ToString("dd/MM/yyyy"), idade);
+
+        }
+
+        public void ListagemPacientesNome()
+        {
+
+            var listaPacientes = DadosPaciente.listaPacientes();
+
+
+            ValidadorPaciente validador = new ValidadorPaciente();
+
+            Console.WriteLine("-----------------------------------------------------------------------");
+            Console.WriteLine("{0,-11} {1,-40} {2,10}   {3,-3}", "CPF", "Nome", "Dt.Nasc.", "Idade");
+            Console.WriteLine("-----------------------------------------------------------------------");
+
+
+            foreach (var lista in listaPacientes.OrderBy(x => x.Nome))
+            {
+
+
+                var idade = validador.CalculoIdade(lista.DataNascimento);
+
+
+
+                Console.WriteLine("{0,-11} {1,-40} {2, 11}   {3,4}", lista.CPF.ToString("D11"), lista.Nome, lista.DataNascimento.ToString("dd/MM/yyyy"), idade);
                 //Console.WriteLine(lista);
 
                 if (lista.Agendas.Count != 0)
@@ -49,68 +89,11 @@ namespace AgendaConsultorio.Services
                     Console.WriteLine("{0,37}", dataConsulta);
                     Console.WriteLine("{0,26}", horaConsulta);
 
-
-
                 }
-
-            }
-
-
-
-      }
-
-        public void ListagemPacientesNome()
-        {
-
-            var listaPacientes = DadosPaciente.listaPacientes();
-
-
-            ValidadorPaciente validador = new ValidadorPaciente();
-
-
-
-            Console.WriteLine("-----------------------------------------------------------------------");
-            Console.WriteLine("{0,-11} {1,-40} {2,10}   {3,-3}", "CPF", "Nome", "Dt.Nasc.", "Idade");
-            Console.WriteLine("-----------------------------------------------------------------------");
-
-
-            foreach (var lista in listaPacientes.OrderBy(x => x.Nome))
-            {
-    
-
-                var idade = validador.CalculoIdade(lista.DataNascimento);
-
-
-
-                Console.WriteLine("{0,-11} {1,-40} {2, 11}   {3,4}", lista.CPF.ToString("D11"), lista.Nome, lista.DataNascimento.ToString("dd/MM/yyyy"), idade);
-                //Console.WriteLine(lista);
-
-                if(lista.Agendas.Count != 0)
-                {
-
-                    
-
-                    Agenda agenda = lista.Agendas.FirstOrDefault(x => x.DataHoraConsulta >= DateTime.Now);
-
-                    var dataConsulta = agenda.AgendaPacienteData();
-                    var horaConsulta = agenda.AgendaPacienteHora();
-
-                    Console.WriteLine("{0,37}", dataConsulta);
-                    Console.WriteLine("{0,26}", horaConsulta);
-
-
-
-                }
-
-               
 
                 //   Console.WriteLine("{0,-11} {1,-12} {2, 41:N1} {3,3}", lista.CPF.ToString("D11"), lista.Nome, lista.DataNascimento.ToString("dd/MM/yyyy"), idade);
 
-
-
-
             }
-
 
 
         }
@@ -120,35 +103,89 @@ namespace AgendaConsultorio.Services
 
             var listaAgenda = DadosAgenda.listaAgendas();
 
+            var count = listaAgenda.Count();
 
-            Console.WriteLine("---------------------------------------------------------------------------------");
-            Console.WriteLine("{0,7} {1,8} {2,5} {3,5} {4,-40} {5,10}", "Data", "H.Ini", "H.Fim", "Tempo", "Nome", "Dt.Nasc.");
-            Console.WriteLine("---------------------------------------------------------------------------------");
-
-            foreach (var lista in listaAgenda.OrderBy(x => x.DataHoraConsulta))
+            if(count > 0)
             {
-                
 
-                var intervalo = lista.HoraFinal - lista.HoraInicial;
+                Console.WriteLine();
+                Console.WriteLine();
 
-                
+                Console.WriteLine("---------------------------------------------------------------------------------");
+                Console.WriteLine("{0,7} {1,8} {2,5} {3,5} {4,-40} {5,10}", "Data", "H.Ini", "H.Fim", "Tempo", "Nome", "Dt.Nasc.");
+                Console.WriteLine("---------------------------------------------------------------------------------");
 
-                Console.WriteLine("{0,8} {1,4} {2,5} {3,5} {4,-40} {5,11}", lista.DataConsulta.ToString("dd/MM/yyyy"), lista.HoraInicial.ToString("HH:mm"), lista.HoraFinal.ToString("HH:mm"), intervalo.ToString(@"hh\:mm") , lista.Paciente.Nome, lista.Paciente.DataNascimento.ToString("dd/MM/yyyy"));
+                foreach (var lista in listaAgenda.OrderBy(x => x.DataHoraConsulta))
+                {
 
+
+                    var intervalo = lista.HoraFinal - lista.HoraInicial;
+
+
+                    Console.WriteLine("{0,8} {1,4} {2,5} {3,5} {4,-40} {5,11}", lista.DataConsulta.ToString("dd/MM/yyyy"), lista.HoraInicial.ToString("HH:mm"), lista.HoraFinal.ToString("HH:mm"), intervalo.ToString(@"hh\:mm"), lista.Paciente.Nome, lista.Paciente.DataNascimento.ToString("dd/MM/yyyy"));
+
+
+                }
+
+                // Console.WriteLine("{0,8} {1,4} {2,5} {3,5} {4,-40} {5,11}", "01/01/2022", "07:30", "08:00", "00:30", "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", "99/99/9999");
 
 
             }
 
+            else
+            {
 
+                Console.WriteLine("Sem agendamentos!");
 
-
-            // Console.WriteLine("{0,8} {1,4} {2,5} {3,5} {4,-40} {5,11}", "01/01/2022", "07:30", "08:00", "00:30", "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", "99/99/9999");
-
+            }
 
 
         }
 
+        public void ListagemAgendaEspecifica(string dataInicial, string dataFinal)
+        {
 
 
+            var dataInicialTime = Agenda.ConveterData(dataInicial);
+
+            var dataFinalTime = Agenda.ConveterData(dataFinal);
+
+
+            var listaAgenda = DadosAgenda.listaAgendas();
+
+
+            var count = listaAgenda.Count(x => x.DataConsulta >= dataInicialTime && x.DataConsulta <= dataFinalTime);
+
+            if (count > 0)
+            {
+
+                Console.WriteLine();
+                Console.WriteLine();
+
+                Console.WriteLine("---------------------------------------------------------------------------------");
+                Console.WriteLine("{0,7} {1,8} {2,5} {3,5} {4,-40} {5,10}", "Data", "H.Ini", "H.Fim", "Tempo", "Nome", "Dt.Nasc.");
+                Console.WriteLine("---------------------------------------------------------------------------------");
+
+
+                foreach (var lista in listaAgenda.OrderBy(x => x.DataHoraConsulta).Where(x => x.DataConsulta >= dataInicialTime && x.DataConsulta <= dataFinalTime))
+                {
+
+                    var intervalo = lista.HoraFinal - lista.HoraInicial;
+
+
+                    Console.WriteLine("{0,8} {1,4} {2,5} {3,5} {4,-40} {5,11}", lista.DataConsulta.ToString("dd/MM/yyyy"), lista.HoraInicial.ToString("HH:mm"), lista.HoraFinal.ToString("HH:mm"), intervalo.ToString(@"hh\:mm"), lista.Paciente.Nome, lista.Paciente.DataNascimento.ToString("dd/MM/yyyy"));
+
+
+                }
+            }
+            else
+            {
+                Console.WriteLine();
+
+                Console.WriteLine("Sem agendamento para esse período");
+
+            }
+
+        }
     }
 }

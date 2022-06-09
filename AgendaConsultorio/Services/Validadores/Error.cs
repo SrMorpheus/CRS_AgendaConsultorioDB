@@ -16,16 +16,6 @@ namespace AgendaConsultorio.Services
 
         List<Error> ListaError = new List<Error>();
 
-   
-
-        public Error()
-        {
-
-            
-
-        }
-
-
         public void ErrosNome(int opçao)
         {
 
@@ -49,10 +39,7 @@ namespace AgendaConsultorio.Services
 
                 ListaError.Add(nomeErro);
 
-
             }
-
-
 
         }
 
@@ -60,7 +47,6 @@ namespace AgendaConsultorio.Services
         public void ErrosCpf(int opcao)
         {
             Error ErrorCpf = new Error();
-
 
             if (opcao == 1)
             {
@@ -80,7 +66,6 @@ namespace AgendaConsultorio.Services
 
                 ListaError.Add(ErrorCpf);
 
-
             }
             else if (opcao == 3)
             {
@@ -90,7 +75,6 @@ namespace AgendaConsultorio.Services
 
                 ListaError.Add(ErrorCpf);
 
-
             }
             else if (opcao == 4)
             {
@@ -99,8 +83,6 @@ namespace AgendaConsultorio.Services
                 ErrorCpf.TipoErrosCliente = ErrosCliente.CPF;
 
                 ListaError.Add(ErrorCpf);
-
-
 
             }
             else if (opcao == 5)
@@ -121,9 +103,6 @@ namespace AgendaConsultorio.Services
 
                 ListaError.Add(ErrorCpf);
 
-
-
-
             }
             else if (opcao == 7)
             {
@@ -133,8 +112,6 @@ namespace AgendaConsultorio.Services
                 ErrorCpf.TipoErrosCliente = ErrosCliente.CPF;
 
                 ListaError.Add(ErrorCpf);
-
-                
 
             }
 
@@ -153,14 +130,11 @@ namespace AgendaConsultorio.Services
 
                 ListaError.Add(ErrorCpf);
 
-
             }
 
 
 
         }
-
-
 
 
         public void ErrosData(int opacao, int idade)
@@ -175,7 +149,6 @@ namespace AgendaConsultorio.Services
 
                 ListaError.Add(ErrorData);
 
-
             }
             else if (opacao == 2)
             {
@@ -185,14 +158,7 @@ namespace AgendaConsultorio.Services
 
                 ListaError.Add(ErrorData);
 
-
             }
-
-            
-           
-            
-
-
 
         }
 
@@ -212,21 +178,14 @@ namespace AgendaConsultorio.Services
 
             }
             else if (opcao == 2)
-            {
+            { 
                 ErrorData.DescricaoError = "agendamento não encontrado";
 
                 ErrorData.TipoErrosCliente = ErrosCliente.Agenda;
 
                 ListaError.Add(ErrorData);
-
-
-
                 
             }
-
-
-
-
 
         }
 
@@ -242,7 +201,6 @@ namespace AgendaConsultorio.Services
 
                 ListaError.Add(ErrosHora);
 
-
             }
             else if (opacao == 2)
             {
@@ -251,8 +209,6 @@ namespace AgendaConsultorio.Services
                 ErrosHora.TipoErrosCliente = ErrosCliente.Hora;
 
                 ListaError.Add(ErrosHora);
-
-
 
             }
 
@@ -264,7 +220,6 @@ namespace AgendaConsultorio.Services
 
                 ListaError.Add(ErrosHora);
 
-
             }
 
             else if (opacao == 4)
@@ -275,7 +230,6 @@ namespace AgendaConsultorio.Services
 
                 ListaError.Add(ErrosHora);
 
-
             }
             else if (opacao == 5)
             {
@@ -285,9 +239,7 @@ namespace AgendaConsultorio.Services
 
                 ListaError.Add(ErrosHora);
 
-
             }
-
             else if (opacao == 6)
             {
                 ErrosHora.DescricaoError = "Não são válidas as horas(exemplo de horaas válidas 1400, 1730, 1615, 1000 e 0715).";
@@ -298,7 +250,6 @@ namespace AgendaConsultorio.Services
 
 
             }
-
             else if (opacao == 7)
             {
 
@@ -309,7 +260,8 @@ namespace AgendaConsultorio.Services
                 ListaError.Add(ErrosHora);
 
 
-            }else if (opacao == 8)
+            }
+            else if (opacao == 8)
             {
 
                 ErrosHora.DescricaoError = "Existe um conflito de Horário com outra consulta agendada.";
@@ -326,7 +278,7 @@ namespace AgendaConsultorio.Services
 
 
 
-            public void ListaDeErros()
+        public void ListaDeErros()
         {
 
             var listaFinal = ListaError.DistinctBy(x => x.DescricaoError);
@@ -342,14 +294,10 @@ namespace AgendaConsultorio.Services
 
         public void ListaDeErros(ErrosCliente errosCliente)
         {
-        
-
-
+  
             var listaNova = ListaError.Where(x => x.TipoErrosCliente == errosCliente).Distinct();
 
-
             var listaFinal = listaNova.DistinctBy(x => x.DescricaoError);
-
 
             foreach (var lista in listaFinal)
 
@@ -361,8 +309,6 @@ namespace AgendaConsultorio.Services
 
 
         }
-
-
 
         public override string ToString()
         {

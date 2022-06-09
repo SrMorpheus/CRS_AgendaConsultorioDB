@@ -19,8 +19,5 @@ namespace AgendaConsultorio.Models
         Agenda = 5,
    
 
-
-
-
      }
 }

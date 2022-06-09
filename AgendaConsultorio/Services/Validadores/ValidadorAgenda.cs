@@ -13,8 +13,6 @@ namespace AgendaConsultorio.Services
 
         private Error _errorAgenda = new Error();
 
-
-
         public bool ValidarCpfAgenda(string cpf )
         {
             if (cpf.Length < 11)
@@ -31,7 +29,6 @@ namespace AgendaConsultorio.Services
 
                 return false;
 
-
             }
             else if (cpf.Length > 11)
             {
@@ -47,8 +44,6 @@ namespace AgendaConsultorio.Services
 
                 }
                 return false;
-
-
             }
             else
             {
@@ -59,7 +54,6 @@ namespace AgendaConsultorio.Services
                     _errorAgenda.ErrosCpf(3);
 
                     return false;
-
 
                 }
                 else
@@ -80,7 +74,6 @@ namespace AgendaConsultorio.Services
                     }else if(searchCpf.Agendas.Count >= 1)
                     {
 
-
                         Agenda agenda = searchCpf.Agendas.FirstOrDefault(x => x.DataHoraConsulta >= DateTime.Now);
 
                        if(agenda!= null)
@@ -88,12 +81,8 @@ namespace AgendaConsultorio.Services
 
                             _errorAgenda.ErrosCpf(8,agenda);
                             return false;
-                            
-
-
+                         
                         }
-
-
 
                     }
 
@@ -105,8 +94,6 @@ namespace AgendaConsultorio.Services
 
 
          }
-
-
 
         public bool ValidarCpfCancelarAgenda(string cpf)
         {
@@ -123,7 +110,6 @@ namespace AgendaConsultorio.Services
                 }
 
                 return false;
-
 
             }
             else if (cpf.Length > 11)
@@ -173,15 +159,13 @@ namespace AgendaConsultorio.Services
                     }
                    
 
+                 }
 
 
-                    }
-
-
-                }
+             }
 
                 return true;
-            }
+         }
 
 
 
@@ -192,20 +176,15 @@ namespace AgendaConsultorio.Services
 
             DateTime dataHora;
 
-
             var horaFormat = horaInicial.Substring(0, 2);
 
             var minuntosFormat = horaInicial.Substring(2, 2);
 
            var  hora = horaFormat + ":" + minuntosFormat;
 
-
             var dataHoraFormat = dataConsulta + " " + hora;
 
-
             bool datavalida = DateTime.TryParseExact(dataHoraFormat, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out dataHora);
-
-
 
             if(datavalida)
             {
@@ -220,10 +199,7 @@ namespace AgendaConsultorio.Services
                     return false;
 
 
-
-
                 }
-
 
 
             }
@@ -238,11 +214,7 @@ namespace AgendaConsultorio.Services
 
             DateTime dataAtual;
 
-        
-
             bool datavalida = DateTime.TryParseExact(data, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dataAtual);
-
-          
 
             if (!datavalida)
             {
@@ -254,9 +226,7 @@ namespace AgendaConsultorio.Services
 
             return true;
 
-
         }
-
 
         public bool ValidarHoraAgenda(string data)
         {
@@ -273,19 +243,13 @@ namespace AgendaConsultorio.Services
 
             }
 
-
             var horaFormat = data.Substring(0, 2);
 
             var minuntosFormat = data.Substring(2, 2);
 
             data = horaFormat + ":" + minuntosFormat;
 
-            
-
             bool horaValida = DateTime.TryParseExact(data, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out hora);
-
-            
-
 
             if (!horaValida || data.Length  > 5)
             {
@@ -296,7 +260,6 @@ namespace AgendaConsultorio.Services
             }
 
             return true;
-
 
         }
 
@@ -315,9 +278,7 @@ namespace AgendaConsultorio.Services
             
             hora = horaFormat + ":" + minuntosFormat;
 
-
             var dataHoraFormat = data + " " + hora;
-
 
             bool datavalida = DateTime.TryParseExact(dataHoraFormat, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out dataHora);
 
@@ -326,9 +287,7 @@ namespace AgendaConsultorio.Services
 
             Agenda agenda = baseAgendamento.FirstOrDefault(x => x.DataHoraConsulta == dataHora);
 
-            
-
-
+           
 
             if (datavalida)
             {
@@ -354,12 +313,6 @@ namespace AgendaConsultorio.Services
 
                         return false;
 
-
-                    
-
-
-
-
                 }
 
 
@@ -378,11 +331,9 @@ namespace AgendaConsultorio.Services
 
             TimeSpan duracao = horaFinalTime - horaInicialTime;
 
-
             TimeSpan FinalExpediente = new TimeSpan(19, 00, 0);
            
             DateTime dataAtual;
-
 
 
             bool datavalida = DateTime.TryParseExact(data, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dataAtual);
@@ -432,7 +383,6 @@ namespace AgendaConsultorio.Services
                 if (temIntersecao)
                 {
 
-
                     _errorAgenda.ErrosHora(8);
 
                     return false;
@@ -461,23 +411,18 @@ namespace AgendaConsultorio.Services
 
                     return true;
 
-
                 }
                   
 
                 }
 
-
-
                 return false;
-
         }
 
         private DateTime ConverterHoraMinutos(string horaConvert)
         {
 
             DateTime hora;
-
 
             var horaFormat = horaConvert.Substring(0, 2);
 
@@ -487,9 +432,6 @@ namespace AgendaConsultorio.Services
 
 
             bool horaValida = DateTime.TryParseExact(horaConvert, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out hora);
-
-
-
 
             return hora;
 

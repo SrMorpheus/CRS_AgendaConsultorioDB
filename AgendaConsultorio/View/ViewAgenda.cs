@@ -63,6 +63,40 @@ namespace AgendaConsultorio.View
 
         }
 
+        public bool DataInicialView(out string dataRetorno)
+        {
+            Console.Write("Data inicial: ");
+
+            var data = Console.ReadLine();
+
+            var resposta = _validador.ValidarDataAgenda(data);
+
+            dataRetorno = data;
+
+            return resposta;
+
+
+        }
+
+
+        public bool DataFinalView(out string dataRetorno)
+        {
+            Console.Write("Data final: ");
+
+            var data = Console.ReadLine();
+
+            var resposta = _validador.ValidarDataAgenda(data);
+
+            dataRetorno = data;
+
+            return resposta;
+
+
+        }
+
+
+
+
         public bool HoraInicialView(out string horaRetorno)
         {
             Console.Write("Hora inicial: ");
@@ -95,13 +129,8 @@ namespace AgendaConsultorio.View
 
 
         public void Agendarview(out string cpfRetorno, out string dataRetorno, out string horaInicialRetorno, out string horaFinalRetorno)
-
         {
-
-
-
-
-
+ 
             string cpf;
             bool boolCpf = CPFView(out cpf);
 
@@ -117,7 +146,6 @@ namespace AgendaConsultorio.View
             while (!boolCpf)
             {
 
-
                 Console.WriteLine();
 
                 _validador.ListaDeErrosDadosEspecifica(ErrosCliente.CPF);
@@ -125,7 +153,6 @@ namespace AgendaConsultorio.View
                 Console.WriteLine();
 
                 boolCpf = CPFView(out cpf);
-
 
 
             }
@@ -141,7 +168,6 @@ namespace AgendaConsultorio.View
             while (!boolData)
             {
 
-
                 Console.WriteLine();
 
                 _validador.ListaDeErrosDadosEspecifica(ErrosCliente.DataConsulta);
@@ -149,10 +175,6 @@ namespace AgendaConsultorio.View
                 Console.WriteLine();
 
                 boolData = DataView(out data);
-
-
-
-
 
             }
 
@@ -165,18 +187,13 @@ namespace AgendaConsultorio.View
             while (!boolHoraInicial)
             {
 
-
                 Console.WriteLine();
 
                 _validador.ListaDeErrosDadosEspecifica(ErrosCliente.Hora);
 
                 Console.WriteLine();
 
-
                 boolHoraInicial = HoraInicialView(out horaInicial);
-
-
-
 
             }
 
@@ -189,7 +206,6 @@ namespace AgendaConsultorio.View
             while (!boolHoraFinal)
             {
 
-
                 Console.WriteLine();
 
                 _validador.ListaDeErrosDadosEspecifica(ErrosCliente.Hora);
@@ -198,14 +214,7 @@ namespace AgendaConsultorio.View
 
                 boolHoraFinal = HoraFinalView(out horaFinal);
 
-
-
-
-
             }
-
-          
-
 
             cpfRetorno = cpf;
 
@@ -215,98 +224,206 @@ namespace AgendaConsultorio.View
 
             horaFinalRetorno = horaFinal;
 
-
-
         }
 
 
         public void ViewAgendamento()
-        {
+         {
 
-            string cpf, data, horaInicial, horaFinal;
-
-            bool boolAgendamento = false;
+            var basePaciente = DadosPaciente.listaPacientes();
 
 
-            Agendarview(out cpf, out data, out horaInicial, out horaFinal);
-
-            boolAgendamento = _validador.ValidarAgendamento(data, horaInicial, horaFinal);
-
-           
-
-            if (!boolAgendamento)
-
+            if (basePaciente.Count > 0)
             {
-                while (!boolAgendamento)
+
+                string cpf, data, horaInicial, horaFinal;
+
+                bool boolAgendamento = false;
+
+
+                Agendarview(out cpf, out data, out horaInicial, out horaFinal);
+
+                boolAgendamento = _validador.ValidarAgendamento(data, horaInicial, horaFinal);
+
+
+
+                if (!boolAgendamento)
+
                 {
+                    while (!boolAgendamento)
+                    {
 
-                    Console.WriteLine();
+                        Console.WriteLine();
 
-                    _validador.ListaDeErrosDadosEspecifica(ErrosCliente.Agenda);
+                        _validador.ListaDeErrosDadosEspecifica(ErrosCliente.Agenda);
 
-                    Console.WriteLine();
+                        Console.WriteLine();
 
-                    Agendarview(out cpf, out data, out horaInicial, out horaFinal);
+                        Agendarview(out cpf, out data, out horaInicial, out horaFinal);
 
-                    boolAgendamento = _validador.ValidarAgendamento(data, horaInicial, horaFinal);
+                        boolAgendamento = _validador.ValidarAgendamento(data, horaInicial, horaFinal);
 
 
+
+
+                    }
 
 
                 }
 
-
-            }
-
-            bool boolAgendamentoHorario = _validador.ValidarHorarioFuncionamento(horaInicial, horaFinal,data);
+                bool boolAgendamentoHorario = _validador.ValidarHorarioFuncionamento(horaInicial, horaFinal, data);
 
 
 
-            if(!boolAgendamentoHorario)
-            {
-
-                while (!boolAgendamentoHorario)
+                if (!boolAgendamentoHorario)
                 {
 
-                    Console.WriteLine();
+                    while (!boolAgendamentoHorario)
+                    {
 
-                    _validador.ListaDeErrosDadosEspecifica(ErrosCliente.Hora);
+                        Console.WriteLine();
 
-                    Console.WriteLine();
+                        _validador.ListaDeErrosDadosEspecifica(ErrosCliente.Hora);
 
-                    var boolHoraInicial = HoraInicialView(out horaInicial);
+                        Console.WriteLine();
 
-                    var boolHoraFinal = HoraFinalView(out horaFinal);
+                        var boolHoraInicial = HoraInicialView(out horaInicial);
 
-                    boolAgendamentoHorario = _validador.ValidarHorarioFuncionamento(horaInicial, horaFinal,data);
+                        var boolHoraFinal = HoraFinalView(out horaFinal);
+
+                        boolAgendamentoHorario = _validador.ValidarHorarioFuncionamento(horaInicial, horaFinal, data);
+
+                    }
+
+                }
 
 
+                if (boolAgendamento == true && boolAgendamentoHorario == true)
+                {
+
+                    _controllerAgenda.CriarAgenda(cpf, data, horaInicial, horaFinal);
 
                 }
 
             }
 
-
-            if(boolAgendamento == true && boolAgendamentoHorario == true)
+            else
             {
 
-                _controllerAgenda.CriarAgenda(cpf, data, horaInicial, horaFinal);
-
+                Console.WriteLine("Sem paciente para fazer agendamento!");
 
             }
-
-
-
-
-
 
         }
 
 
+        public void ViewListaPeriodoAgenda()
+        {
+
+            string dataInicial = "";
+
+            string dataFinal = "";
+
+            bool boolDataInicial;
+
+            bool boolDataFnal = false;
+
+
+            boolDataInicial = DataInicialView(out dataInicial);
+
+            while(!boolDataInicial)
+            {
+
+                Console.WriteLine();
+
+                _validador.ListaDeErrosDadosEspecifica(ErrosCliente.DataConsulta);
+
+                Console.WriteLine();
+
+                boolDataInicial = DataInicialView(out dataInicial);
+
+            }
+
+            if(boolDataInicial)
+            {
+
+                boolDataFnal = DataFinalView(out dataFinal);
+
+
+            }
+
+            while(!boolDataFnal)
+            {
+
+                Console.WriteLine();
+
+                _validador.ListaDeErrosDadosEspecifica(ErrosCliente.DataConsulta);
+
+                Console.WriteLine();
+
+                boolDataFnal = DataFinalView(out dataFinal);
+
+
+
+            }
+
+            if(boolDataFnal == true && boolDataInicial == true)
+            {
+
+                _controllerAgenda.ListaAgendaPeriodo(dataInicial, dataFinal);
+
+
+            }
+
+        }
+
+        public void ViewListaAgenda()
+        {
+
+            Console.WriteLine();
+
+            Console.Write("Apresentar a agenda T-Toda ou P-Periodo: ");
+
+            var opcao = Console.ReadLine();
+
+
+            switch(opcao)
+            {
+
+                case "T":
+
+                    Console.WriteLine();
+
+                    _controllerAgenda.ListaAgendaGeral();
+
+                    Console.WriteLine();
+
+
+                    break;
+
+                case "P":
+
+                    Console.WriteLine();
+
+                    ViewListaPeriodoAgenda();
+
+                    Console.WriteLine();
+                    
+                    break;
+
+                default:
+                    Console.WriteLine();
+                    Console.WriteLine("Opção inválida!");
+                    Console.WriteLine();
+
+                    break;
+
+            }
+
+        }
 
         public void ViewCancelarAgenda()
         {
-
 
             var baseAgendamento = DadosAgenda.listaAgendas();
 
@@ -424,7 +541,6 @@ namespace AgendaConsultorio.View
             {
 
                 Console.WriteLine("Sem agendamentos na base de dados!");
-
 
             }
 

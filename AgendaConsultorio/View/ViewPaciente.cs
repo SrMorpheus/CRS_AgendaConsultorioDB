@@ -79,7 +79,6 @@ namespace AgendaConsultorio.View
         }
 
 
-
         public void ExclusaoView()
         {
 
@@ -106,26 +105,16 @@ namespace AgendaConsultorio.View
 
                     boolCpf = CPFExclusãoView(out cpf);
 
-
-
                 }
 
                 if(boolCpf)
                 {
 
-
                     _controllerPaciente.ExcluirPaciente(cpf);
-
 
                 }
 
-
-
-
-
             }
-
-
             else
             {
 
@@ -135,19 +124,13 @@ namespace AgendaConsultorio.View
             }
 
 
-
-
-
-
-
         }
 
 
         public void CadastroView()
         {
 
-            
-
+           
             string cpf;
 
             string nome = " ";
@@ -197,10 +180,8 @@ namespace AgendaConsultorio.View
 
                 boolNome = NomeView(out nome);
 
-          
-
+   
              }
-
 
 
             if (boolNome)
@@ -210,7 +191,6 @@ namespace AgendaConsultorio.View
 
 
             }
-
 
             while (!boolData)
              {
@@ -236,16 +216,9 @@ namespace AgendaConsultorio.View
                 _controllerPaciente.CriarPaciente(nome, cpf, data);
 
 
-            }
-
-
-
-       
-
-
+            }       
 
         }
-
 
 
         public void ListagemView(int opcao)
@@ -271,22 +244,13 @@ namespace AgendaConsultorio.View
 
                 }
 
-
-
             }
             else
             {
-
             
                 Console.WriteLine("Sem Pacientes cadastrados!");
           
             }
-
-
-        
-
-
-
 
         }
 

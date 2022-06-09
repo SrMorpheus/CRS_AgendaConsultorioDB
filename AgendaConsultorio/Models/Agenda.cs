@@ -20,7 +20,6 @@ namespace AgendaConsultorio.Models
 
         public DateTime HoraFinal { get; private set; }
 
-
         public DateTime DataHoraConsulta
         {
 
@@ -31,9 +30,6 @@ namespace AgendaConsultorio.Models
         
         }
         public Paciente Paciente { get; set; }
-
-
-
 
         public Agenda(long cpf, DateTime dataConsulta, DateTime horaInicial, DateTime horaFinal, Paciente paciente)
         {
@@ -49,14 +45,13 @@ namespace AgendaConsultorio.Models
 
             this.DataHoraConsulta = AgendaDataHora(); 
 
-
             this.Paciente.adicionarAgendaPaciente(this);
             
 
         }
 
-
         public static DateTime ConverterHora(string hora)
+
         {
             DateTime horaConverter;
 
@@ -66,8 +61,6 @@ namespace AgendaConsultorio.Models
 
             hora = horaFormat + ":" + minuntosFormat;
 
-
-
             bool horaValida = DateTime.TryParseExact(hora, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out horaConverter);
 
             return horaConverter;
@@ -75,10 +68,21 @@ namespace AgendaConsultorio.Models
 
         }
 
+        public static DateTime ConveterData(string data)
+        {
+
+            DateTime dataTime;
+
+            bool datavalida = DateTime.TryParseExact(data, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dataTime);
+
+            return dataTime;
+
+        }
 
 
         public override bool Equals(object obj)
         {
+
 
             return this.Equals(obj as Agenda);
 
@@ -110,7 +114,9 @@ namespace AgendaConsultorio.Models
 
         public override string ToString()
         {
+
             return DataConsulta + " " + HoraInicial + " " +  HoraFinal + " " + CPF;
+
         }
 
 
@@ -118,7 +124,6 @@ namespace AgendaConsultorio.Models
         {
 
             var retorno = "Agendado para: " + this.DataConsulta.ToString("dd/MM/yyyy");
-                       
 
             return retorno;
 
@@ -134,22 +139,15 @@ namespace AgendaConsultorio.Models
 
             DateTime dataHora;
 
-
             var horaFormat = this.HoraInicial.ToString("HH:mm");
 
             var DataFormat = this.DataConsulta.ToString("dd/MM/yyyy");
 
-
             var dataHoraFormat = DataFormat + " " + horaFormat;
-
 
             bool datavalida = DateTime.TryParseExact(dataHoraFormat, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out dataHora);
 
             return dataHora;
-
-          
-        
-
 
         }
 
@@ -157,9 +155,7 @@ namespace AgendaConsultorio.Models
         public static DateTime AgendaDataHora(string dataConsulta , string horaInical)
         {
 
-
             DateTime dataHora;
-
 
             var horaFormat = Agenda.ConverterHora(horaInical);
 
@@ -170,11 +166,6 @@ namespace AgendaConsultorio.Models
             bool datavalida = DateTime.TryParseExact(dataHoraFormat, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out dataHora);
 
             return dataHora;
-
-          
-
-
-
 
         }
 
@@ -187,7 +178,6 @@ namespace AgendaConsultorio.Models
             var retorno = this.HoraInicial.ToString("HH:mm") + " ás " + this.HoraFinal.ToString("HH:mm");
 
             return retorno;
-
 
         }
           

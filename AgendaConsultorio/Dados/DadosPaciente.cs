@@ -10,14 +10,10 @@ namespace AgendaConsultorio.Dados
 
         private static List<Paciente> _basePacientes = new List<Paciente>();
 
-
-
-
         public static void CadastrarPaciente(Paciente paciente)
         {
 
             _basePacientes.Add(paciente);
-
 
         }
 
