@@ -21,7 +21,7 @@ namespace AgendaConsultorio.Controller
 
             var Data = DateTime.Parse(dataNascimento);
 
-            Paciente paciente = new Paciente(nome , cpfLong, Data);
+            PacienteVO paciente = new PacienteVO(nome , cpfLong, Data);
 
             DadosPaciente.CadastrarPaciente(paciente);
 
@@ -39,7 +39,7 @@ namespace AgendaConsultorio.Controller
 
             var basePaciente = DadosPaciente.listaPacientes();
 
-            Paciente paciente = basePaciente.Find(x=> x.CPF == cpfLong);
+            PacienteVO paciente = basePaciente.Find(x=> x.CPF == cpfLong);
 
             if(paciente.Agendas.Count > 0)
             {

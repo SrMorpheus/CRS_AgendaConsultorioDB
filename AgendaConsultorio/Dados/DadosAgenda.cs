@@ -9,9 +9,9 @@ namespace AgendaConsultorio.Dados
     public class DadosAgenda
     {
 
-        private static List<Agenda> _baseAgenda = new List<Agenda>();
+        private static List<AgendaVO> _baseAgenda = new List<AgendaVO>();
 
-        public static void Agendar(Agenda agenda)
+        public static void Agendar(AgendaVO agenda)
         {
 
             _baseAgenda.Add(agenda);
@@ -20,7 +20,7 @@ namespace AgendaConsultorio.Dados
 
 
 
-        public static void CancelarAgenda(Agenda agenda)
+        public static void CancelarAgenda(AgendaVO agenda)
         {
 
             _baseAgenda.Remove(agenda);
@@ -28,7 +28,7 @@ namespace AgendaConsultorio.Dados
         }
 
 
-        public static List<Agenda> listaAgendas()
+        public static List<AgendaVO> listaAgendas()
         {
 
             return _baseAgenda;

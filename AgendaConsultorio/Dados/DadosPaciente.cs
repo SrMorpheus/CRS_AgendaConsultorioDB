@@ -8,9 +8,9 @@ namespace AgendaConsultorio.Dados
     public class DadosPaciente
     {
 
-        private static List<Paciente> _basePacientes = new List<Paciente>();
+        private static List<PacienteVO> _basePacientes = new List<PacienteVO>();
 
-        public static void CadastrarPaciente(Paciente paciente)
+        public static void CadastrarPaciente(PacienteVO paciente)
         {
 
             _basePacientes.Add(paciente);
@@ -19,7 +19,7 @@ namespace AgendaConsultorio.Dados
 
 
 
-        public static void ExcluirPaciente(Paciente paciente)
+        public static void ExcluirPaciente(PacienteVO paciente)
         {
 
             _basePacientes.Remove(paciente) ;
@@ -28,7 +28,7 @@ namespace AgendaConsultorio.Dados
         }
 
 
-        public static List<Paciente> listaPacientes ()
+        public static List<PacienteVO> listaPacientes ()
         {
 
             return _basePacientes;

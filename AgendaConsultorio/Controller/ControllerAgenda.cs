@@ -23,13 +23,13 @@ namespace AgendaConsultorio.Controller
 
             var paciente = basePaciente.FirstOrDefault(x => x.CPF == CpfLong);
 
-            var horaInicialTime = Agenda.ConverterHora(horaInicial);
+            var horaInicialTime = AgendaVO.ConverterHora(horaInicial);
 
-            var horaFinalTime = Agenda.ConverterHora(horaFinal);
+            var horaFinalTime = AgendaVO.ConverterHora(horaFinal);
 
             var DataConsultaTime = DateTime.Parse(dataConsulta);
 
-            Agenda agenda = new Agenda(CpfLong, DataConsultaTime, horaInicialTime, horaFinalTime, paciente);
+            AgendaVO agenda = new AgendaVO(CpfLong, DataConsultaTime, horaInicialTime, horaFinalTime, paciente);
 
             DadosAgenda.Agendar(agenda);
 
@@ -47,9 +47,9 @@ namespace AgendaConsultorio.Controller
 
             var CpfLong = long.Parse(cpf);
 
-            var dataHoraConsulta = Agenda.AgendaDataHora(dataConsulta, horaInicial);
+            var dataHoraConsulta = AgendaVO.AgendaDataHora(dataConsulta, horaInicial);
 
-            Agenda agenda = baseAgenda.Find(x => x.CPF == CpfLong && x.DataHoraConsulta == dataHoraConsulta);
+            AgendaVO agenda = baseAgenda.Find(x => x.CPF == CpfLong && x.DataHoraConsulta == dataHoraConsulta);
 
             DadosPaciente.listaPacientes().Find(x => x.CPF == CpfLong).ExcluirAgendaPaciente(agenda);
 

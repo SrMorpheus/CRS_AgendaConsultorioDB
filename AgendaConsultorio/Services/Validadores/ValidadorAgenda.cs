@@ -74,7 +74,7 @@ namespace AgendaConsultorio.Services
                     }else if(searchCpf.Agendas.Count >= 1)
                     {
 
-                        Agenda agenda = searchCpf.Agendas.FirstOrDefault(x => x.DataHoraConsulta >= DateTime.Now);
+                        AgendaVO agenda = searchCpf.Agendas.FirstOrDefault(x => x.DataHoraConsulta >= DateTime.Now);
 
                        if(agenda!= null)
                         {
@@ -189,7 +189,7 @@ namespace AgendaConsultorio.Services
             if(datavalida)
             {
 
-                Agenda agenda = DadosAgenda.listaAgendas().Find( x => x.DataHoraConsulta == dataHora &&  x.CPF == long.Parse(cpf));
+                AgendaVO agenda = DadosAgenda.listaAgendas().Find( x => x.DataHoraConsulta == dataHora &&  x.CPF == long.Parse(cpf));
                 
                 if(agenda == null)
                 {
@@ -285,7 +285,7 @@ namespace AgendaConsultorio.Services
 
             var baseAgendamento = DadosAgenda.listaAgendas();
 
-            Agenda agenda = baseAgendamento.FirstOrDefault(x => x.DataHoraConsulta == dataHora);
+            AgendaVO agenda = baseAgendamento.FirstOrDefault(x => x.DataHoraConsulta == dataHora);
 
            
 
@@ -399,7 +399,7 @@ namespace AgendaConsultorio.Services
         }
 
 
-        private bool TemIntersecao(DateTime horaInincial , DateTime horaFinal, List<Agenda> agendas )
+        private bool TemIntersecao(DateTime horaInincial , DateTime horaFinal, List<AgendaVO> agendas )
         {
 
              foreach( var lista in agendas)

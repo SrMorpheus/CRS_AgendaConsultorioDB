@@ -118,7 +118,7 @@ namespace AgendaConsultorio.Services
 
         }
 
-        public void ErrosCpf(int opcao, Agenda agenda)
+        public void ErrosCpf(int opcao, AgendaVO agenda)
         {
             Error ErrorCpf = new Error();
 

@@ -1,192 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace AgendaConsultorio.Models
 {
-    public class Agenda : IEquatable<Agenda>
+    [Table("Tbl_Agenda")]
+    public class Agenda
     {
 
 
+        [Column("Cod_Agenda")]
+        public int Id { get; set; }
 
-        private DateTime _dataHoraConsulta;
+        [Column("CPF_Paciente_Agenda")]
         public long CPF { get; set; }
 
-        public DateTime DataConsulta { get; private set; }
+        [Column("Data_Consulta")]
+        public DateTime DataConsulta { get; set; }
 
-        public DateTime HoraInicial { get; private set; }
+        [Column("Hora_Inicial")]
+        public DateTime HoraInicial { get; set; }
 
-        public DateTime HoraFinal { get; private set; }
+        [Column("Hora_Final")]
+        public DateTime HoraFinal { get; set; }
 
-        public DateTime DataHoraConsulta
-        {
+        [Column("DATA_Hora_Consulta")]
+        public DateTime DataHoraConsulta { get; set; }
+ 
+         [Column("FK_Paciente")]
+        public int PacienteID { get; set; }
 
-            get { return _dataHoraConsulta;  }
-
-            private set { _dataHoraConsulta = AgendaDataHora(); }
-        
-        
-        }
         public Paciente Paciente { get; set; }
-
-        public Agenda(long cpf, DateTime dataConsulta, DateTime horaInicial, DateTime horaFinal, Paciente paciente)
-        {
-            this.CPF = cpf;
-
-            this.DataConsulta = dataConsulta;
-
-            this.HoraInicial = horaInicial;
-
-            this.HoraFinal = horaFinal;
-
-            this.Paciente = paciente;
-
-            this.DataHoraConsulta = AgendaDataHora(); 
-
-            this.Paciente.adicionarAgendaPaciente(this);
-            
-
-        }
-
-        public static DateTime ConverterHora(string hora)
-
-        {
-            DateTime horaConverter;
-
-            var horaFormat = hora.Substring(0, 2);
-
-            var minuntosFormat = hora.Substring(2, 2);
-
-            hora = horaFormat + ":" + minuntosFormat;
-
-            bool horaValida = DateTime.TryParseExact(hora, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out horaConverter);
-
-            return horaConverter;
-
-
-        }
-
-        public static DateTime ConveterData(string data)
-        {
-
-            DateTime dataTime;
-
-            bool datavalida = DateTime.TryParseExact(data, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dataTime);
-
-            return dataTime;
-
-        }
-
-
-        public override bool Equals(object obj)
-        {
-
-
-            return this.Equals(obj as Agenda);
-
-        }
-
-        public bool Equals(Agenda other)
-        {
-
-            if (other == null)
-                return false;
-
-            return this.DataConsulta.Equals(other.DataConsulta) &&
-         (
-             object.ReferenceEquals(this.DataConsulta, other.DataConsulta) ||
-             this.DataConsulta != null &&
-             this.DataConsulta.Equals(other.DataConsulta)
-         ) &&
-         (
-             object.ReferenceEquals(this.HoraInicial, other.HoraInicial) ||
-             this.HoraInicial != null &&
-             this.HoraInicial.Equals(other.HoraInicial)
-         ) &&
-         (
-          object.ReferenceEquals(this.HoraFinal, other.HoraFinal) ||
-             this.HoraFinal != null &&
-             this.HoraFinal.Equals(other.HoraFinal));
-
-        }
-
-        public override string ToString()
-        {
-
-            return DataConsulta + " " + HoraInicial + " " +  HoraFinal + " " + CPF;
-
-        }
-
-
-        public string AgendaPacienteData()
-        {
-
-            var retorno = "Agendado para: " + this.DataConsulta.ToString("dd/MM/yyyy");
-
-            return retorno;
-
-
-        }
-
-
-
-
-        public DateTime AgendaDataHora()
-        {
-
-
-            DateTime dataHora;
-
-            var horaFormat = this.HoraInicial.ToString("HH:mm");
-
-            var DataFormat = this.DataConsulta.ToString("dd/MM/yyyy");
-
-            var dataHoraFormat = DataFormat + " " + horaFormat;
-
-            bool datavalida = DateTime.TryParseExact(dataHoraFormat, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out dataHora);
-
-            return dataHora;
-
-        }
-
-
-        public static DateTime AgendaDataHora(string dataConsulta , string horaInical)
-        {
-
-            DateTime dataHora;
-
-            var horaFormat = Agenda.ConverterHora(horaInical);
-
-
-            var dataHoraFormat = dataConsulta + " " + horaFormat.ToString("HH:mm");
-
-
-            bool datavalida = DateTime.TryParseExact(dataHoraFormat, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out dataHora);
-
-            return dataHora;
-
-        }
-
-
-
-
-        public string AgendaPacienteHora()
-        {
-
-            var retorno = this.HoraInicial.ToString("HH:mm") + " ás " + this.HoraFinal.ToString("HH:mm");
-
-            return retorno;
-
-        }
-          
-
-           
-
 
 
     }
-
-  }
-
+}

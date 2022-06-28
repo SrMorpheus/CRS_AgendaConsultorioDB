@@ -201,7 +201,7 @@ namespace AgendaConsultorio.Services
                     {
 
 
-                        Agenda agenda = searchCpf.Agendas.FirstOrDefault(x => x.DataHoraConsulta >= DateTime.Now);
+                        AgendaVO agenda = searchCpf.Agendas.FirstOrDefault(x => x.DataHoraConsulta >= DateTime.Now);
 
                         if (agenda != null)
                         {

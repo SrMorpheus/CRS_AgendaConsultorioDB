@@ -36,7 +36,7 @@ namespace AgendaConsultorio.Services
                 if (lista.Agendas.Count != 0)
                 {
 
-                    Agenda agenda = lista.Agendas.FirstOrDefault(x => x.DataHoraConsulta >= DateTime.Now);
+                    AgendaVO agenda = lista.Agendas.FirstOrDefault(x => x.DataHoraConsulta >= DateTime.Now);
 
                     var dataConsulta = agenda.AgendaPacienteData();
                     var horaConsulta = agenda.AgendaPacienteHora();
@@ -81,7 +81,7 @@ namespace AgendaConsultorio.Services
 
 
 
-                    Agenda agenda = lista.Agendas.FirstOrDefault(x => x.DataHoraConsulta >= DateTime.Now);
+                    AgendaVO agenda = lista.Agendas.FirstOrDefault(x => x.DataHoraConsulta >= DateTime.Now);
 
                     var dataConsulta = agenda.AgendaPacienteData();
                     var horaConsulta = agenda.AgendaPacienteHora();
@@ -146,9 +146,9 @@ namespace AgendaConsultorio.Services
         {
 
 
-            var dataInicialTime = Agenda.ConveterData(dataInicial);
+            var dataInicialTime = AgendaVO.ConveterData(dataInicial);
 
-            var dataFinalTime = Agenda.ConveterData(dataFinal);
+            var dataFinalTime = AgendaVO.ConveterData(dataFinal);
 
 
             var listaAgenda = DadosAgenda.listaAgendas();

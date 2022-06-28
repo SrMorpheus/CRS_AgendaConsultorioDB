@@ -1,111 +1,32 @@
-﻿using AgendaConsultorio.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace AgendaConsultorio.Models
 {
+
+    [Table("Tbl_Paciente")]
     public class Paciente
     {
 
-        private string _nome;
+        [Column("Cod_Paciente")]
+        public int Id { get; set; }
 
-        private long _cpf;
+        [Column("CPF_Paciente")]
 
-        private DateTime _dataNascimento;
+        public long CPF { get; set; }
 
-        public string Nome
-        {
-            get
-            {
+        [Column("Nome_Paciente")]
 
-                return _nome;
+        public string Nome { get; set; }
 
-            }
+        [Column("Data_Nascimento")]
 
-             private set
-            {
-
-                _nome = value;
-
-            }
-        }
-
-        public long CPF 
-        {
-            
-            get 
-            {
-
-                return _cpf;
-            
-            }
-            set 
-            { 
-
-                _cpf = value;
-            
-            }
-        }
+        public DateTime DataNascimento { get; set; }
 
 
-        public DateTime DataNascimento { 
-            get 
-            {
-
-                return _dataNascimento;
-            
-            } 
-            set
-            { 
-            
-               _dataNascimento = value;
-
-            
-            }
-        }
-
-
-        public List<Agenda> Agendas { get; set; }   = new List<Agenda> ();
-
-
-        public Paciente (string nome, long cpf, DateTime dataNascimento)
-        {
-           
-            this.Nome = nome;
-
-            this.CPF = cpf;
-
-            this.DataNascimento = dataNascimento;
-
-        }
-
-        public void adicionarAgendaPaciente( Agenda agenda)
-        {
-
-            Agendas.Add(agenda);
-
-        }
-
-        public void ExcluirAgendaPaciente(Agenda agenda)
-        {
-
-            Agendas.Remove(agenda);
-
-        }
-
-
-        public override string ToString()
-        {
-
-            ValidadorPaciente validador = new ValidadorPaciente();
-
-            var idade = validador.CalculoIdade(this.DataNascimento);
-
-            return this.CPF.ToString("D11") + " " + this.Nome + " " + DataNascimento.ToString("dd/MM/yyyy") + " " + idade ;
-
-        }
-
+        public List<Agenda> Agendas;
 
     }
 }
