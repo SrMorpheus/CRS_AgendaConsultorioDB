@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using AgendaConsultorio.Models;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace AgendaConsultorio.Dados
 {
@@ -31,6 +32,7 @@ namespace AgendaConsultorio.Dados
             }
         }
 
+       
 
     }
 }

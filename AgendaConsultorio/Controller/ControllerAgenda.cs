@@ -1,5 +1,7 @@
 ﻿using AgendaConsultorio.Dados;
 using AgendaConsultorio.Models;
+using AgendaConsultorio.Repository;
+using AgendaConsultorio.Repository.Implementations;
 using AgendaConsultorio.Services;
 using System;
 using System.Collections.Generic;
@@ -11,13 +13,32 @@ namespace AgendaConsultorio.Controller
     public class ControllerAgenda
     {
 
+        private Listagem _listagem;
 
-        private Listagem _listagem = new Listagem();
+        private readonly IPacienteRepository _PacienteRepository;
 
-        public void CriarAgenda(string cpf, string dataConsulta, string horaInicial, string horaFinal)
+        private readonly IAgendaRepository _AgendaRepository;
+
+
+
+        public ControllerAgenda()
         {
 
-            var basePaciente = DadosPaciente.listaPacientes();
+            _PacienteRepository = new PacienteRepositoryImplementation();
+
+            _AgendaRepository = new AgendaRepositoryImplementation();
+
+            _listagem = new Listagem();
+
+        }
+
+
+            public void CriarAgenda(string cpf, string dataConsulta, string horaInicial, string horaFinal)
+             {
+
+            //var basePaciente = DadosPaciente.listaPacientes();
+
+            var basePaciente = _PacienteRepository.ListaPacientes();
 
             var CpfLong = long.Parse(cpf);
 
@@ -31,7 +52,9 @@ namespace AgendaConsultorio.Controller
 
             AgendaVO agenda = new AgendaVO(CpfLong, DataConsultaTime, horaInicialTime, horaFinalTime, paciente);
 
-            DadosAgenda.Agendar(agenda);
+            // DadosAgenda.Agendar(agenda);
+
+            _AgendaRepository.Agendar(agenda);
 
 
             Console.WriteLine();
@@ -43,7 +66,9 @@ namespace AgendaConsultorio.Controller
         public void CancelarAgenda(string cpf, string dataConsulta, string horaInicial)
         {
 
-            var baseAgenda = DadosAgenda.listaAgendas();
+            //var baseAgenda = DadosAgenda.listaAgendas();
+
+            var baseAgenda = _AgendaRepository.ListaAgendas();
 
             var CpfLong = long.Parse(cpf);
 
@@ -51,9 +76,11 @@ namespace AgendaConsultorio.Controller
 
             AgendaVO agenda = baseAgenda.Find(x => x.CPF == CpfLong && x.DataHoraConsulta == dataHoraConsulta);
 
-            DadosPaciente.listaPacientes().Find(x => x.CPF == CpfLong).ExcluirAgendaPaciente(agenda);
+            // DadosPaciente.listaPacientes().Find(x => x.CPF == CpfLong).ExcluirAgendaPaciente(agenda);
 
-            DadosAgenda.CancelarAgenda(agenda);
+            _PacienteRepository.ListaPacientes().Find(x => x.CPF == CpfLong).ExcluirAgendaPaciente(agenda);
+
+            _AgendaRepository.CancelarAgenda(agenda);
 
             Console.WriteLine();
             Console.WriteLine("Agendamento cancelado com sucesso!");

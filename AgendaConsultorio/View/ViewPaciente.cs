@@ -6,14 +6,37 @@ using System.Collections.Generic;
 using System.Text;
 
 using AgendaConsultorio.Controller;
+using AgendaConsultorio.Repository;
+using AgendaConsultorio.Repository.Implementations;
 
 namespace AgendaConsultorio.View
 {
     public class ViewPaciente
     {
-        private ValidadorPaciente _validador = new ValidadorPaciente();
+        private ValidadorPaciente _validador;
 
-        private ControllerPaciente _controllerPaciente = new ControllerPaciente();
+        private ControllerPaciente _controllerPaciente;
+
+        private readonly IPacienteRepository _PacienteRepository;
+
+        private readonly IAgendaRepository _AgendaRepository;
+
+
+        public ViewPaciente()
+        {
+
+            _PacienteRepository = new PacienteRepositoryImplementation();
+
+            _AgendaRepository = new AgendaRepositoryImplementation();
+
+            _validador = new ValidadorPaciente();
+
+            _controllerPaciente = new ControllerPaciente();
+
+
+
+
+        }
 
         public bool NomeView(out string nomeRetorno)
         {
@@ -83,10 +106,11 @@ namespace AgendaConsultorio.View
         {
 
 
-            var dadosPacientes = DadosPaciente.listaPacientes();
+            //var dadosPacientes = DadosPaciente.listaPacientes();
 
+            var dadosPacientes = _PacienteRepository.ListaPacientes();
 
-            if(dadosPacientes.Count > 0)
+            if (dadosPacientes.Count > 0)
             {
 
                 string cpf;
@@ -224,10 +248,11 @@ namespace AgendaConsultorio.View
         public void ListagemView(int opcao)
         {
 
-            var dadosPaciente = DadosPaciente.listaPacientes();
+            //  var dadosPaciente = DadosPaciente.listaPacientes();
 
+            var dadosPaciente = _PacienteRepository.ListaPacientes();
 
-            if(dadosPaciente.Count > 0)
+            if (dadosPaciente.Count > 0)
             {
 
                 if (opcao == 1)

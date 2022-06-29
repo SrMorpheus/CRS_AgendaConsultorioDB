@@ -4,17 +4,35 @@ using System.Linq;
 using System.Text;
 using AgendaConsultorio.Dados;
 using AgendaConsultorio.Models;
+using AgendaConsultorio.Repository;
+using AgendaConsultorio.Repository.Implementations;
 
 namespace AgendaConsultorio.Services
 {
     public class Listagem
     {
+        private readonly IPacienteRepository _PacienteRepository;
+
+        private readonly IAgendaRepository _AgendaRepository;
+
+
+        public Listagem()
+        {
+
+            _PacienteRepository = new PacienteRepositoryImplementation();
+
+            _AgendaRepository = new AgendaRepositoryImplementation();
+
+
+        }
+
 
         public void ListagemPacientesCPF()
         {
 
-            var listaPacientes = DadosPaciente.listaPacientes();
+           // var listaPacientes = DadosPaciente.listaPacientes();
 
+            var listaPacientes = _PacienteRepository.ListaPacientes();
 
             ValidadorPaciente validador = new ValidadorPaciente();
 
@@ -55,7 +73,9 @@ namespace AgendaConsultorio.Services
         public void ListagemPacientesNome()
         {
 
-            var listaPacientes = DadosPaciente.listaPacientes();
+            //var listaPacientes = DadosPaciente.listaPacientes();
+
+            var listaPacientes = _PacienteRepository.ListaPacientes();
 
 
             ValidadorPaciente validador = new ValidadorPaciente();
@@ -101,7 +121,10 @@ namespace AgendaConsultorio.Services
         public void ListagemAgendaGeral()
         {
 
-            var listaAgenda = DadosAgenda.listaAgendas();
+            //var listaAgenda = DadosAgenda.listaAgendas();
+
+            var listaAgenda = _AgendaRepository.ListaAgendas();
+
 
             var count = listaAgenda.Count();
 
@@ -151,8 +174,9 @@ namespace AgendaConsultorio.Services
             var dataFinalTime = AgendaVO.ConveterData(dataFinal);
 
 
-            var listaAgenda = DadosAgenda.listaAgendas();
+            // var listaAgenda = DadosAgenda.listaAgendas();
 
+            var listaAgenda = _AgendaRepository.ListaAgendas();
 
             var count = listaAgenda.Count(x => x.DataConsulta >= dataInicialTime && x.DataConsulta <= dataFinalTime);
 

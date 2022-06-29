@@ -1,5 +1,7 @@
 ﻿using AgendaConsultorio.Dados;
 using AgendaConsultorio.Models;
+using AgendaConsultorio.Repository;
+using AgendaConsultorio.Repository.Implementations;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -13,6 +15,22 @@ namespace AgendaConsultorio.Services
     {
 
         private Error _errorCliente = new Error();
+
+
+
+        private readonly IPacienteRepository _PacienteRepository;
+
+   
+
+        public ValidadorPaciente()
+        {
+
+            _PacienteRepository = new PacienteRepositoryImplementation();
+
+
+             Error _errorCliente = new Error();
+
+    }
 
 
 
@@ -107,7 +125,12 @@ namespace AgendaConsultorio.Services
 
                 }else
                 {
-                    var cpfExist = DadosPaciente.listaPacientes();
+                    // var cpfExist = DadosPaciente.listaPacientes();
+
+                    var cpfExist = _PacienteRepository.ListaPacientes();
+
+
+
 
                     var searchCpf = cpfExist.Where(x => x.CPF == long.Parse(cpf)).FirstOrDefault();
 
@@ -183,7 +206,10 @@ namespace AgendaConsultorio.Services
                 }
                 else
                 {
-                    var cpfExist = DadosPaciente.listaPacientes();
+                    //var cpfExist = DadosPaciente.listaPacientes();
+
+                    var cpfExist = _PacienteRepository.ListaPacientes();
+
 
                     var searchCpf = cpfExist.Where(x => x.CPF == long.Parse(cpf)).FirstOrDefault();
 

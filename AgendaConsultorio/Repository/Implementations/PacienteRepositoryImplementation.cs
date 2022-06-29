@@ -59,9 +59,12 @@ namespace AgendaConsultorio.Repository.Implementations
             try
             {
 
+                Console.WriteLine(paciente.Id);
                 var pacienteDB = _converter.Parse(paciente);
 
                 _context.Pacientes.Remove(pacienteDB);
+
+                
 
                 _context.SaveChanges();
 

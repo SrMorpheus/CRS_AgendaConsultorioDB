@@ -5,13 +5,37 @@ using System.Text;
 
 using AgendaConsultorio.Dados;
 using AgendaConsultorio.Services;
+using AgendaConsultorio.Repository;
+using AgendaConsultorio.Repository.Implementations;
 
 namespace AgendaConsultorio.Controller
 {
     public class ControllerPaciente
     {
 
-        private Listagem _listagem = new Listagem();
+
+        private readonly IPacienteRepository _PacienteRepository;
+
+        private readonly IAgendaRepository _AgendaRepository;
+
+
+        private Listagem _listagem;
+
+        public ControllerPaciente()
+        {
+
+            _PacienteRepository = new PacienteRepositoryImplementation();
+
+            _AgendaRepository = new AgendaRepositoryImplementation();
+
+            _listagem = new Listagem();
+
+
+
+        }
+
+
+
 
 
         public void CriarPaciente( string nome , string cpf , string dataNascimento)
@@ -23,7 +47,9 @@ namespace AgendaConsultorio.Controller
 
             PacienteVO paciente = new PacienteVO(nome , cpfLong, Data);
 
-            DadosPaciente.CadastrarPaciente(paciente);
+            //DadosPaciente.CadastrarPaciente(paciente);
+
+            _PacienteRepository.CadastrarPaciente(paciente);
 
             Console.WriteLine();
             Console.WriteLine("Cadastro realizado com sucesso!");
@@ -37,7 +63,12 @@ namespace AgendaConsultorio.Controller
 
             var cpfLong = long.Parse (cpf);
 
-            var basePaciente = DadosPaciente.listaPacientes();
+            //var basePaciente = DadosPaciente.listaPacientes();
+
+            var basePaciente = _PacienteRepository.ListaPacientes();
+
+
+
 
             PacienteVO paciente = basePaciente.Find(x=> x.CPF == cpfLong);
 
@@ -47,13 +78,16 @@ namespace AgendaConsultorio.Controller
                 foreach (var listaAgendas in paciente.Agendas)
                 {
 
-                    DadosAgenda.CancelarAgenda(listaAgendas);
+                    _AgendaRepository.CancelarAgenda(listaAgendas);
+                  //DadosAgenda.CancelarAgenda(listaAgendas);
 
                 }
 
             }
 
-            DadosPaciente.ExcluirPaciente(paciente);
+
+            //DadosPaciente.ExcluirPaciente(paciente);
+            _PacienteRepository.ExcluirPaciente(paciente);
             Console.WriteLine();
             Console.WriteLine("Paciente excluído com sucesso!");
             Console.WriteLine();

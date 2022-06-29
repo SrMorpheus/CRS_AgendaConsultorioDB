@@ -26,7 +26,7 @@ namespace AgendaConsultorio.Models
         public DateTime DataNascimento { get; set; }
 
 
-        public List<Agenda> Agendas;
+        public IList<Agenda> Agendas { get; set; }
 
     }
 }

@@ -1,6 +1,8 @@
 ﻿using AgendaConsultorio.Controller;
 using AgendaConsultorio.Dados;
 using AgendaConsultorio.Models;
+using AgendaConsultorio.Repository;
+using AgendaConsultorio.Repository.Implementations;
 using AgendaConsultorio.Services;
 using System;
 using System.Collections.Generic;
@@ -11,13 +13,31 @@ namespace AgendaConsultorio.View
     public class ViewAgenda
     {
 
-        private ValidadorAgenda _validador = new ValidadorAgenda();
+        private readonly IPacienteRepository _PacienteRepository;
 
-        private ControllerAgenda _controllerAgenda = new ControllerAgenda();
+        private readonly IAgendaRepository _AgendaRepository;
 
 
+        private ValidadorAgenda _validador;
 
-        public bool CPFView(out string cpfRetorno)
+        private ControllerAgenda _controllerAgenda;
+
+        public ViewAgenda()
+        {
+
+            _PacienteRepository = new PacienteRepositoryImplementation();
+
+            _AgendaRepository = new AgendaRepositoryImplementation();
+
+            _validador = new ValidadorAgenda();
+
+            _controllerAgenda = new ControllerAgenda();
+
+
+    }
+
+
+    public bool CPFView(out string cpfRetorno)
         {
             Console.Write("CPF: ");
 
@@ -230,8 +250,9 @@ namespace AgendaConsultorio.View
         public void ViewAgendamento()
          {
 
-            var basePaciente = DadosPaciente.listaPacientes();
+            //var basePaciente = DadosPaciente.listaPacientes();
 
+            var basePaciente = _PacienteRepository.ListaPacientes();
 
             if (basePaciente.Count > 0)
             {
@@ -425,7 +446,9 @@ namespace AgendaConsultorio.View
         public void ViewCancelarAgenda()
         {
 
-            var baseAgendamento = DadosAgenda.listaAgendas();
+            //var baseAgendamento = DadosAgenda.listaAgendas();
+
+            var baseAgendamento = _AgendaRepository.ListaAgendas();
 
             string cpf = " ";
 

@@ -1,5 +1,7 @@
 ﻿using AgendaConsultorio.Dados;
 using AgendaConsultorio.Models;
+using AgendaConsultorio.Repository;
+using AgendaConsultorio.Repository.Implementations;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -11,7 +13,27 @@ namespace AgendaConsultorio.Services
     public class ValidadorAgenda
     {
 
-        private Error _errorAgenda = new Error();
+        private Error _errorAgenda;
+
+        private readonly IPacienteRepository _PacienteRepository;
+
+        private readonly IAgendaRepository _AgendaRepository;
+
+
+        public ValidadorAgenda()
+        {
+
+            _PacienteRepository = new PacienteRepositoryImplementation();
+
+            _AgendaRepository = new AgendaRepositoryImplementation();
+
+            _errorAgenda = new Error();
+
+
+
+        }
+
+
 
         public bool ValidarCpfAgenda(string cpf )
         {
@@ -58,7 +80,9 @@ namespace AgendaConsultorio.Services
                 }
                 else
                 {
-                    var cpfExist = DadosPaciente.listaPacientes();
+                    //var cpfExist = DadosPaciente.listaPacientes();
+
+                    var cpfExist = _PacienteRepository.ListaPacientes();
 
                     var searchCpf = cpfExist.Where(x => x.CPF == long.Parse(cpf)).FirstOrDefault();
 
@@ -143,7 +167,9 @@ namespace AgendaConsultorio.Services
                 }
                 else
                 {
-                    var cpfExist = DadosPaciente.listaPacientes();
+                   // var cpfExist = DadosPaciente.listaPacientes();
+
+                    var cpfExist = _PacienteRepository.ListaPacientes();
 
                     var searchCpf = cpfExist.Where(x => x.CPF == long.Parse(cpf)).FirstOrDefault();
 
@@ -189,9 +215,12 @@ namespace AgendaConsultorio.Services
             if(datavalida)
             {
 
-                AgendaVO agenda = DadosAgenda.listaAgendas().Find( x => x.DataHoraConsulta == dataHora &&  x.CPF == long.Parse(cpf));
-                
-                if(agenda == null)
+               // AgendaVO agenda = DadosAgenda.listaAgendas().Find( x => x.DataHoraConsulta == dataHora &&  x.CPF == long.Parse(cpf));
+
+                AgendaVO agenda = _AgendaRepository.ListaAgendas().Find(x => x.DataHoraConsulta == dataHora && x.CPF == long.Parse(cpf));
+
+
+                if (agenda == null)
                 {
 
                     _errorAgenda.ErrosAgenda(2);
@@ -283,7 +312,9 @@ namespace AgendaConsultorio.Services
             bool datavalida = DateTime.TryParseExact(dataHoraFormat, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out dataHora);
 
 
-            var baseAgendamento = DadosAgenda.listaAgendas();
+            //var baseAgendamento = DadosAgenda.listaAgendas();
+
+            var baseAgendamento = _AgendaRepository.ListaAgendas();
 
             AgendaVO agenda = baseAgendamento.FirstOrDefault(x => x.DataHoraConsulta == dataHora);
 
@@ -338,8 +369,9 @@ namespace AgendaConsultorio.Services
 
             bool datavalida = DateTime.TryParseExact(data, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dataAtual);
 
-            var baseAgendamento = DadosAgenda.listaAgendas().FindAll(x => x.DataConsulta == dataAtual);
+           // var baseAgendamento = DadosAgenda.listaAgendas().FindAll(x => x.DataConsulta == dataAtual);
 
+            var baseAgendamento = _AgendaRepository.ListaAgendas().FindAll(x => x.DataConsulta == dataAtual);
 
 
             if (horaInicialTime.TimeOfDay < InicioExpediente || horaFinalTime.TimeOfDay > FinalExpediente)

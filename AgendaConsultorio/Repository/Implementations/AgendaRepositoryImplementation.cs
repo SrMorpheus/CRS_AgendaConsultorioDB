@@ -63,6 +63,7 @@ namespace AgendaConsultorio.Repository.Implementations
 
                 var agendaDB = _converter.Parse(agenda);
 
+                
                 _context.Agendas.Remove(agendaDB);
 
                 _context.SaveChanges();
