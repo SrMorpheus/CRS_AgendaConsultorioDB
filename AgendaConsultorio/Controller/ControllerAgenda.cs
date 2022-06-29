@@ -57,10 +57,6 @@ namespace AgendaConsultorio.Controller
             _AgendaRepository.Agendar(agenda);
 
 
-            Console.WriteLine();
-            Console.WriteLine("Agendamento realizado com sucesso!");
-            Console.WriteLine();
-
         }
 
         public void CancelarAgenda(string cpf, string dataConsulta, string horaInicial)
@@ -82,9 +78,7 @@ namespace AgendaConsultorio.Controller
 
             _AgendaRepository.CancelarAgenda(agenda);
 
-            Console.WriteLine();
-            Console.WriteLine("Agendamento cancelado com sucesso!");
-            Console.WriteLine();
+
 
         }
 

@@ -11,24 +11,31 @@ namespace AgendaConsultorio.Data.Converter.Implementation
     public class PacienteConverter : IPaciente<PacienteVO, Paciente>, IPaciente<Paciente, PacienteVO>
     {
 
-        
+       
+
+
 
 
         //destino = origem
         public Paciente Parse(PacienteVO origin)
         {
+
+           
+
             if (origin == null) return null;
 
             return new Paciente
             {
 
-                Id = origin.Id ,
+                Id = origin.Id,
 
-                CPF = origin.CPF ,
+                CPF = origin.CPF,
 
-                Nome = origin.Nome ,
+                Nome = origin.Nome,
 
-                DataNascimento = origin.DataNascimento ,   
+                DataNascimento = origin.DataNascimento,
+
+               
 
 
                 //agenda agenda aqui
@@ -52,6 +59,7 @@ namespace AgendaConsultorio.Data.Converter.Implementation
         public PacienteVO Parse(Paciente origin)
         {
 
+
             if (origin == null) return null;
 
             return new PacienteVO
@@ -64,8 +72,7 @@ namespace AgendaConsultorio.Data.Converter.Implementation
 
                 DataNascimento = origin.DataNascimento,
 
-
-            };
+             };
 
 
         }

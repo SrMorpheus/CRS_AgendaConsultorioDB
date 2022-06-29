@@ -69,7 +69,7 @@ namespace AgendaConsultorio.Models
         }
 
 
-        public List<AgendaVO> Agendas { get; set; }   = new List<AgendaVO> ();
+        public List<AgendaVO> Agendas { get; set; }  
 
 
 
@@ -84,6 +84,8 @@ namespace AgendaConsultorio.Models
             this.CPF = cpf;
 
             this.DataNascimento = dataNascimento;
+
+            this.Agendas   = new List<AgendaVO>();
 
         }
 

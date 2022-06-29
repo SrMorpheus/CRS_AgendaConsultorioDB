@@ -51,11 +51,6 @@ namespace AgendaConsultorio.Controller
 
             _PacienteRepository.CadastrarPaciente(paciente);
 
-            Console.WriteLine();
-            Console.WriteLine("Cadastro realizado com sucesso!");
-            Console.WriteLine();
-
-
         }
 
         public void ExcluirPaciente(string cpf)
@@ -88,9 +83,7 @@ namespace AgendaConsultorio.Controller
 
             //DadosPaciente.ExcluirPaciente(paciente);
             _PacienteRepository.ExcluirPaciente(paciente);
-            Console.WriteLine();
-            Console.WriteLine("Paciente excluído com sucesso!");
-            Console.WriteLine();
+           
 
         }
 

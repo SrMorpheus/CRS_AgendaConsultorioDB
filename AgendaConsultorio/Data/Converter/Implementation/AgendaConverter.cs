@@ -1,5 +1,7 @@
 ﻿using AgendaConsultorio.Data.Converter.Contract;
 using AgendaConsultorio.Models;
+using AgendaConsultorio.Repository;
+using AgendaConsultorio.Repository.Implementations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +11,6 @@ namespace AgendaConsultorio.Data.Converter.Implementation
 {
     public class AgendaConverter : IAgenda<AgendaVO, Agenda>, IPaciente<Agenda, AgendaVO>
     {
-
         private readonly PacienteConverter _pacienteConverter;
 
 
@@ -17,6 +18,7 @@ namespace AgendaConsultorio.Data.Converter.Implementation
         {
 
             _pacienteConverter = new PacienteConverter();
+
 
         }
 
@@ -42,11 +44,10 @@ namespace AgendaConsultorio.Data.Converter.Implementation
 
                 DataHoraConsulta = origin.DataHoraConsulta,
 
-                Paciente = _pacienteConverter.Parse(origin.Paciente),
+                PacienteID = origin.PacienteId,
 
-                PacienteID = origin.PacienteId
-
-
+                Paciente = _pacienteConverter.Parse(origin.Paciente)
+           
 
 
 
@@ -91,9 +92,14 @@ namespace AgendaConsultorio.Data.Converter.Implementation
 
             DataHoraConsulta = origin.DataHoraConsulta,
 
-            Paciente = _pacienteConverter.Parse(origin.Paciente),
+            PacienteId = origin.PacienteID,
 
-            PacienteId = origin.PacienteID
+            Paciente = _pacienteConverter.Parse(origin.Paciente)
+
+
+            //Paciente = _PacienteRepository.ListaPacientes().Find(X => X.Id == origin.PacienteID)
+
+
 
 
 

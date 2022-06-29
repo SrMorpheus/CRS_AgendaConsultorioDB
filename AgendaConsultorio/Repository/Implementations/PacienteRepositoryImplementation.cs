@@ -7,6 +7,8 @@ using AgendaConsultorio.Dados;
 using AgendaConsultorio.Data.Converter.Implementation;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using MoreLinq.Extensions;
+using AgendaConsultorio.Data.Converter.Contract;
 
 namespace AgendaConsultorio.Repository.Implementations
 {
@@ -17,7 +19,9 @@ namespace AgendaConsultorio.Repository.Implementations
 
         private ConsultorioContexto _context;
 
-        private PacienteConverter _converter; 
+        private PacienteConverter _converter;
+
+        private GeralConverter _converterGeral;
 
 
         public PacienteRepositoryImplementation()
@@ -27,6 +31,7 @@ namespace AgendaConsultorio.Repository.Implementations
 
             _converter = new PacienteConverter();
 
+            _converterGeral = new GeralConverter();
         }
 
         public void CadastrarPaciente(PacienteVO paciente)
@@ -41,8 +46,13 @@ namespace AgendaConsultorio.Repository.Implementations
 
                 _context.SaveChanges();
 
+                Console.WriteLine();
+                Console.WriteLine("Cadastro realizado com sucesso!");
+                Console.WriteLine();
 
-            }catch(Exception ex)
+
+            }
+            catch (Exception ex)
             {
 
                 Console.WriteLine("Erro: base de dados não salvou o paciente");
@@ -56,21 +66,27 @@ namespace AgendaConsultorio.Repository.Implementations
         public void ExcluirPaciente(PacienteVO paciente)
         {
 
+          
+
             try
             {
 
-                Console.WriteLine(paciente.Id);
-                var pacienteDB = _converter.Parse(paciente);
+                var pacienteDB = _context.Pacientes.Include(x => x.Agendas).SingleOrDefault(x => x.Id == paciente.Id);
+
 
                 _context.Pacientes.Remove(pacienteDB);
-
-                
 
                 _context.SaveChanges();
 
 
+                Console.WriteLine();
+                Console.WriteLine("Paciente excluído com sucesso!");
+                Console.WriteLine();
 
-            }catch(Exception ex)
+
+
+            }
+            catch(Exception ex)
             {
 
                 Console.WriteLine("Erro: base de dados não excluiu o paciente");
@@ -84,10 +100,13 @@ namespace AgendaConsultorio.Repository.Implementations
         public List<PacienteVO> ListaPacientes()
         {
 
+      
+           
             var pacientesDB = _context.Pacientes.Include(X => X.Agendas).ToList();
 
-            var pacientes = _converter.Parse(pacientesDB);
+            var pacientes = _converterGeral.Parse(pacientesDB);
 
+           
             return pacientes;
 
         }

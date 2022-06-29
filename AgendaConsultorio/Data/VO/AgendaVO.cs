@@ -51,13 +51,14 @@ namespace AgendaConsultorio.Models
 
             this.HoraFinal = horaFinal;
 
-            this.Paciente = paciente;
+
+           // this.Paciente = paciente;
 
             this.DataHoraConsulta = AgendaDataHora(); 
 
-            this.Paciente.adicionarAgendaPaciente(this);
+            //this.Paciente.adicionarAgendaPaciente(this);
 
-            this.PacienteId = Paciente.Id;
+            this.PacienteId = paciente.Id;
             
 
         }

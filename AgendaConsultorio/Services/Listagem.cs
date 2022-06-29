@@ -34,6 +34,9 @@ namespace AgendaConsultorio.Services
 
             var listaPacientes = _PacienteRepository.ListaPacientes();
 
+      
+          
+
             ValidadorPaciente validador = new ValidadorPaciente();
 
 
@@ -46,6 +49,7 @@ namespace AgendaConsultorio.Services
             {
 
                 var idade = validador.CalculoIdade(lista.DataNascimento);
+
 
 
                 Console.WriteLine("{0,-11} {1,-40} {2, 11}   {3,4}", lista.CPF.ToString("D11"), lista.Nome, lista.DataNascimento.ToString("dd/MM/yyyy"), idade);

@@ -31,24 +31,38 @@ namespace AgendaConsultorio.Repository.Implementations
         public void Agendar(AgendaVO agenda)
         {
 
-
             try
             {
 
                 var agendaDB = _converter.Parse(agenda);
 
+
                 _context.Add(agendaDB);
 
                 _context.SaveChanges();
 
+                Console.WriteLine();
+                Console.WriteLine("Agendamento realizado com sucesso!");
+                Console.WriteLine();
+
+
 
             }
-            catch (Exception ex)
+
+            catch(Exception ex)
             {
 
                 Console.WriteLine("Erro: base de dados não salvou o agendamento ");
 
             }
+
+
+
+
+
+               
+
+            
 
 
 
@@ -63,11 +77,15 @@ namespace AgendaConsultorio.Repository.Implementations
 
                 var agendaDB = _converter.Parse(agenda);
 
-                
-                _context.Agendas.Remove(agendaDB);
+                var result = _context.Agendas.SingleOrDefault(x => x.Id == agendaDB.Id);
+
+                _context.Agendas.Remove(result);
 
                 _context.SaveChanges();
 
+                Console.WriteLine();
+                Console.WriteLine("Agendamento cancelado com sucesso!");
+                Console.WriteLine();
 
 
             }

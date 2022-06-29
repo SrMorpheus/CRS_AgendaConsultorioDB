@@ -4,6 +4,7 @@ using AgendaConsultorio.View;
 using AgendaConsultorio.Services;
 using System;
 using AgendaConsultorio.Data.Converter.Implementation;
+using System.Data.SqlClient;
 
 namespace AgendaConsultorio
 {
@@ -12,13 +13,22 @@ namespace AgendaConsultorio
         static void Main(string[] args)
         {
 
-            
+           try
+            {
 
-          ViewMain main = new ViewMain();
+               ViewMain main = new ViewMain();
 
-        
+                main.ViewMenuPrincipal();
 
-          main.ViewMenuPrincipal();
+            }
+            catch(SqlException EX)
+            {
+
+                Console.WriteLine("Erro: falha na requisição de conexão ao Banco de Dados");
+
+
+            }
+
 
 
            
