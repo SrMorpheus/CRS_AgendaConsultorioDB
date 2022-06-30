@@ -3,6 +3,7 @@ using AgendaConsultorio.Models;
 using AgendaConsultorio.Repository;
 using AgendaConsultorio.Repository.Implementations;
 using AgendaConsultorio.Services;
+using AgendaConsultorio.Services.Validadores;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace AgendaConsultorio.Controller
     public class ControllerAgenda
     {
 
-        private Listagem _listagem;
+        private ListagemAgenda _listagem;
 
         private readonly IPacienteRepository _PacienteRepository;
 
@@ -28,7 +29,7 @@ namespace AgendaConsultorio.Controller
 
             _AgendaRepository = new AgendaRepositoryImplementation();
 
-            _listagem = new Listagem();
+            _listagem = new ListagemAgenda();
 
         }
 
@@ -74,9 +75,12 @@ namespace AgendaConsultorio.Controller
 
             // DadosPaciente.listaPacientes().Find(x => x.CPF == CpfLong).ExcluirAgendaPaciente(agenda);
 
-            _PacienteRepository.ListaPacientes().Find(x => x.CPF == CpfLong).ExcluirAgendaPaciente(agenda);
+
+           
 
             _AgendaRepository.CancelarAgenda(agenda);
+
+           // _PacienteRepository.ListaPacientes().Find(x => x.CPF == CpfLong).ExcluirAgendaPaciente(agenda);
 
 
 

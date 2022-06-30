@@ -164,8 +164,7 @@ namespace AgendaConsultorio.View
                         Console.WriteLine();
 
 
-
-                        Listagem listagem = new Listagem();
+                       // Listagem listagem = new Listagem();
 
                         _viewAgenda.ViewListaAgenda();
 

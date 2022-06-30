@@ -60,10 +60,7 @@ namespace AgendaConsultorio.Repository.Implementations
 
 
 
-               
-
-            
-
+             
 
 
         }
@@ -77,9 +74,11 @@ namespace AgendaConsultorio.Repository.Implementations
 
                 var agendaDB = _converter.Parse(agenda);
 
-                var result = _context.Agendas.SingleOrDefault(x => x.Id == agendaDB.Id);
+                var result = _context.Agendas.Include(X=> X.Paciente.Id == agendaDB.PacienteID).SingleOrDefault(x => x.Id == agendaDB.Id);
 
                 _context.Agendas.Remove(result);
+
+               
 
                 _context.SaveChanges();
 

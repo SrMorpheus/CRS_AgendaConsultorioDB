@@ -19,7 +19,7 @@ namespace AgendaConsultorio.Controller
         private readonly IAgendaRepository _AgendaRepository;
 
 
-        private Listagem _listagem;
+        private ListagemPaciente _listagem = new ListagemPaciente();
 
         public ControllerPaciente()
         {
@@ -28,7 +28,7 @@ namespace AgendaConsultorio.Controller
 
             _AgendaRepository = new AgendaRepositoryImplementation();
 
-            _listagem = new Listagem();
+            _listagem = new ListagemPaciente();
 
 
 

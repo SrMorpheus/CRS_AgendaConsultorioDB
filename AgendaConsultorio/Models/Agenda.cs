@@ -28,7 +28,7 @@ namespace AgendaConsultorio.Models
         [Column("DATA_Hora_Consulta")]
         public DateTime DataHoraConsulta { get; set; }
  
-         [Column("FK_Paciente")]
+        [Column("FK_Paciente")]
         public int PacienteID { get; set; }
 
         public Paciente Paciente { get; set; }
