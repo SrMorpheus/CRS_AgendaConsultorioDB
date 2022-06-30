@@ -2,26 +2,19 @@
 using AgendaConsultorio.Repository;
 using AgendaConsultorio.Repository.Implementations;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace AgendaConsultorio.Services.Validadores
 {
     public class ListagemAgenda
     {
 
-
-
         private readonly IAgendaRepository _AgendaRepository;
-
 
         public ListagemAgenda()
         {
 
-
             _AgendaRepository = new AgendaRepositoryImplementation();
-
 
         }
 
@@ -60,7 +53,6 @@ namespace AgendaConsultorio.Services.Validadores
 
                 // Console.WriteLine("{0,8} {1,4} {2,5} {3,5} {4,-40} {5,11}", "01/01/2022", "07:30", "08:00", "00:30", "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", "99/99/9999");
 
-
             }
 
             else
@@ -76,11 +68,9 @@ namespace AgendaConsultorio.Services.Validadores
         public void ListagemAgendaEspecifica(string dataInicial, string dataFinal)
         {
 
-
             var dataInicialTime = Models.AgendaVO.ConveterData(dataInicial);
 
             var dataFinalTime = AgendaVO.ConveterData(dataFinal);
-
 
             // var listaAgenda = DadosAgenda.listaAgendas();
 
@@ -119,13 +109,6 @@ namespace AgendaConsultorio.Services.Validadores
             }
 
         }
-
-
-
-
-
-
-
 
     }
 }

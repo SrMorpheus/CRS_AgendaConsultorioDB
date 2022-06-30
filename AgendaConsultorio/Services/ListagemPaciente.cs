@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using AgendaConsultorio.Dados;
 using AgendaConsultorio.Models;
 using AgendaConsultorio.Repository;
 using AgendaConsultorio.Repository.Implementations;
@@ -19,10 +16,7 @@ namespace AgendaConsultorio.Services
 
             _PacienteRepository = new PacienteRepositoryImplementation();
 
-
-
         }
-
 
         public void ListagemPacientesCPF()
         {
@@ -31,11 +25,7 @@ namespace AgendaConsultorio.Services
 
             var listaPacientes = _PacienteRepository.ListaPacientes();
 
-      
-          
-
             ValidadorPaciente validador = new ValidadorPaciente();
-
 
             Console.WriteLine("-----------------------------------------------------------------------");
             Console.WriteLine("{0,-11} {1,-40} {2,10}   {3,-3}", "CPF", "Nome", "Dt.Nasc.", "Idade");
@@ -68,13 +58,9 @@ namespace AgendaConsultorio.Services
 
                     }
 
-                  
-
                 }
 
             }
-
-
 
         }
 
@@ -119,7 +105,6 @@ namespace AgendaConsultorio.Services
                         Console.WriteLine("{0,26}", horaConsulta);
 
                     }
-
                   
 
                 }

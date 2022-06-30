@@ -1,12 +1,9 @@
 ﻿using AgendaConsultorio.Controller;
-using AgendaConsultorio.Dados;
 using AgendaConsultorio.Models;
 using AgendaConsultorio.Repository;
 using AgendaConsultorio.Repository.Implementations;
 using AgendaConsultorio.Services;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AgendaConsultorio.View
 {
@@ -16,7 +13,6 @@ namespace AgendaConsultorio.View
         private readonly IPacienteRepository _PacienteRepository;
 
         private readonly IAgendaRepository _AgendaRepository;
-
 
         private ValidadorAgenda _validador;
 
@@ -34,11 +30,12 @@ namespace AgendaConsultorio.View
             _controllerAgenda = new ControllerAgenda();
 
 
-    }
+        }
 
 
-    public bool CPFView(out string cpfRetorno)
-        {
+         public bool CPFView(out string cpfRetorno)
+         {
+
             Console.Write("CPF: ");
 
             var cpf = Console.ReadLine();
@@ -50,11 +47,12 @@ namespace AgendaConsultorio.View
             return resposta;
 
 
-        }
+         }
 
 
         public bool CPFCancelarView(out string cpfRetorno)
         {
+
             Console.Write("CPF: ");
 
             var cpf = Console.ReadLine();
@@ -70,6 +68,7 @@ namespace AgendaConsultorio.View
 
         public bool DataView(out string dataRetorno)
         {
+
             Console.Write("Data da consulta: ");
 
             var data = Console.ReadLine();
@@ -80,11 +79,11 @@ namespace AgendaConsultorio.View
 
             return resposta;
 
-
         }
 
         public bool DataInicialView(out string dataRetorno)
         {
+
             Console.Write("Data inicial: ");
 
             var data = Console.ReadLine();
@@ -101,6 +100,7 @@ namespace AgendaConsultorio.View
 
         public bool DataFinalView(out string dataRetorno)
         {
+
             Console.Write("Data final: ");
 
             var data = Console.ReadLine();
@@ -111,14 +111,12 @@ namespace AgendaConsultorio.View
 
             return resposta;
 
-
         }
-
-
 
 
         public bool HoraInicialView(out string horaRetorno)
         {
+
             Console.Write("Hora inicial: ");
 
             var horaInical = Console.ReadLine();
@@ -129,11 +127,11 @@ namespace AgendaConsultorio.View
 
             return resposta;
 
-
         }
 
         public bool HoraFinalView(out string horaRetorno)
         {
+
             Console.Write("Hora final: ");
 
             var horaFinal = Console.ReadLine();
@@ -143,7 +141,6 @@ namespace AgendaConsultorio.View
             horaRetorno = horaFinal;
 
             return resposta;
-
 
         }
 
@@ -283,9 +280,6 @@ namespace AgendaConsultorio.View
                         Agendarview(out cpf, out data, out horaInicial, out horaFinal);
 
                         boolAgendamento = _validador.ValidarAgendamento(data, horaInicial, horaFinal);
-
-
-
 
                     }
 
@@ -546,7 +540,6 @@ namespace AgendaConsultorio.View
 
 
                         }
-
 
 
                     }

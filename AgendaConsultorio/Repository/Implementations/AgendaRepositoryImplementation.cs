@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace AgendaConsultorio.Repository.Implementations
 {
@@ -15,7 +14,6 @@ namespace AgendaConsultorio.Repository.Implementations
 
         private AgendaConverter _converter;
 
-
         public AgendaRepositoryImplementation()
         {
 
@@ -23,10 +21,7 @@ namespace AgendaConsultorio.Repository.Implementations
 
             _converter = new AgendaConverter();
 
-
-
         }
-
 
         public void Agendar(AgendaVO agenda)
         {
@@ -45,8 +40,6 @@ namespace AgendaConsultorio.Repository.Implementations
                 Console.WriteLine("Agendamento realizado com sucesso!");
                 Console.WriteLine();
 
-
-
             }
 
             catch(Exception ex)
@@ -56,13 +49,7 @@ namespace AgendaConsultorio.Repository.Implementations
 
             }
 
-
-
-
-
-             
-
-
+       
         }
 
 
@@ -74,11 +61,9 @@ namespace AgendaConsultorio.Repository.Implementations
 
                 var agendaDB = _converter.Parse(agenda);
 
-                var result = _context.Agendas.Include(X=> X.Paciente.Id == agendaDB.PacienteID).SingleOrDefault(x => x.Id == agendaDB.Id);
+                var result = _context.Agendas.Include(X=> X.Paciente).SingleOrDefault(x => x.Id == agendaDB.Id);
 
                 _context.Agendas.Remove(result);
-
-               
 
                 _context.SaveChanges();
 
@@ -93,13 +78,10 @@ namespace AgendaConsultorio.Repository.Implementations
 
                 Console.WriteLine("Erro: base de dados não cancelou o agendamento ");
 
-
             }
 
 
         }
-
-
 
         public List<AgendaVO> ListaAgendas()
         {
@@ -113,11 +95,6 @@ namespace AgendaConsultorio.Repository.Implementations
         }
 
     }
-
-
-
-
-
 
  }
 

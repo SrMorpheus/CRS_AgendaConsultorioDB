@@ -1,13 +1,9 @@
-﻿using AgendaConsultorio.Dados;
-using AgendaConsultorio.Models;
+﻿using AgendaConsultorio.Models;
 using AgendaConsultorio.Repository;
 using AgendaConsultorio.Repository.Implementations;
-using AgendaConsultorio.Services;
 using AgendaConsultorio.Services.Validadores;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace AgendaConsultorio.Controller
 {
@@ -20,8 +16,6 @@ namespace AgendaConsultorio.Controller
 
         private readonly IAgendaRepository _AgendaRepository;
 
-
-
         public ControllerAgenda()
         {
 
@@ -33,9 +27,8 @@ namespace AgendaConsultorio.Controller
 
         }
 
-
-            public void CriarAgenda(string cpf, string dataConsulta, string horaInicial, string horaFinal)
-             {
+        public void CriarAgenda(string cpf, string dataConsulta, string horaInicial, string horaFinal)
+        {
 
             //var basePaciente = DadosPaciente.listaPacientes();
 
@@ -57,7 +50,6 @@ namespace AgendaConsultorio.Controller
 
             _AgendaRepository.Agendar(agenda);
 
-
         }
 
         public void CancelarAgenda(string cpf, string dataConsulta, string horaInicial)
@@ -75,14 +67,9 @@ namespace AgendaConsultorio.Controller
 
             // DadosPaciente.listaPacientes().Find(x => x.CPF == CpfLong).ExcluirAgendaPaciente(agenda);
 
-
-           
-
             _AgendaRepository.CancelarAgenda(agenda);
 
            // _PacienteRepository.ListaPacientes().Find(x => x.CPF == CpfLong).ExcluirAgendaPaciente(agenda);
-
-
 
         }
 
@@ -97,8 +84,6 @@ namespace AgendaConsultorio.Controller
         {
 
             _listagem.ListagemAgendaEspecifica(dataInicial, dataFinal);
-
-
 
         }
     }

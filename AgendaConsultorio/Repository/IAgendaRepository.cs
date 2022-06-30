@@ -1,7 +1,5 @@
 ﻿using AgendaConsultorio.Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace AgendaConsultorio.Repository
 {
@@ -9,7 +7,9 @@ namespace AgendaConsultorio.Repository
     {
 
         void Agendar(AgendaVO agenda);
+
         void CancelarAgenda(AgendaVO agenda);
+
         List<AgendaVO> ListaAgendas();
 
 

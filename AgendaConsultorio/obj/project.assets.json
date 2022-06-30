@@ -6301,24 +6301,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\bbarros\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\apoio\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bbarros\\Desktop\\Desafio 3\\CRS_AgendaConsultorioDB\\AgendaConsultorio\\AgendaConsultorio.csproj",
+      "projectUniqueName": "C:\\Users\\apoio\\Desktop\\Desafio 3\\CRS_AgendaConsultorioDB\\AgendaConsultorio\\AgendaConsultorio.csproj",
       "projectName": "AgendaConsultorio",
-      "projectPath": "C:\\Users\\bbarros\\Desktop\\Desafio 3\\CRS_AgendaConsultorioDB\\AgendaConsultorio\\AgendaConsultorio.csproj",
-      "packagesPath": "C:\\Users\\bbarros\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bbarros\\Desktop\\Desafio 3\\CRS_AgendaConsultorioDB\\AgendaConsultorio\\obj\\",
+      "projectPath": "C:\\Users\\apoio\\Desktop\\Desafio 3\\CRS_AgendaConsultorioDB\\AgendaConsultorio\\AgendaConsultorio.csproj",
+      "packagesPath": "C:\\Users\\apoio\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\apoio\\Desktop\\Desafio 3\\CRS_AgendaConsultorioDB\\AgendaConsultorio\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\bbarros\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\apoio\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6363,18 +6358,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[3.1.21, 3.1.21]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

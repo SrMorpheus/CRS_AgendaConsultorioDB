@@ -1,20 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Text;
 
 namespace AgendaConsultorio.Models
 {
     public class AgendaVO : IEquatable<AgendaVO>
     {
 
-
-
-
-
         private DateTime _dataHoraConsulta;
-
 
         public int Id { get; set; }
 
@@ -35,8 +27,6 @@ namespace AgendaConsultorio.Models
         
         
         }
-
-
         public int PacienteId   { get; set; }
 
         public PacienteVO Paciente { get; set; }
@@ -51,22 +41,18 @@ namespace AgendaConsultorio.Models
 
             this.HoraFinal = horaFinal;
 
-
            // this.Paciente = paciente;
 
             this.DataHoraConsulta = AgendaDataHora(); 
 
             //this.Paciente.adicionarAgendaPaciente(this);
 
-            this.PacienteId = paciente.Id;
-            
+            this.PacienteId = paciente.Id; 
 
         }
 
-
         public AgendaVO()
         {
-
 
         }
 
@@ -85,7 +71,6 @@ namespace AgendaConsultorio.Models
 
             return horaConverter;
 
-
         }
 
         public static DateTime ConveterData(string data)
@@ -99,13 +84,10 @@ namespace AgendaConsultorio.Models
 
         }
 
-
         public override bool Equals(object obj)
         {
 
-
             return this.Equals(obj as AgendaVO);
-
         }
 
         public bool Equals(AgendaVO other)
@@ -147,15 +129,11 @@ namespace AgendaConsultorio.Models
 
             return retorno;
 
-
         }
-
-
 
 
         public DateTime AgendaDataHora()
         {
-
 
             DateTime dataHora;
 
@@ -171,7 +149,6 @@ namespace AgendaConsultorio.Models
 
         }
 
-
         public static DateTime AgendaDataHora(string dataConsulta , string horaInical)
         {
 
@@ -179,18 +156,13 @@ namespace AgendaConsultorio.Models
 
             var horaFormat = AgendaVO.ConverterHora(horaInical);
 
-
             var dataHoraFormat = dataConsulta + " " + horaFormat.ToString("HH:mm");
-
 
             bool datavalida = DateTime.TryParseExact(dataHoraFormat, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out dataHora);
 
             return dataHora;
 
         }
-
-
-
 
         public string AgendaPacienteHora()
         {
@@ -200,11 +172,6 @@ namespace AgendaConsultorio.Models
             return retorno;
 
         }
-          
-
-           
-
-
 
     }
 

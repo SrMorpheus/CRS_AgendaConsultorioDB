@@ -1,7 +1,6 @@
 ﻿using AgendaConsultorio.Services;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace AgendaConsultorio.Models
 {
@@ -15,8 +14,6 @@ namespace AgendaConsultorio.Models
         private DateTime _dataNascimento;
 
         public int Id { get; set; }
-
-
         public string Nome
         {
             get
@@ -51,7 +48,6 @@ namespace AgendaConsultorio.Models
             }
         }
 
-
         public DateTime DataNascimento { 
             get 
             {
@@ -71,11 +67,6 @@ namespace AgendaConsultorio.Models
 
         public List<AgendaVO> Agendas { get; set; }  
 
-
-
-        
-
-
         public PacienteVO (string nome, long cpf, DateTime dataNascimento)
         {
            
@@ -94,7 +85,6 @@ namespace AgendaConsultorio.Models
 
         }
 
-
         public void adicionarAgendaPaciente( AgendaVO agenda)
         {
 
@@ -108,7 +98,6 @@ namespace AgendaConsultorio.Models
             Agendas.Remove(agenda);
 
         }
-
 
         public override string ToString()
         {

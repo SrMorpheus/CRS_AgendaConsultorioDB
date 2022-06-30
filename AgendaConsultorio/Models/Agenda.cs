@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace AgendaConsultorio.Models
 {
     [Table("Tbl_Agenda")]
     public class Agenda
     {
-
 
         [Column("Cod_Agenda")]
         public int Id { get; set; }
@@ -30,7 +27,6 @@ namespace AgendaConsultorio.Models
  
         [Column("FK_Paciente")]
         public int PacienteID { get; set; }
-
         public Paciente Paciente { get; set; }
 
 

@@ -1,21 +1,14 @@
-﻿using AgendaConsultorio.Services;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 
 namespace AgendaConsultorio.View
 {
     public class ViewMain
     {
 
-        private  ViewPaciente _viewPaciente = new ViewPaciente();
-        private  ViewAgenda   _viewAgenda = new ViewAgenda();
-
-
-
-
         public void ViewMainCadastroPaciente()
         {
+            ViewPaciente viewPaciente = new ViewPaciente();
+
 
             PrintTelaPaciente();
             var opcao = Console.ReadLine();
@@ -32,7 +25,7 @@ namespace AgendaConsultorio.View
 
                         Console.WriteLine();
 
-                        _viewPaciente.CadastroView();
+                        viewPaciente.CadastroView();
 
                         Console.WriteLine();
 
@@ -43,7 +36,7 @@ namespace AgendaConsultorio.View
 
                         Console.WriteLine();
 
-                        _viewPaciente.ExclusaoView();
+                        viewPaciente.ExclusaoView();
 
                         Console.WriteLine();
 
@@ -54,7 +47,7 @@ namespace AgendaConsultorio.View
 
                         Console.WriteLine();
 
-                        _viewPaciente.ListagemView(1);
+                        viewPaciente.ListagemView(1);
 
                         Console.WriteLine();
 
@@ -65,7 +58,7 @@ namespace AgendaConsultorio.View
 
                         Console.WriteLine();
 
-                        _viewPaciente.ListagemView(2);
+                        viewPaciente.ListagemView(2);
 
                         Console.WriteLine();
 
@@ -125,7 +118,7 @@ namespace AgendaConsultorio.View
 
         public void ViewMainAgenda()
         {
-
+            ViewAgenda viewAgenda = new ViewAgenda();
 
             PrintTelaAgenda();
 
@@ -143,7 +136,7 @@ namespace AgendaConsultorio.View
 
                         Console.WriteLine();
 
-                        _viewAgenda.ViewAgendamento();
+                        viewAgenda.ViewAgendamento();
 
                         Console.WriteLine();
 
@@ -153,7 +146,7 @@ namespace AgendaConsultorio.View
 
                         Console.WriteLine();
 
-                        _viewAgenda.ViewCancelarAgenda();
+                        viewAgenda.ViewCancelarAgenda();
 
                         Console.WriteLine();
 
@@ -166,7 +159,7 @@ namespace AgendaConsultorio.View
 
                        // Listagem listagem = new Listagem();
 
-                        _viewAgenda.ViewListaAgenda();
+                        viewAgenda.ViewListaAgenda();
 
                         Console.WriteLine();
 
@@ -276,8 +269,6 @@ namespace AgendaConsultorio.View
             Console.WriteLine("3-Fim");
 
         }
-
-
 
     }
 }

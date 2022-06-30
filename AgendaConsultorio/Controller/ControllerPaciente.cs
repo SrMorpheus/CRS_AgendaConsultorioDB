@@ -1,9 +1,5 @@
 ﻿using AgendaConsultorio.Models;
 using System;
-using System.Collections.Generic;
-using System.Text;
-
-using AgendaConsultorio.Dados;
 using AgendaConsultorio.Services;
 using AgendaConsultorio.Repository;
 using AgendaConsultorio.Repository.Implementations;
@@ -13,13 +9,11 @@ namespace AgendaConsultorio.Controller
     public class ControllerPaciente
     {
 
-
         private readonly IPacienteRepository _PacienteRepository;
 
         private readonly IAgendaRepository _AgendaRepository;
 
-
-        private ListagemPaciente _listagem = new ListagemPaciente();
+        private ListagemPaciente _listagem;
 
         public ControllerPaciente()
         {
@@ -30,13 +24,7 @@ namespace AgendaConsultorio.Controller
 
             _listagem = new ListagemPaciente();
 
-
-
         }
-
-
-
-
 
         public void CriarPaciente( string nome , string cpf , string dataNascimento)
         {
@@ -62,9 +50,6 @@ namespace AgendaConsultorio.Controller
 
             var basePaciente = _PacienteRepository.ListaPacientes();
 
-
-
-
             PacienteVO paciente = basePaciente.Find(x=> x.CPF == cpfLong);
 
             if(paciente.Agendas.Count > 0)
@@ -80,14 +65,10 @@ namespace AgendaConsultorio.Controller
 
             }
 
-
             //DadosPaciente.ExcluirPaciente(paciente);
             _PacienteRepository.ExcluirPaciente(paciente);
-           
-
+          
         }
-
-
 
         public void ListaPacientesCPF()
         {
@@ -101,13 +82,7 @@ namespace AgendaConsultorio.Controller
 
             _listagem.ListagemPacientesNome();
 
-
         }
-
-
-
-
-
 
     }
 }

@@ -1,25 +1,22 @@
 ﻿using AgendaConsultorio.Models;
+using AgendaConsultorio.Services.Validadores;
 using MoreLinq;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Text;
 
 namespace AgendaConsultorio.Services
 {
-    public class Error :IEquatable<Error>
+    public class ErrosGerais 
     {
-        public ErrosCliente TipoErrosCliente { get; set; }
 
-        public string DescricaoError { get; private set; }
+       private List<ErroModel> ListaError = new List<ErroModel>();
 
-        List<Error> ListaError = new List<Error>();
 
         public void ErrosNome(int opçao)
         {
 
-            Error nomeErro = new Error();
+            ErroModel nomeErro = new ErroModel();
 
             if (opçao == 1)
             {
@@ -46,7 +43,7 @@ namespace AgendaConsultorio.Services
 
         public void ErrosCpf(int opcao)
         {
-            Error ErrorCpf = new Error();
+            ErroModel ErrorCpf = new ErroModel();
 
             if (opcao == 1)
             {
@@ -120,7 +117,7 @@ namespace AgendaConsultorio.Services
 
         public void ErrosCpf(int opcao, AgendaVO agenda)
         {
-            Error ErrorCpf = new Error();
+            ErroModel ErrorCpf = new ErroModel();
 
             if (opcao == 8)
             {
@@ -139,7 +136,7 @@ namespace AgendaConsultorio.Services
 
         public void ErrosData(int opacao, int idade)
         {
-            Error ErrorData = new Error();
+            ErroModel ErrorData = new ErroModel();
 
             if (opacao == 1)
             {
@@ -165,7 +162,7 @@ namespace AgendaConsultorio.Services
         public void ErrosAgenda(int opcao)
         {
 
-            Error ErrorData = new Error();
+            ErroModel ErrorData = new ErroModel();
 
             if (opcao == 1)
             {
@@ -191,7 +188,7 @@ namespace AgendaConsultorio.Services
 
         public void ErrosHora(int opacao)
         {
-            Error ErrosHora = new Error();
+            ErroModel ErrosHora = new ErroModel();
 
             if (opacao == 1)
             {
@@ -306,37 +303,6 @@ namespace AgendaConsultorio.Services
 
         }
 
-        public override string ToString()
-        {
-            return "Erro: " + DescricaoError;
-
-        }
-
-        public override bool Equals(object obj)
-        {
-
-            return this.Equals(obj as Error);
-
-        }
-
-        public bool Equals(Error other)
-        {
-
-            if (other == null)
-                return false;
-
-
-            return this.TipoErrosCliente.Equals(other.TipoErrosCliente) &&
-         (
-             object.ReferenceEquals(this.TipoErrosCliente, other.TipoErrosCliente) &&
-             this.TipoErrosCliente.Equals(other.TipoErrosCliente)
-         ) &&
-         (
-             object.ReferenceEquals(this.DescricaoError, other.DescricaoError) ||
-             this.DescricaoError != null &&
-             this.DescricaoError.Equals(other.DescricaoError));
-
-
-        }
+    
     }
 }

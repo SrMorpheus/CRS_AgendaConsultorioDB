@@ -1,5 +1,4 @@
-﻿using AgendaConsultorio.Dados;
-using AgendaConsultorio.Models;
+﻿using AgendaConsultorio.Models;
 using AgendaConsultorio.Repository;
 using AgendaConsultorio.Repository.Implementations;
 using System;
@@ -13,7 +12,7 @@ namespace AgendaConsultorio.Services
     public class ValidadorAgenda
     {
 
-        private Error _errorAgenda;
+        private ErrosGerais _errorAgenda;
 
         private readonly IPacienteRepository _PacienteRepository;
 
@@ -27,7 +26,7 @@ namespace AgendaConsultorio.Services
 
             _AgendaRepository = new AgendaRepositoryImplementation();
 
-            _errorAgenda = new Error();
+            _errorAgenda = new ErrosGerais();
 
 
 

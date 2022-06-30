@@ -1,19 +1,16 @@
-﻿
-using AgendaConsultorio.Models;
+﻿using AgendaConsultorio.Models;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using AgendaConsultorio.Dados;
 using AgendaConsultorio.Data.Converter.Implementation;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using MoreLinq.Extensions;
-using AgendaConsultorio.Data.Converter.Contract;
 
 namespace AgendaConsultorio.Repository.Implementations
 {
 
- 
+
     public class PacienteRepositoryImplementation : IPacienteRepository
     {
 
@@ -59,14 +56,10 @@ namespace AgendaConsultorio.Repository.Implementations
 
             }
 
-
-
         }
 
         public void ExcluirPaciente(PacienteVO paciente)
         {
-
-          
 
             try
             {
@@ -78,11 +71,9 @@ namespace AgendaConsultorio.Repository.Implementations
 
                 _context.SaveChanges();
 
-
                 Console.WriteLine();
                 Console.WriteLine("Paciente excluído com sucesso!");
                 Console.WriteLine();
-
 
 
             }
@@ -91,22 +82,17 @@ namespace AgendaConsultorio.Repository.Implementations
 
                 Console.WriteLine("Erro: base de dados não excluiu o paciente");
 
-
             }
-
 
         }
 
         public List<PacienteVO> ListaPacientes()
         {
-
-      
-           
+          
             var pacientesDB = _context.Pacientes.Include(X => X.Agendas).ToList();
 
             var pacientes = _converterGeral.Parse(pacientesDB);
 
-           
             return pacientes;
 
         }

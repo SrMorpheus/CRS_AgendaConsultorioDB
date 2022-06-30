@@ -49,7 +49,9 @@ ADD CONSTRAINT FK_PACIENTE_ID FOREIGN KEY(FK_Paciente)
 GO
 
 
-insert into Tbl_Paciente (Nome_Paciente, CPF_Paciente ,Data_Nascimento) values ('bruno', 03950033262, '2019-12-12');
+insert into Tbl_Paciente (Nome_Paciente, CPF_Paciente ,Data_Nascimento) values ('Paciente1', 75060730050, '2000-12-12');
 
 
-insert into Tbl_Agenda (CPF_Paciente_Agenda, FK_Paciente, Data_Consulta, Hora_Inicial, Hora_Final , DATA_Hora_Consulta) values (03950033262,1,GETDATE(), GETDATE(), GETDATE(), GETDATE());
+insert into Tbl_Agenda (CPF_Paciente_Agenda, FK_Paciente, Data_Consulta, Hora_Inicial, Hora_Final , DATA_Hora_Consulta) values (75060730050,1,'2022-12-12', '08:00:00', '09:00:00','2022-12-12 08:00:00');
+
+

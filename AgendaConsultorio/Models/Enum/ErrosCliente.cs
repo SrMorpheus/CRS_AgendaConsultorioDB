@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AgendaConsultorio.Models
+﻿namespace AgendaConsultorio.Models
 {
     public enum ErrosCliente
     {
@@ -18,6 +14,5 @@ namespace AgendaConsultorio.Models
 
         Agenda = 5,
    
-
      }
 }

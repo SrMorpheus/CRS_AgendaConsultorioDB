@@ -1,10 +1,6 @@
-﻿using AgendaConsultorio.Dados;
-using AgendaConsultorio.Models;
+﻿using AgendaConsultorio.Models;
 using AgendaConsultorio.Services;
 using System;
-using System.Collections.Generic;
-using System.Text;
-
 using AgendaConsultorio.Controller;
 using AgendaConsultorio.Repository;
 using AgendaConsultorio.Repository.Implementations;
@@ -33,14 +29,10 @@ namespace AgendaConsultorio.View
 
             _controllerPaciente = new ControllerPaciente();
 
-
-
-
         }
 
         public bool NomeView(out string nomeRetorno)
         {
-
 
             Console.Write("Nome: ");
 
@@ -52,11 +44,11 @@ namespace AgendaConsultorio.View
 
             return resposta;
 
-
         }
 
         public bool CPFView(out string cpfRetorno)
         {
+
             Console.Write("CPF: ");
 
             var cpf = Console.ReadLine();
@@ -72,6 +64,7 @@ namespace AgendaConsultorio.View
 
         public bool CPFExclusãoView(out string cpfRetorno)
         {
+
             Console.Write("CPF: ");
 
             var cpf = Console.ReadLine();
@@ -88,6 +81,7 @@ namespace AgendaConsultorio.View
 
         public bool DataView(out string dataNascimento)
         {
+
             Console.Write("Data de Nascimento: ");
 
             var data = Console.ReadLine();
@@ -104,7 +98,6 @@ namespace AgendaConsultorio.View
 
         public void ExclusaoView()
         {
-
 
             //var dadosPacientes = DadosPaciente.listaPacientes();
 
@@ -150,10 +143,8 @@ namespace AgendaConsultorio.View
 
         }
 
-
         public void CadastroView()
         {
-
            
             string cpf;
 
@@ -165,7 +156,6 @@ namespace AgendaConsultorio.View
 
             bool boolData = false;
 
-
             var boolCpf = CPFView(out cpf);
             
             if(boolCpf == false)
@@ -173,7 +163,6 @@ namespace AgendaConsultorio.View
 
                 while (!boolCpf)
                 {
-
 
                     Console.WriteLine();
 
@@ -225,9 +214,7 @@ namespace AgendaConsultorio.View
 
                Console.WriteLine();
 
-               boolData = DataView(out data);
-
-             
+               boolData = DataView(out data); 
 
 
              }
@@ -243,7 +230,6 @@ namespace AgendaConsultorio.View
             }       
 
         }
-
 
         public void ListagemView(int opcao)
         {
@@ -278,7 +264,6 @@ namespace AgendaConsultorio.View
             }
 
         }
-
 
     }
 }

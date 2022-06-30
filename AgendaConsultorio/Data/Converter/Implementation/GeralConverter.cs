@@ -1,9 +1,7 @@
 ﻿using AgendaConsultorio.Data.Converter.Contract;
 using AgendaConsultorio.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace AgendaConsultorio.Data.Converter.Implementation
 {
@@ -16,15 +14,13 @@ namespace AgendaConsultorio.Data.Converter.Implementation
 
         public GeralConverter()
         {
+
             _pacienteConverter = new PacienteConverter();
 
 
             _agendaConverter = new AgendaConverter();
 
-
         }
-
-   
 
         public List<Paciente> Parse(List<PacienteVO> origin)
         {
@@ -81,8 +77,6 @@ namespace AgendaConsultorio.Data.Converter.Implementation
                 Agendas = _agendaConverter.Parse(origin.Agendas)
 
             };
-
-
 
         }
     }
