@@ -1,5 +1,6 @@
 ﻿using AgendaConsultorio.Models;
 using AgendaConsultorio.Services.Validadores;
+using AgendaConsultorio.Services.Validadores.Erro.Enum;
 using MoreLinq;
 using System;
 using System.Collections.Generic;
@@ -7,238 +8,319 @@ using System.Linq;
 
 namespace AgendaConsultorio.Services
 {
-    public class ErrosGerais 
+    public class ErrosGerais
     {
 
-       private List<ErroModel> ListaError = new List<ErroModel>();
+        private List<ErroModel> ListaError = new List<ErroModel>();
 
 
-        public void ErrosNome(int opçao)
+        public void ErrosNome(StatusErros opçao)
         {
 
             ErroModel nomeErro = new ErroModel();
 
-            if (opçao == 1)
+            switch (opçao)
+
             {
-                nomeErro.DescricaoError = "Existe menos de 5 caracteres no nome do paciente.";
 
-                nomeErro.TipoErrosCliente = ErrosCliente.Nome;
+                case StatusErros.Paciente_nome_caracteres:
 
-                ListaError.Add(nomeErro);
+                    nomeErro.DescricaoError = "Existe menos de 5 caracteres no nome do paciente.";
+
+                    nomeErro.TipoErrosCliente = ErrosCliente.Nome;
+
+                    ListaError.Add(nomeErro);
+
+
+                    break;
+
+                case StatusErros.Paciente_nome_vazio:
+
+                    nomeErro.DescricaoError = "Nome do paciente  está vazio.";
+
+                    nomeErro.TipoErrosCliente = ErrosCliente.Nome;
+
+                    ListaError.Add(nomeErro);
+
+                    break;
+
+                default:
+
+                    Console.WriteLine("Erro: opção inválida");
+                    break;
 
 
             }
-            else if (opçao == 2)
-            {
-                nomeErro.DescricaoError = "Nome do paciente  está vazio.";
 
-                nomeErro.TipoErrosCliente = ErrosCliente.Nome;
-
-                ListaError.Add(nomeErro);
-
-            }
 
         }
 
 
-        public void ErrosCpf(int opcao)
+        public void ErrosCpf(StatusErros opcao)
         {
             ErroModel ErrorCpf = new ErroModel();
 
-            if (opcao == 1)
-            {
-                ErrorCpf.DescricaoError = "Existe menos de 11 Dígitos no CPF do paciente.";
-
-                ErrorCpf.TipoErrosCliente = ErrosCliente.CPF;
-
-                ListaError.Add(ErrorCpf);
-
-
-            }
-            else if (opcao == 2)
-            {
-                ErrorCpf.DescricaoError = "Existe mais de 11 Dígitos no  CPF do paciente. ";
-
-                ErrorCpf.TipoErrosCliente = ErrosCliente.CPF;
-
-                ListaError.Add(ErrorCpf);
-
-            }
-            else if (opcao == 3)
-            {
-                ErrorCpf.DescricaoError = "O CPF do paciente precisa ser apenas números.";
-
-                ErrorCpf.TipoErrosCliente = ErrosCliente.CPF;
-
-                ListaError.Add(ErrorCpf);
-
-            }
-            else if (opcao == 4)
-            {
-                ErrorCpf.DescricaoError = "O CPF está com tods números repetidos.";
-
-                ErrorCpf.TipoErrosCliente = ErrosCliente.CPF;
-
-                ListaError.Add(ErrorCpf);
-
-            }
-            else if (opcao == 5)
-            {
-                ErrorCpf.DescricaoError = "O CPF não é válido.";
-
-                ErrorCpf.TipoErrosCliente = ErrosCliente.CPF;
-
-                ListaError.Add(ErrorCpf);
-
-            }
-            else if (opcao == 6)
+            switch (opcao)
             {
 
-                ErrorCpf.DescricaoError = "CPF já cadastrado.";
+                case StatusErros.CPF_menor_11:
 
-                ErrorCpf.TipoErrosCliente = ErrosCliente.CPF;
+                    ErrorCpf.DescricaoError = "Existe menos de 11 Dígitos no CPF do paciente.";
 
-                ListaError.Add(ErrorCpf);
+                    ErrorCpf.TipoErrosCliente = ErrosCliente.CPF;
 
-            }
-            else if (opcao == 7)
-            {
+                    ListaError.Add(ErrorCpf);
 
-                ErrorCpf.DescricaoError = "paciente não cadastrado";
+                    break;
 
-                ErrorCpf.TipoErrosCliente = ErrosCliente.CPF;
+                case StatusErros.CPF_maior_11:
 
-                ListaError.Add(ErrorCpf);
+                    ErrorCpf.DescricaoError = "Existe mais de 11 Dígitos no  CPF do paciente. ";
+
+                    ErrorCpf.TipoErrosCliente = ErrosCliente.CPF;
+
+                    ListaError.Add(ErrorCpf);
+
+                    break;
+
+                case StatusErros.CPF_diferente_numero:
+
+                    ErrorCpf.DescricaoError = "O CPF do paciente precisa ser apenas números.";
+
+                    ErrorCpf.TipoErrosCliente = ErrosCliente.CPF;
+
+                    ListaError.Add(ErrorCpf);
+
+                    break;
+
+                case StatusErros.CPF_numero_repetido:
+
+                    ErrorCpf.DescricaoError = "O CPF está com tods números repetidos.";
+
+                    ErrorCpf.TipoErrosCliente = ErrosCliente.CPF;
+
+                    ListaError.Add(ErrorCpf);
+
+                    break;
+
+                case StatusErros.CPF_nao_valido:
+
+                    ErrorCpf.DescricaoError = "O CPF não é válido.";
+
+                    ErrorCpf.TipoErrosCliente = ErrosCliente.CPF;
+
+                    ListaError.Add(ErrorCpf);
+
+                    break;
+
+
+                case StatusErros.CPF_cadastrado:
+
+                    ErrorCpf.DescricaoError = "CPF já cadastrado.";
+
+                    ErrorCpf.TipoErrosCliente = ErrosCliente.CPF;
+
+                    ListaError.Add(ErrorCpf);
+
+                    break;
+
+                case StatusErros.Paciente_nao_cadastrado:
+
+
+                    ErrorCpf.DescricaoError = "paciente não cadastrado";
+
+                    ErrorCpf.TipoErrosCliente = ErrosCliente.CPF;
+
+                    ListaError.Add(ErrorCpf);
+
+                    break;
+
+                default:
+
+                    Console.WriteLine("Erro: opção inválida");
+                    break;
+
 
             }
 
 
         }
 
-        public void ErrosCpf(int opcao, AgendaVO agenda)
+        public void ErrosCpf(StatusErros opcao, AgendaVO agenda)
         {
             ErroModel ErrorCpf = new ErroModel();
 
-            if (opcao == 8)
+            switch (opcao)
             {
-                ErrorCpf.DescricaoError = "paciente está agendado para " + agenda.DataConsulta.ToString("dd/MM/yyyy") + " às " + agenda.HoraInicial.ToString("HH:mm") +"h.";
 
-                ErrorCpf.TipoErrosCliente = ErrosCliente.CPF;
+                case StatusErros.Paciente_com_agenda:
 
-                ListaError.Add(ErrorCpf);
+                    ErrorCpf.DescricaoError = "paciente está agendado para " + agenda.DataConsulta.ToString("dd/MM/yyyy") + " às " + agenda.HoraInicial.ToString("HH:mm") + "h.";
+
+                    ErrorCpf.TipoErrosCliente = ErrosCliente.CPF;
+
+                    ListaError.Add(ErrorCpf);
+
+                    break;
+
+                default:
+
+                    Console.WriteLine("Erro: opção inválida");
+                    break;
 
             }
-
 
 
         }
 
 
-        public void ErrosData(int opacao, int idade)
+        public void ErrosData(StatusErros opacao, int idade)
         {
             ErroModel ErrorData = new ErroModel();
 
-            if (opacao == 1)
+
+            switch (opacao)
             {
-                ErrorData.DescricaoError = "Formato da data  não é válido(formato certo DD/MM/AAAA)";
 
-                ErrorData.TipoErrosCliente = ErrosCliente.DataNascimento;
 
-                ListaError.Add(ErrorData);
+                case StatusErros.Data_formato:
+
+                    ErrorData.DescricaoError = "Formato da data  não é válido(formato certo DD/MM/AAAA)";
+
+                    ErrorData.TipoErrosCliente = ErrosCliente.DataNascimento;
+
+                    ListaError.Add(ErrorData);
+
+                    break;
+
+                case StatusErros.Paciente_idade:
+
+                    ErrorData.DescricaoError = "paciente só tem " + idade + " anos.";
+
+                    ErrorData.TipoErrosCliente = ErrosCliente.DataNascimento;
+
+                    ListaError.Add(ErrorData);
+
+                    break;
+
+                default:
+
+                    Console.WriteLine("Erro: opção inválida");
+                    break;
+
 
             }
-            else if (opacao == 2)
-            {
-                ErrorData.DescricaoError = "paciente só tem " + idade +  " anos.";
 
-                ErrorData.TipoErrosCliente = ErrosCliente.DataNascimento;
 
-                ListaError.Add(ErrorData);
 
-            }
 
         }
 
-        public void ErrosAgenda(int opcao)
+        public void ErrosAgenda(StatusErros opcao)
         {
 
             ErroModel ErrorData = new ErroModel();
 
-            if (opcao == 1)
+
+            switch (opcao)
             {
-                ErrorData.DescricaoError = "Formato da data  não é válido(formato certo DD/MM/AAAA)";
 
-                ErrorData.TipoErrosCliente = ErrosCliente.DataConsulta;
+                case StatusErros.Data_formato:
 
-                ListaError.Add(ErrorData);
+                    ErrorData.DescricaoError = "Formato da data  não é válido(formato certo DD/MM/AAAA)";
 
+                    ErrorData.TipoErrosCliente = ErrosCliente.DataConsulta;
+
+                    ListaError.Add(ErrorData);
+
+                    break;
+
+                case StatusErros.Agenda_nao_existe:
+
+                    ErrorData.DescricaoError = "agendamento não encontrado";
+
+                    ErrorData.TipoErrosCliente = ErrosCliente.Agenda;
+
+                    ListaError.Add(ErrorData);
+
+
+                    break;
+
+                default:
+
+                    Console.WriteLine("Erro: opção inválida");
+                    break;
 
             }
-            else if (opcao == 2)
-            { 
-                ErrorData.DescricaoError = "agendamento não encontrado";
 
-                ErrorData.TipoErrosCliente = ErrosCliente.Agenda;
-
-                ListaError.Add(ErrorData);
-                
-            }
 
         }
 
-        public void ErrosHora(int opacao)
-        {
-            ErroModel ErrosHora = new ErroModel();
 
-            if (opacao == 1)
-            {
+
+
+    public void ErrosHora(StatusErros opacao)
+    {
+        ErroModel ErrosHora = new ErroModel();
+
+
+        switch (opacao)
+        {
+
+
+            case StatusErros.Agenda_futuro:
+
                 ErrosHora.DescricaoError = "O agendamento deve ser para um periodo futuro.";
 
                 ErrosHora.TipoErrosCliente = ErrosCliente.Agenda;
 
                 ListaError.Add(ErrosHora);
 
-            }
-            else if (opacao == 2)
-            {
+
+                break;
+
+            case StatusErros.Hora_final_maior:
+
                 ErrosHora.DescricaoError = "Hora final não pode ser maior que hora inicial do agendamento.";
 
                 ErrosHora.TipoErrosCliente = ErrosCliente.Hora;
 
                 ListaError.Add(ErrosHora);
 
-            }
+                break;
 
-            else if (opacao == 3)
-            {
+            case StatusErros.Agenda_existe:
+
                 ErrosHora.DescricaoError = "já existe uma consulta agendada nesta data/hora.";
 
                 ErrosHora.TipoErrosCliente = ErrosCliente.Agenda;
 
-                ListaError.Add(ErrosHora);
+                    ListaError.Add(ErrosHora);
 
-            }
+                break;
 
-            else if (opacao == 4)
-            {
+            case StatusErros.Hora_funcionamento:
+
                 ErrosHora.DescricaoError = "O horário de funcionamento do consultório e apenas entre 8:00h às 19:00h,";
 
                 ErrosHora.TipoErrosCliente = ErrosCliente.Hora;
 
                 ListaError.Add(ErrosHora);
 
-            }
-            else if (opacao == 5)
-            {
+                break;
+
+            case StatusErros.Duracao_consulta:
+
                 ErrosHora.DescricaoError = "A duração mínima para agendamento e de 15 minutos";
 
                 ErrosHora.TipoErrosCliente = ErrosCliente.Hora;
 
                 ListaError.Add(ErrosHora);
 
-            }
-            else if (opacao == 6)
-            {
+                break;
+
+            case StatusErros.Hora_nao_valida:
+
                 ErrosHora.DescricaoError = "Não são válidas as horas(exemplo de horaas válidas 1400, 1730, 1615, 1000 e 0715).";
 
                 ErrosHora.TipoErrosCliente = ErrosCliente.Hora;
@@ -246,9 +328,10 @@ namespace AgendaConsultorio.Services
                 ListaError.Add(ErrosHora);
 
 
-            }
-            else if (opacao == 7)
-            {
+                break;
+
+
+            case StatusErros.Hora_formato:
 
                 ErrosHora.DescricaoError = "Formato da hora está incorreta.";
 
@@ -256,10 +339,9 @@ namespace AgendaConsultorio.Services
 
                 ListaError.Add(ErrosHora);
 
+                break;
 
-            }
-            else if (opacao == 8)
-            {
+            case StatusErros.Hora_com_conflito:
 
                 ErrosHora.DescricaoError = "Existe um conflito de Horário com outra consulta agendada.";
 
@@ -268,10 +350,15 @@ namespace AgendaConsultorio.Services
                 ListaError.Add(ErrosHora);
 
 
+                break;
+
+             default:
+                Console.WriteLine("Erro: opção inválida");
+                    break;
+
+
             }
-
-
-        }
+}
 
 
 

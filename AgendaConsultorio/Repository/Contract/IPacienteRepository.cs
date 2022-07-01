@@ -1,9 +1,9 @@
-﻿using AgendaConsultorio.Models;
+using AgendaConsultorio.Models;
 using System.Collections.Generic;
 
 namespace AgendaConsultorio.Repository
 {
-    public  interface IPacienteRepository
+    public interface IPacienteRepository
     {
 
         void CadastrarPaciente(PacienteVO paciente);

@@ -1,6 +1,7 @@
 ﻿using AgendaConsultorio.Models;
 using AgendaConsultorio.Repository;
 using AgendaConsultorio.Repository.Implementations;
+using AgendaConsultorio.Services.Validadores.Erro.Enum;
 using System;
 using System.Globalization;
 using System.Linq;
@@ -36,7 +37,7 @@ namespace AgendaConsultorio.Services
             
             if (string.IsNullOrWhiteSpace(nome))
             {
-                _errorCliente.ErrosNome(2);
+                _errorCliente.ErrosNome(StatusErros.Paciente_nome_vazio);
 
                 return false;
 
@@ -44,7 +45,7 @@ namespace AgendaConsultorio.Services
             }
             else if (nome.Length < 5)
             {
-                _errorCliente.ErrosNome(1);
+                _errorCliente.ErrosNome(StatusErros.Paciente_nome_caracteres);
 
                 return false;
 
@@ -62,14 +63,14 @@ namespace AgendaConsultorio.Services
 
             if (cpf.Length < 11)
             {
-                _errorCliente.ErrosCpf(1);
+                _errorCliente.ErrosCpf(StatusErros.CPF_menor_11);
 
 
 
                 if (!Regex.IsMatch(cpf, @"^[0-9]+$"))
                 {
 
-                    _errorCliente.ErrosCpf(3);
+                    _errorCliente.ErrosCpf(StatusErros.CPF_diferente_numero);
 
                 }
                 return false;
@@ -79,13 +80,13 @@ namespace AgendaConsultorio.Services
             else if (cpf.Length > 11)
             {
 
-                _errorCliente.ErrosCpf(2);
+                _errorCliente.ErrosCpf(StatusErros.CPF_maior_11);
 
 
                 if (!Regex.IsMatch(cpf, @"^[0-9]+$"))
                 {
 
-                    _errorCliente.ErrosCpf(3);
+                    _errorCliente.ErrosCpf(StatusErros.CPF_diferente_numero);
 
 
                 }
@@ -99,7 +100,7 @@ namespace AgendaConsultorio.Services
                 if (!Regex.IsMatch(cpf, @"^[0-9]+$"))
                 {
 
-                    _errorCliente.ErrosCpf(3);
+                    _errorCliente.ErrosCpf(StatusErros.CPF_diferente_numero);
 
                     return false;
 
@@ -108,14 +109,14 @@ namespace AgendaConsultorio.Services
 
                 else if (!ValidacaoCpfRepetido(cpf)) 
                 { 
-                    _errorCliente.ErrosCpf(4);
+                    _errorCliente.ErrosCpf(StatusErros.CPF_numero_repetido);
 
                     return false;
 
                 }
                 else if (!ValidacaoCPF(cpf))
                 {
-                    _errorCliente.ErrosCpf(5);
+                    _errorCliente.ErrosCpf(StatusErros.CPF_nao_valido);
 
                     return false;
 
@@ -135,7 +136,7 @@ namespace AgendaConsultorio.Services
                     if (searchCpf != null && searchCpf.CPF.ToString("D11") == cpf)
                     {
 
-                        _errorCliente.ErrosCpf(6);
+                        _errorCliente.ErrosCpf(StatusErros.CPF_cadastrado);
 
                         return false;
 
@@ -158,13 +159,13 @@ namespace AgendaConsultorio.Services
 
             if (cpf.Length < 11)
             {
-                _errorCliente.ErrosCpf(1);
+                _errorCliente.ErrosCpf(StatusErros.CPF_menor_11);
 
 
                 if (!Regex.IsMatch(cpf, @"^[0-9]+$"))
                 {
 
-                    _errorCliente.ErrosCpf(3);
+                    _errorCliente.ErrosCpf(StatusErros.CPF_diferente_numero);
 
                 }
 
@@ -175,13 +176,13 @@ namespace AgendaConsultorio.Services
             else if (cpf.Length > 11)
             {
 
-                _errorCliente.ErrosCpf(2);
+                _errorCliente.ErrosCpf(StatusErros.CPF_maior_11);
 
 
                 if (!Regex.IsMatch(cpf, @"^[0-9]+$"))
                 {
 
-                    _errorCliente.ErrosCpf(3);
+                    _errorCliente.ErrosCpf(StatusErros.CPF_diferente_numero);
 
 
                 }
@@ -195,7 +196,7 @@ namespace AgendaConsultorio.Services
                 if (!Regex.IsMatch(cpf, @"^[0-9]+$"))
                 {
 
-                    _errorCliente.ErrosCpf(3);
+                    _errorCliente.ErrosCpf(StatusErros.CPF_diferente_numero);
 
                     return false;
 
@@ -214,7 +215,7 @@ namespace AgendaConsultorio.Services
                     if (!(searchCpf != null && searchCpf.CPF.ToString("D11") == cpf))
                     {
 
-                        _errorCliente.ErrosCpf(7);
+                        _errorCliente.ErrosCpf(StatusErros.Paciente_nao_cadastrado);
 
                         return false;
 
@@ -229,7 +230,7 @@ namespace AgendaConsultorio.Services
                         if (agenda != null)
                         {
 
-                            _errorCliente.ErrosCpf(8,agenda);
+                            _errorCliente.ErrosCpf(StatusErros.Paciente_com_agenda,agenda);
                             return false;
 
 
@@ -259,7 +260,7 @@ namespace AgendaConsultorio.Services
 
             if (!datavalida)
             {
-                _errorCliente.ErrosData(1, 0);
+                _errorCliente.ErrosData(StatusErros.Data_formato, 0);
 
                 return false;
 
@@ -273,7 +274,7 @@ namespace AgendaConsultorio.Services
 
                 if (idade < 13)
                 {
-                    _errorCliente.ErrosData(2, idade);
+                    _errorCliente.ErrosData(StatusErros.Paciente_idade, idade);
 
                     return false;
 

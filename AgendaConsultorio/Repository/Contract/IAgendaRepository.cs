@@ -1,4 +1,4 @@
-﻿using AgendaConsultorio.Models;
+using AgendaConsultorio.Models;
 using System.Collections.Generic;
 
 namespace AgendaConsultorio.Repository

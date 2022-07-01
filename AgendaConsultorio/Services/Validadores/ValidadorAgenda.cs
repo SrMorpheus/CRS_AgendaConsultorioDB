@@ -1,6 +1,7 @@
 ﻿using AgendaConsultorio.Models;
 using AgendaConsultorio.Repository;
 using AgendaConsultorio.Repository.Implementations;
+using AgendaConsultorio.Services.Validadores.Erro.Enum;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -38,13 +39,13 @@ namespace AgendaConsultorio.Services
         {
             if (cpf.Length < 11)
             {
-                _errorAgenda.ErrosCpf(1);
+                _errorAgenda.ErrosCpf(StatusErros.CPF_menor_11);
 
 
                 if (!Regex.IsMatch(cpf, @"^[0-9]+$"))
                 {
 
-                    _errorAgenda.ErrosCpf(3);
+                    _errorAgenda.ErrosCpf(StatusErros.CPF_diferente_numero);
 
                 }
 
@@ -54,13 +55,13 @@ namespace AgendaConsultorio.Services
             else if (cpf.Length > 11)
             {
 
-                _errorAgenda.ErrosCpf(2);
+                _errorAgenda.ErrosCpf(StatusErros.CPF_maior_11);
 
 
                 if (!Regex.IsMatch(cpf, @"^[0-9]+$"))
                 {
 
-                    _errorAgenda.ErrosCpf(3);
+                    _errorAgenda.ErrosCpf(StatusErros.CPF_diferente_numero);
 
 
                 }
@@ -72,7 +73,7 @@ namespace AgendaConsultorio.Services
                 if (!Regex.IsMatch(cpf, @"^[0-9]+$"))
                 {
 
-                    _errorAgenda.ErrosCpf(3);
+                    _errorAgenda.ErrosCpf(StatusErros.CPF_diferente_numero);
 
                     return false;
 
@@ -89,7 +90,7 @@ namespace AgendaConsultorio.Services
                     if (!(searchCpf != null && searchCpf.CPF.ToString("D11") == cpf))
                     {
 
-                        _errorAgenda.ErrosCpf(7);
+                        _errorAgenda.ErrosCpf(StatusErros.Paciente_nao_cadastrado);
 
                         return false;
 
@@ -102,7 +103,7 @@ namespace AgendaConsultorio.Services
                        if(agenda!= null)
                         {
 
-                            _errorAgenda.ErrosCpf(8,agenda);
+                            _errorAgenda.ErrosCpf(StatusErros.Paciente_com_agenda,agenda);
                             return false;
                          
                         }
@@ -122,13 +123,13 @@ namespace AgendaConsultorio.Services
         {
             if (cpf.Length < 11)
             {
-                _errorAgenda.ErrosCpf(1);
+                _errorAgenda.ErrosCpf(StatusErros.CPF_menor_11);
 
 
                 if (!Regex.IsMatch(cpf, @"^[0-9]+$"))
                 {
 
-                    _errorAgenda.ErrosCpf(3);
+                    _errorAgenda.ErrosCpf(StatusErros.CPF_diferente_numero);
 
                 }
 
@@ -138,13 +139,13 @@ namespace AgendaConsultorio.Services
             else if (cpf.Length > 11)
             {
 
-                _errorAgenda.ErrosCpf(2);
+                _errorAgenda.ErrosCpf(StatusErros.CPF_maior_11);
 
 
                 if (!Regex.IsMatch(cpf, @"^[0-9]+$"))
                 {
 
-                    _errorAgenda.ErrosCpf(3);
+                    _errorAgenda.ErrosCpf(StatusErros.CPF_diferente_numero);
 
 
                 }
@@ -158,7 +159,7 @@ namespace AgendaConsultorio.Services
                 if (!Regex.IsMatch(cpf, @"^[0-9]+$"))
                 {
 
-                    _errorAgenda.ErrosCpf(3);
+                    _errorAgenda.ErrosCpf(StatusErros.CPF_diferente_numero);
 
                     return false;
 
@@ -176,7 +177,7 @@ namespace AgendaConsultorio.Services
                     if (!(searchCpf != null && searchCpf.CPF.ToString("D11") == cpf))
                     {
 
-                        _errorAgenda.ErrosCpf(7);
+                        _errorAgenda.ErrosCpf(StatusErros.Paciente_nao_cadastrado);
 
                         return false;
 
@@ -222,7 +223,7 @@ namespace AgendaConsultorio.Services
                 if (agenda == null)
                 {
 
-                    _errorAgenda.ErrosAgenda(2);
+                    _errorAgenda.ErrosAgenda(StatusErros.Agenda_nao_existe);
 
                     return false;
 
@@ -246,7 +247,7 @@ namespace AgendaConsultorio.Services
 
             if (!datavalida)
             {
-                _errorAgenda.ErrosAgenda(1);
+                _errorAgenda.ErrosAgenda(StatusErros.Data_formato);
 
                 return false;
 
@@ -264,7 +265,7 @@ namespace AgendaConsultorio.Services
             if(data.Length < 4 )
             {
 
-                _errorAgenda.ErrosHora(7);
+                _errorAgenda.ErrosHora(StatusErros.Hora_formato);
 
                 return false;
 
@@ -281,7 +282,7 @@ namespace AgendaConsultorio.Services
 
             if (!horaValida || data.Length  > 5)
             {
-                _errorAgenda.ErrosHora(7);
+                _errorAgenda.ErrosHora(StatusErros.Hora_formato);
 
                 return false;
 
@@ -326,7 +327,7 @@ namespace AgendaConsultorio.Services
 
                 if(dataHora < DateTime.Now)
                 {
-                    _errorAgenda.ErrosHora(1);
+                    _errorAgenda.ErrosHora(StatusErros.Agenda_futuro);
 
 
                     return false;
@@ -339,7 +340,7 @@ namespace AgendaConsultorio.Services
                 {
                   
                     
-                        _errorAgenda.ErrosHora(3);
+                        _errorAgenda.ErrosHora(StatusErros.Agenda_existe);
 
                         return false;
 
@@ -376,7 +377,7 @@ namespace AgendaConsultorio.Services
             if (horaInicialTime.TimeOfDay < InicioExpediente || horaFinalTime.TimeOfDay > FinalExpediente)
             {
 
-                _errorAgenda.ErrosHora(4);
+                _errorAgenda.ErrosHora(StatusErros.Hora_funcionamento);
 
                 return false;
 
@@ -384,7 +385,7 @@ namespace AgendaConsultorio.Services
             else if(horaFinalTime <= horaInicialTime)
             {
 
-                _errorAgenda.ErrosHora(2);
+                _errorAgenda.ErrosHora(StatusErros.Hora_final_maior);
 
 
                 return false;
@@ -394,14 +395,14 @@ namespace AgendaConsultorio.Services
             else if (duracao.Minutes < 15 && duracao.Hours < 1 )
             {
 
-                _errorAgenda.ErrosHora(5);
+                _errorAgenda.ErrosHora(StatusErros.Duracao_consulta);
 
                 return false;
 
 
             }else if(horaInicialTime.Minute % 15 != 0 || horaFinalTime.Minute % 15 != 0 )
             {
-                _errorAgenda.ErrosHora(6);
+                _errorAgenda.ErrosHora(StatusErros.Hora_nao_valida);
 
 
                 return false;
@@ -414,7 +415,7 @@ namespace AgendaConsultorio.Services
                 if (temIntersecao)
                 {
 
-                    _errorAgenda.ErrosHora(8);
+                    _errorAgenda.ErrosHora(StatusErros.Hora_com_conflito);
 
                     return false;
 
@@ -452,17 +453,23 @@ namespace AgendaConsultorio.Services
 
         private DateTime ConverterHoraMinutos(string horaConvert)
         {
+            DateTime hora = new DateTime(); ;
 
-            DateTime hora;
+            if (!string.IsNullOrEmpty(horaConvert))
+            {
 
-            var horaFormat = horaConvert.Substring(0, 2);
+                var horaFormat = horaConvert.Substring(0, 2);
 
-            var minuntosFormat = horaConvert.Substring(2, 2);
+                var minuntosFormat = horaConvert.Substring(2, 2);
 
-            horaConvert = horaFormat + ":" + minuntosFormat;
+                horaConvert = horaFormat + ":" + minuntosFormat;
 
 
-            bool horaValida = DateTime.TryParseExact(horaConvert, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out hora);
+                bool horaValida = DateTime.TryParseExact(horaConvert, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out hora);
+
+            }
+
+         
 
             return hora;
 
