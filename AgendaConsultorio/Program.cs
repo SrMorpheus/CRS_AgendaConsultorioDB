@@ -21,7 +21,7 @@ namespace AgendaConsultorio
                 main.ViewMenuPrincipal();
 
             }
-            catch(SqlException EX)
+            catch(Exception EX)
             {
 
                 Console.WriteLine("Erro: falha na requisição de conexão ao Banco de Dados");

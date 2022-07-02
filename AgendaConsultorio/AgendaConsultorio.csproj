@@ -14,10 +14,33 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Dados\DadosAgenda - Cópia.cs" />
+    <Compile Remove="Migrations\20220702011427_inicial.cs" />
+    <Compile Remove="Migrations\20220702011427_inicial.Designer.cs" />
+    <Compile Remove="Migrations\20220702012950_inicial.cs" />
+    <Compile Remove="Migrations\20220702012950_inicial.Designer.cs" />
+    <Compile Remove="Migrations\20220702013310_inicial.cs" />
+    <Compile Remove="Migrations\20220702013310_inicial.Designer.cs" />
+    <Compile Remove="Migrations\20220702013519_inicial.cs" />
+    <Compile Remove="Migrations\20220702013519_inicial.Designer.cs" />
+    <Compile Remove="Migrations\20220702013657_inicial.cs" />
+    <Compile Remove="Migrations\20220702013657_inicial.Designer.cs" />
+    <Compile Remove="Migrations\20220702013923_inicial.cs" />
+    <Compile Remove="Migrations\20220702013923_inicial.Designer.cs" />
+    <Compile Remove="Migrations\20220702020349_inicial.cs" />
+    <Compile Remove="Migrations\20220702020349_inicial.Designer.cs" />
+    <Compile Remove="Migrations\20220702020924_inicial.cs" />
+    <Compile Remove="Migrations\20220702020924_inicial.Designer.cs" />
+    <Compile Remove="Migrations\20220702021329_inicial.cs" />
+    <Compile Remove="Migrations\20220702021329_inicial.Designer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.26" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.26">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="morelinq" Version="3.3.2" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
   </ItemGroup>
   <ItemGroup Condition="$(VisualStudioVersion) == '17.0'">
     <Reference Include="Microsoft.Data.Tools.Schema.Sql, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -32,6 +55,9 @@
       <HintPath>$(SSDTUnitTestPath)\Microsoft.Data.Tools.Schema.Sql.UnitTestingAdapter.dll</HintPath>
       <Private>True</Private>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
   <PropertyGroup>
     <SsdtUnitTestVersion>3.1</SsdtUnitTestVersion>
