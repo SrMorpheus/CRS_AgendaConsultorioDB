@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AgendaConsultorio.Migrations
 {
     [DbContext(typeof(ConsultorioContexto))]
-    [Migration("20220702022720_inicial")]
-    partial class inicial
+    [Migration("20220705114909_Inicial")]
+    partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

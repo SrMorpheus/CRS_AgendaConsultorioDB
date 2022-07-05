@@ -4,6 +4,7 @@ using System;
 using AgendaConsultorio.Controller;
 using AgendaConsultorio.Repository;
 using AgendaConsultorio.Repository.Implementations;
+using AgendaConsultorio.View.Enum;
 
 namespace AgendaConsultorio.View
 {
@@ -231,7 +232,7 @@ namespace AgendaConsultorio.View
 
         }
 
-        public void ListagemView(int opcao)
+        public void ListagemView(ListagemEnumView opcao)
         {
 
             //  var dadosPaciente = DadosPaciente.listaPacientes();
@@ -241,21 +242,23 @@ namespace AgendaConsultorio.View
             if (dadosPaciente.Count > 0)
             {
 
-                if (opcao == 1)
+                switch (opcao)
                 {
 
-                    _controllerPaciente.ListaPacientesCPF();
+                    case ListagemEnumView.Listagem_paciente_cpf:
 
+                        _controllerPaciente.ListaPacientesCPF();
+
+                        break;
+
+                    case ListagemEnumView.Listagem_paciente_nome:
+
+                        _controllerPaciente.ListaPacientesNome();
+
+                        break;
 
                 }
-                else if (opcao == 2)
-                {
-
-                    _controllerPaciente.ListaPacientesNome();
-
-                }
-
-            }
+             }
             else
             {
             

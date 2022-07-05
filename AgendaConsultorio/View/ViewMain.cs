@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AgendaConsultorio.View.Enum;
+using System;
 
 namespace AgendaConsultorio.View
 {
@@ -47,7 +48,7 @@ namespace AgendaConsultorio.View
 
                         Console.WriteLine();
 
-                        viewPaciente.ListagemView(1);
+                        viewPaciente.ListagemView(ListagemEnumView.Listagem_paciente_cpf);
 
                         Console.WriteLine();
 
@@ -58,7 +59,7 @@ namespace AgendaConsultorio.View
 
                         Console.WriteLine();
 
-                        viewPaciente.ListagemView(2);
+                        viewPaciente.ListagemView(ListagemEnumView.Listagem_paciente_nome) ;
 
                         Console.WriteLine();
 
